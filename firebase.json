@@ -1,0 +1,20 @@
+{
+  "hosting": {
+    "public": "dist/gym-app",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ],
+    "predeploy": [
+      "ng lint",
+      "ng build --prod"
+    ],
+    "rewrites": [
+      {
+        "source": "**",
+        "destination": "/index.html"
+      }
+    ]
+  }
+}
