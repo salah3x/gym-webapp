@@ -14,8 +14,8 @@ export class AppComponent implements OnInit {
   isAuthenticated: boolean;
   claims: any;
 
-  constructor(private router: Router,
-              private auth: AngularFireAuth,
+  constructor(public router: Router,
+              public auth: AngularFireAuth,
               private snackBar: MatSnackBar,
               private dialog: MatDialog) {}
 
