@@ -1,1 +1,51 @@
-<router-outlet></router-outlet>
+<mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over">
+        <mat-nav-list *ngIf="isAuthenticated">
+            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('superAdmin')">
+                <a matLine routerLink="./superadmin">Super Admin</a>
+                <button mat-icon-button>
+                    <mat-icon>supervisor_account</mat-icon>
+                </button>
+            </mat-list-item>
+            <mat-divider *ngIf="hasClaim('superAdmin')"></mat-divider>
+            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('admin')">
+                <a matLine routerLink="./admin">Admin</a>
+                <button mat-icon-button>
+                    <mat-icon>trending_up</mat-icon>
+                </button>
+            </mat-list-item>
+            <mat-divider *ngIf="hasClaim('admin')"></mat-divider>
+            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('user')">
+                <a matLine routerLink="./user">User</a>
+                <button mat-icon-button>
+                    <mat-icon>portrait</mat-icon>
+                </button>
+            </mat-list-item>
+            <mat-divider *ngIf="hasClaim('user')"></mat-divider>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-toolbar color="primary" class="toolbar">
+            <div *ngIf="isAuthenticated">
+                <button (click)="sidenav.toggle()" class="menu-btn" mat-icon-button type="button">
+                    <mat-icon>menu</mat-icon>
+                </button>
+            </div>
+            <div (click)="router.navigate(['ss'])" class="brand">
+                GymApp
+            </div>
+            <span class="fill-remaining-space"></span>
+            <mat-menu #appMenu="matMenu">
+                <button (click)="onSigninOrSignout()"
+                    mat-menu-item>{{ isAuthenticated? 'Se déconnecter': 'Se connécter'}}</button>
+            </mat-menu>
+            <button [matMenuTriggerFor]="appMenu" class="menu-btn" [matTooltip]="(auth.user |async)?.email"
+                color="default" mat-mini-fab>
+                <mat-icon>person</mat-icon>
+            </button>
+        </mat-toolbar>
+        <div class="content">
+            <router-outlet></router-outlet>
+        </div>
+    </mat-sidenav-content>
+</mat-sidenav-container>

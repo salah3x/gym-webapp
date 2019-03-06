@@ -1,0 +1,21 @@
+mat-sidenav-content {
+    background-image: url('http://www.howleysbutchers.ie/wp-content/uploads/2016/03/empty-gym.jpg');
+    background-repeat: no-repeat;
+    height: 100vh;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+}
+
+.mat-toolbar.mat-primary {
+    background: #00000090;
+}
+
+.header {
+    background: #000000cb;
+    color: white;
+    margin-top: 150px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    text-align: center;
+}

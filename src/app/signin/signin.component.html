@@ -1,0 +1,25 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" fxLayout="column" fxLayoutAlign="space-between center">
+  <h1 mat-dialog-title>Se connecter</h1>
+  <div mat-dialog-content>
+    <mat-form-field>
+      <input matInput name="email" ngModel placeholder="E-mail" email required #email>
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="f.controls['email']?.hasError('required')">Ce champ est obligatoire</mat-error>
+      <mat-error *ngIf="f.controls['email']?.hasError('email')">Email doit être correct</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input [type]="hide ? 'password' : 'text'" matInput name="password" ngModel placeholder="Mot de passe" required>
+      <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      <mat-error>Ce champ obligatoire</mat-error>
+    </mat-form-field>
+  </div>
+  <div fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch" mat-dialog-actions>
+    <button fxFlex="45" [disabled]="!f.valid" mat-raised-button color="primary" type="submit">Ok</button>
+    <button fxFlex="45" mat-dialog-close mat-raised-button>Annuler</button>
+  </div>
+  <br>
+  <button *ngIf="!loading" type="button" [disabled]="!f.controls['email']?.valid" mat-button (click)="onForget(f.controls['email']?.value)">
+    Réinitialiser mot de passe
+  </button>
+  <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
+</form>
