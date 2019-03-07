@@ -23,7 +23,6 @@ export class AppComponent implements OnInit {
     this.auth.authState.subscribe(value => this.isAuthenticated = value != null);
     this.auth.idTokenResult.subscribe(r => {
       r ? this.claims = r.claims : this.claims = [];
-      console.log(this.claims);
     });
   }
 
