@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "firebase deploy --only hosting",
+    "serve": "npm run build && firebase serve --only hosting"
   },
   "private": true,
   "dependencies": {
