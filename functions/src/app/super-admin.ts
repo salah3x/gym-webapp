@@ -1,19 +1,34 @@
 import * as express from 'express';
-import * as bodyParser from 'body-parser';
+import * as admin from 'firebase-admin'
 
+// Initialize an express app
 export const app: express.Application = express();
-function isSuperAdminMiddleware(request: express.Request,
-                                response: express.Response,
-                                next: express.NextFunction) {
-    // todo: verify if the current user has superAdmin claim, if not return 403 error.
+// Add a middleware to verify caller permissions (expect caller uid in request's body)
+async function isSuperAdminMiddleware(req: express.Request,
+                                    res: express.Response,
+                                    next: express.NextFunction) {
+    const uid = req.body.uid;
+    if (!uid) {
+        res.status(400).send('uid must not be null');
+        return;
+    }
+    const claims = await admin.auth().verifyIdToken(uid);
+    if (!claims || !claims.superAdmin) {
+        res.sendStatus(403);
+        return;
+    }
     next();
 }
 app.use(isSuperAdminMiddleware);
-app.use(bodyParser.json());
+// Create an express Router and define the endpoints
 const route: express.Router = express.Router()
-
-route.get('/hello', (req: express.Request, res: express.Response) => {
-    res.json({message: 'Hello World!'})
-})
-
+route.post('/updateClaims', async (req: express.Request, res: express.Response) => {
+    const email = req.body.email;
+    const claims = req.body.claims;
+    if (!email || !claims) {
+        res.status(400).send('email and claims must not be null.')
+    }
+    const user = await admin.auth().getUserByEmail(email);
+    return admin.auth().setCustomUserClaims(user.uid, claims);
+});
 app.use('/api/superAdmin', route);
