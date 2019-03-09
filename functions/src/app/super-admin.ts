@@ -13,7 +13,7 @@ async function isSuperAdminMiddleware(req: express.Request,
         return;
     }
     const claims = await admin.auth().verifyIdToken(uid);
-    if (!claims || !claims.superAdmin) {
+    if (!claims || !claims.superadmin) {
         res.sendStatus(403);
         return;
     }
@@ -31,4 +31,4 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
     const user = await admin.auth().getUserByEmail(email);
     return admin.auth().setCustomUserClaims(user.uid, claims);
 });
-app.use('/api/superAdmin', route);
+app.use('/api/superadmin', route);

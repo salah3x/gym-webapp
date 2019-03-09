@@ -1,22 +1,22 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over">
         <mat-nav-list *ngIf="isAuthenticated">
-            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('superAdmin')">
-                <a matLine routerLink="./superadmin">Super Admin</a>
+            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('superadmin')">
+                <a matLine routerLink="./superadmin/">Super Admin</a>
                 <button mat-icon-button>
                     <mat-icon>supervisor_account</mat-icon>
                 </button>
             </mat-list-item>
-            <mat-divider *ngIf="hasClaim('superAdmin')"></mat-divider>
+            <mat-divider *ngIf="hasClaim('superadmin')"></mat-divider>
             <mat-list-item routerLinkActive="active" *ngIf="hasClaim('admin')">
-                <a matLine routerLink="./admin">Admin</a>
+                <a matLine routerLink="./admin/">Admin</a>
                 <button mat-icon-button>
                     <mat-icon>trending_up</mat-icon>
                 </button>
             </mat-list-item>
             <mat-divider *ngIf="hasClaim('admin')"></mat-divider>
             <mat-list-item routerLinkActive="active" *ngIf="hasClaim('user')">
-                <a matLine routerLink="./user">User</a>
+                <a matLine routerLink="./user/">User</a>
                 <button mat-icon-button>
                     <mat-icon>portrait</mat-icon>
                 </button>

@@ -12,8 +12,8 @@
     ],
     "rewrites": [
       {
-        "source": "/api/superAdmin/**",
-        "function": "superAdmin"
+        "source": "/api/superadmin/**",
+        "function": "superadmin"
       },
       {
         "source": "**",
