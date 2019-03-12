@@ -9,7 +9,7 @@ async function isSuperAdminMiddleware(req: express.Request,
                                     next: express.NextFunction) {
     const uid = req.body.uid;
     if (!uid) {
-        res.status(400).send('uid must not be null');
+        res.status(401);
         return;
     }
     const claims = await admin.auth().verifyIdToken(uid);
@@ -29,6 +29,14 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
         res.status(400).send('email and claims must not be null.')
     }
     const user = await admin.auth().getUserByEmail(email);
-    return admin.auth().setCustomUserClaims(user.uid, claims);
+    return admin.auth().setCustomUserClaims(user.uid, claims)
+                .then(() => {
+                    console.log(`Setting claims to ${email}: `, claims)
+                    res.sendStatus(201);
+                })
+                .catch((error) => {
+                    console.error(`Setting claims to ${email} failed: `, error);
+                    res.sendStatus(500);
+                });
 });
 app.use('/api/superadmin', route);
