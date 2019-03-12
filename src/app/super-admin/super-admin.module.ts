@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { SuperAdminComponent } from './super-admin.component';
 import { UsersComponent } from './users/users.component';
 import { SuperAdminRoutingModule } from './super-admin-routing.module';
+import { AppMaterialModule } from '../shared/app-material.module';
 
 @NgModule({
   declarations: [
@@ -11,7 +12,8 @@ import { SuperAdminRoutingModule } from './super-admin-routing.module';
   ],
   imports: [
     CommonModule,
-    SuperAdminRoutingModule
+    SuperAdminRoutingModule,
+    AppMaterialModule
   ]
 })
 export class SuperAdminModule { }
