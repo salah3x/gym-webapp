@@ -1,8 +1,14 @@
 import * as express from 'express';
+import * as cors from 'cors';
 import * as admin from 'firebase-admin'
 
 // Initialize an express app
 export const app: express.Application = express();
+// Add cors configuration
+const corsOptions = {
+    origin: 'http://localhost:4200'
+}
+app.use(cors(corsOptions));
 // Add a middleware to verify caller permissions (expect caller token in request's body)
 async function isSuperAdminMiddleware(req: express.Request,
                                     res: express.Response,
