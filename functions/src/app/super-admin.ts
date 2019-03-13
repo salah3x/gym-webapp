@@ -35,7 +35,7 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
         res.status(400).send({"error": "Bad request", "message": "Email and claims must not be null"})
         return
     }
-    let user;
+    let user: admin.auth.UserRecord;
     try {
         user = await admin.auth().getUserByEmail(email);
     } catch (err) {
@@ -46,8 +46,15 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
                 .then(() => {
                     res.status(202).send({"message": `Claims have been set to ${email} successfully`});
                 })
-                .catch((error) => {
+                .catch(() => {
                     res.status(500).send({"error": "Internal error", "message": `Setting claims to ${email} failed`});
                 });
+});
+route.post('/users', (req: express.Request, res: express.Response) => {
+    return admin.auth().listUsers()
+                .then(users => res.json(users.users.map(user => {
+                        return {'email': user.email, 'claims': user.customClaims}
+                    })))
+                .catch(() => res.status(500).send({"error": "Internal error", "message": `Retrieving users failed`}))
 });
 app.use('/api/superadmin', route);
