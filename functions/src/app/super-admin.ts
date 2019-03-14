@@ -63,7 +63,7 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
 route.post('/users', (req: express.Request, res: express.Response) => {
     return admin.auth().listUsers()
                 .then(users => res.json(users.users.map(user => {
-                        return {'email': user.email, 'claims': user.customClaims}
+                        return {'email': user.email, 'claims': user.customClaims, disabled: user.disabled}
                     })))
                 .catch(() => res.status(500).send({"error": "Internal Error", "message": `Retrieving users failed`}))
 });
