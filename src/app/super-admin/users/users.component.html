@@ -1,3 +1,49 @@
-<p>
-  users works!
-</p>
+<button mat-raised-button color="primary" (click)="getUsers()" matTooltip='Actualiser la liste'>
+    <mat-icon>refresh</mat-icon>
+</button>
+<table mat-table [dataSource]="users" class="mat-elevation-z8">
+
+    <ng-container matColumnDef="email">
+        <th mat-header-cell *matHeaderCellDef> Email </th>
+        <td mat-cell *matCellDef="let element"
+            [ngClass]="element.disabled? 'disabled': ''">
+            {{element.email}} {{element.disabled? '(Désactivé)': ''}}
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="claims.superadmin">
+        <th mat-header-cell *matHeaderCellDef> Superadmin </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle #t
+                [disabled]='isWorking'
+                [checked]="element.claims.superadmin" 
+                (change)='onChange(t, $event.checked, element, "superadmin")'>
+            </mat-slide-toggle>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="claims.admin">
+        <th mat-header-cell *matHeaderCellDef> Admin </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle #t
+                [disabled]='isWorking'
+                [checked]="element.claims.admin"
+                (change)='onChange(t, $event.checked, element, "admin")'>
+            </mat-slide-toggle>
+        </td>
+    </ng-container>
+
+    <ng-container matColumnDef="claims.user">
+        <th mat-header-cell *matHeaderCellDef> User </th>
+        <td mat-cell *matCellDef="let element">
+            <mat-slide-toggle #t
+                [disabled]='isWorking'
+                [checked]="element.claims.user"
+                (change)='onChange(t, $event.checked, element, "user")'>
+            </mat-slide-toggle>
+        </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

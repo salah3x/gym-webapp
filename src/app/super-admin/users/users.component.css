@@ -1,0 +1,14 @@
+table {
+    margin-left: 5%;
+    width: 90%;
+    align-content: center;
+}
+
+button {
+    margin-left: 5%;
+    margin-top: 30px;
+}
+
+.disabled {
+    color: rgb(175, 174, 174);
+}

@@ -10,7 +10,9 @@ import {
   MatDialogModule,
   MatInputModule,
   MatProgressSpinnerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTableModule,
+  MatSlideToggleModule
 } from '@angular/material';
 
 @NgModule({
@@ -25,7 +27,8 @@ import {
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule
   ],
   exports: [
     MatButtonModule,
@@ -38,7 +41,9 @@ import {
     MatInputModule,
     MatProgressSpinnerModule,
     MatSnackBarModule,
-    MatDialogModule
+    MatDialogModule,
+    MatTableModule,
+    MatSlideToggleModule
   ],
 })
 export class AppMaterialModule { }
