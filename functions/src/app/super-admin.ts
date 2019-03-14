@@ -15,7 +15,7 @@ async function isSuperAdminMiddleware(req: express.Request,
                                     next: express.NextFunction) {
     const token = req.body.token;
     if (!token) {
-        res.status(400).send({"error": "Bad request", "message": "Token must not be null"});
+        res.status(400).send({"error": "Bad Request", "message": "Token must not be null"});
         return;
     }
     let claims;
@@ -38,14 +38,18 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
     const email = req.body.email;
     const claims = req.body.claims;
     if (!email || !claims) {
-        res.status(400).send({"error": "Bad request", "message": "Email and claims must not be null"})
+        res.status(400).send({"error": "Bad Request", "message": "Email and claims must not be null"})
         return
+    }
+    if (!claims.superadmin && email === 'salah.loukili@gmail.com') {
+        res.status(405).send({"error": "Method Not Allowed", "message": "Cannot do that !"})
+        return;
     }
     let user: admin.auth.UserRecord;
     try {
         user = await admin.auth().getUserByEmail(email);
     } catch (err) {
-        res.status(500).send({"error": "Internal error", "message": "Retrieving user by email failed"})
+        res.status(500).send({"error": "Internal Error", "message": "Retrieving user by email failed"})
         return;
     }
     return admin.auth().setCustomUserClaims(user.uid, claims)
@@ -53,7 +57,7 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
                     res.status(202).send({"message": `Claims have been set to ${email} successfully`});
                 })
                 .catch(() => {
-                    res.status(500).send({"error": "Internal error", "message": `Setting claims to ${email} failed`});
+                    res.status(500).send({"error": "Internal Error", "message": `Setting claims to ${email} failed`});
                 });
 });
 route.post('/users', (req: express.Request, res: express.Response) => {
@@ -61,6 +65,6 @@ route.post('/users', (req: express.Request, res: express.Response) => {
                 .then(users => res.json(users.users.map(user => {
                         return {'email': user.email, 'claims': user.customClaims}
                     })))
-                .catch(() => res.status(500).send({"error": "Internal error", "message": `Retrieving users failed`}))
+                .catch(() => res.status(500).send({"error": "Internal Error", "message": `Retrieving users failed`}))
 });
 app.use('/api/superadmin', route);
