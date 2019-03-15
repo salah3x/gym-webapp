@@ -33,13 +33,13 @@
         </td>
     </ng-container>
 
-    <ng-container matColumnDef="claims.user">
-        <th mat-header-cell *matHeaderCellDef> User </th>
+    <ng-container matColumnDef="claims.manager">
+        <th mat-header-cell *matHeaderCellDef> Manager </th>
         <td mat-cell *matCellDef="let element">
             <mat-slide-toggle #t
                 [disabled]='isWorking'
-                [checked]="element.claims.user"
-                (change)='onChange(t, $event.checked, element, "user")'>
+                [checked]="element.claims.manager"
+                (change)='onChange(t, $event.checked, element, "manager")'>
             </mat-slide-toggle>
         </td>
     </ng-container>

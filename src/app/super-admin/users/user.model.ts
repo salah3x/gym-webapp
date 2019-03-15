@@ -3,7 +3,7 @@ export interface User {
     claims: {
         superadmin: boolean,
         admin: boolean,
-        user: boolean
+        manager: boolean
     };
     disabled: boolean;
 }

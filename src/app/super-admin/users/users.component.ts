@@ -19,7 +19,7 @@ export class UsersComponent implements OnInit {
 
   isWorking = false;
   users: User[];
-  displayedColumns: string[] = ['email', 'claims.superadmin', 'claims.admin', 'claims.user'];
+  displayedColumns: string[] = ['email', 'claims.superadmin', 'claims.admin', 'claims.manager'];
   baseUrl = environment.production ? '/api/superadmin/' :
     // 'http://localhost:5000/gym-webapp/us-central1/superadmin/api/superadmin/';
     'https://us-central1-gym-webapp.cloudfunctions.net/superadmin/api/superadmin/';
@@ -37,7 +37,7 @@ export class UsersComponent implements OnInit {
       data => {
         data.forEach(u => {
           if (!u.claims) {
-            u.claims = {superadmin: false, admin: false, user: false};
+            u.claims = {superadmin: false, admin: false, manager: false};
           }
         });
         this.users = data;

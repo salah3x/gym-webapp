@@ -15,13 +15,13 @@
                 </button>
             </mat-list-item>
             <mat-divider *ngIf="hasClaim('admin')"></mat-divider>
-            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('user')">
-                <a matLine routerLink="./user/">User</a>
+            <mat-list-item routerLinkActive="active" *ngIf="hasClaim('manager')">
+                <a matLine routerLink="./manager/">Manager</a>
                 <button mat-icon-button>
                     <mat-icon>portrait</mat-icon>
                 </button>
             </mat-list-item>
-            <mat-divider *ngIf="hasClaim('user')"></mat-divider>
+            <mat-divider *ngIf="hasClaim('manager')"></mat-divider>
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
