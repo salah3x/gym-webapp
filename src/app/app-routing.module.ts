@@ -11,6 +11,12 @@ const routes: Routes = [
     canLoad: [AuthGuardService],
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'manager',
+    loadChildren: './manager/manager.module#ManagerModule',
+    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService]
+  },
   { path: '**', redirectTo: ''}
 ];
 

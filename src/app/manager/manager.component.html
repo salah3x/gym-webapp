@@ -1,0 +1,25 @@
+<mat-drawer-container>
+  <mat-drawer #drawer mode="side"  opened="true">
+    <mat-nav-list>
+      <mat-list-item routerLinkActive="active">
+        <a matLine routerLink="./clients/">Clients</a>
+        <button mat-icon-button>
+          <mat-icon>portrait</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+    </mat-nav-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+    <button
+      (click)="drawer.toggle()"
+      class="toggler"
+      color="warn"
+      mat-mini-fab
+      [matTooltip]="drawer.opened ? 'Fermer le menu': 'Ouvrir le menu'"
+      matTooltipPosition="after">
+      <mat-icon>{{drawer.opened ? 'arrow_left': 'arrow_right'}}</mat-icon>
+    </button>
+  </mat-drawer-content>
+</mat-drawer-container>
