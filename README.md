@@ -2,6 +2,12 @@
 
 This is a webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
 
+## Features
+
+- **Superadmin module**: Manage users and roles (Access control).
+- **Admin module**: View incomes and charges, manage packs and register new cleints.
+- **Manager module**: Search for clients, perform check ins and view their profiles.
+
 ## Development server (angular cli)
 * First clone the repo: `git clone git@github.com:salah3x/gym-webapp.git`
 * Install dependencies for the web app (assuming `node`, `npm` and `ng` are already installed): `cd gym-webapp && npm install`
