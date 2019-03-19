@@ -1,4 +1,4 @@
-<button mat-button (click)="getUsers()" matTooltip='Actualiser la liste'>
+<button mat-button (click)="getUsers()" matTooltip='Refresh the list'>
     <mat-icon>refresh</mat-icon>
 </button>
 <table mat-table [dataSource]="users" class="mat-elevation-z8">
@@ -7,7 +7,7 @@
         <th mat-header-cell *matHeaderCellDef> Email </th>
         <td mat-cell *matCellDef="let element"
             [ngClass]="element.disabled? 'disabled': ''">
-            {{element.email}} {{element.disabled? '(Désactivé)': ''}}
+            {{element.email}} {{element.disabled? '(Disabled)': ''}}
         </td>
     </ng-container>
 

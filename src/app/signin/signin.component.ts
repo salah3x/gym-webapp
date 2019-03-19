@@ -22,15 +22,16 @@ export class SigninComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.loading = true;
     this.auth.auth.signInWithEmailAndPassword(f.value.email, f.value.password).then(value => {
-      this.snackbar.open('Bonjour ' + value.user.email, 'Fermer', {duration: 3000});
+      this.snackbar.open('Hello ' + value.user.email, 'Close', {duration: 3000});
       this.dialogRef.close();
     }).catch(reason => {
-      this.snackbar.open('Connexion échouée, vérifiez vos informations.', 'Fermer', {duration: 3000});
+      this.snackbar.open('Login failed, check your information.', 'Fermer', {duration: 3000});
       this.loading = false;
     });
   }
 
   onForget(email: string) {
-    this.auth.auth.sendPasswordResetEmail(email).then(() => this.snackbar.open('Vérifier vôtre email.', 'Fermer', {duration: 3000}));
+    this.auth.auth.sendPasswordResetEmail(email)
+      .then(() => this.snackbar.open('Check your mailbox.', 'Close', {duration: 3000}));
   }
 }

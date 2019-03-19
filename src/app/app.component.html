@@ -37,7 +37,7 @@
             <span class="fill-remaining-space"></span>
             <mat-menu #appMenu="matMenu">
                 <button (click)="onSigninOrSignout()"
-                    mat-menu-item>{{ isAuthenticated? 'Se déconnecter': 'Se connécter'}}</button>
+                    mat-menu-item>{{ isAuthenticated? 'Logout': 'Login'}}</button>
             </mat-menu>
             <button [matMenuTriggerFor]="appMenu" class="menu-btn" [matTooltip]="(auth.user |async)?.email"
                 color="default" mat-mini-fab>

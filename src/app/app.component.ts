@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
   onSigninOrSignout() {
     if (this.isAuthenticated) {
       this.auth.auth.signOut().then(value => {
-        this.snackBar.open('Vous vous êtes déconnecté avec succès.', 'Fermer', {duration: 3000});
+        this.snackBar.open('You have successfully disconnected.', 'Close', {duration: 3000});
         this.router.navigate(['']);
       });
     } else {

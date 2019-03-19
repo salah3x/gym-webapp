@@ -42,12 +42,12 @@ export class UsersComponent implements OnInit {
         });
         this.users = data;
       },
-      error => this.snack.open(`Server Error: ${error.error.message || 'Unknown'}`, 'Fermer', { duration: 4000 })
+      error => this.snack.open(`Server Error : ${error.error.message || 'Unknown'}`, 'Close', { duration: 4000 })
     );
   }
 
   onChange(toggle: MatSlideToggle, checked: boolean, ele: any, claim: string) {
-    if (claim === 'superadmin' && !confirm('Continuer ?')) {
+    if (claim === 'superadmin' && !confirm('Are you sure ?')) {
       toggle.checked = !checked;
       return;
     }
@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
       () => this.isWorking = false,
       error => {
         toggle.checked = !checked;
-        this.snack.open(`Server Error: ${error.error.message || 'Unknown'}`, 'Fermer', { duration: 4000 });
+        this.snack.open(`Server Error : ${error.error.message || 'Unknown'}`, 'Close', { duration: 4000 });
         this.isWorking = false;
       }
     );

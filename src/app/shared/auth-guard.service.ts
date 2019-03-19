@@ -26,7 +26,7 @@ export class AuthGuardService implements CanLoad, CanActivate {
     return this.afAuth.user.pipe(
       mergeMap(user => {
         if (!user) {
-          this.snackBar.open('Veuillez se connécter d\'abord', 'Fermer', {duration: 3000});
+          this.snackBar.open('Please login first.', 'Close', {duration: 3000});
           this.router.navigate(['/']);
           return of(null);
         }
@@ -38,7 +38,7 @@ export class AuthGuardService implements CanLoad, CanActivate {
         }
         const isAllowed = r.claims[path];
         if (!isAllowed) {
-          this.snackBar.open('Vous n\'avez pas le droit d\'accéder à cette page', 'Fermer', {duration: 3000});
+          this.snackBar.open('You are not allowed to access this page.', 'Close', {duration: 3000});
           this.router.navigate(['/']);
         }
         return isAllowed;
