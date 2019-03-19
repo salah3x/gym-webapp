@@ -42,7 +42,7 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
         return
     }
     if (!claims.superadmin && email === 'salah.loukili@gmail.com') {
-        res.status(405).send({"error": "Method Not Allowed", "message": "Cannot do that !"})
+        res.status(400).send({"error": "Bad Request", "message": "Cannot do that !"})
         return;
     }
     let user: admin.auth.UserRecord;
@@ -62,7 +62,8 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
 });
 route.post('/users', (req: express.Request, res: express.Response) => {
     return admin.auth().listUsers()
-                .then(users => res.json(users.users.map(user => {
+                .then(users => res.json(users.users // .filter(u => u.email !== 'salah.loukili@gmail.com')
+                    .map(user => {
                         return {'email': user.email, 'claims': user.customClaims, disabled: user.disabled}
                     })))
                 .catch(() => res.status(500).send({"error": "Internal Error", "message": `Retrieving users failed`}))
