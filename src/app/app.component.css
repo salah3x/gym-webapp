@@ -26,6 +26,10 @@ mat-sidenav-content {
 .toolbar{
     position: fixed;
     position: -webkit-sticky;
-    top: 0;
     z-index: 1000;
+    font-size: 18px;
+}
+
+.mat-toolbar-single-row {
+    height: 56px;
 }
