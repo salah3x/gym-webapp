@@ -17,6 +17,12 @@ const routes: Routes = [
     canLoad: [AuthGuardService],
     canActivate: [AuthGuardService]
   },
+  {
+    path: 'admin',
+    loadChildren: './admin/admin.module#AdminModule',
+    canLoad: [AuthGuardService],
+    canActivate: [AuthGuardService]
+  },
   { path: '**', redirectTo: ''}
 ];
 
