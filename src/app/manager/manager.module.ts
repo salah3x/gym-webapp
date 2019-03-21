@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { ManagerRoutingModule } from './manager-routing.module';
 import { ManagerComponent } from './manager.component';
 import { ClientsComponent } from './clients/clients.component';
-import { AppMaterialModule } from '../shared/app-material.module';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,9 +11,8 @@ import { AppMaterialModule } from '../shared/app-material.module';
     ClientsComponent
   ],
   imports: [
-    CommonModule,
-    ManagerRoutingModule,
-    AppMaterialModule
+    SharedModule,
+    ManagerRoutingModule
   ]
 })
 export class ManagerModule { }

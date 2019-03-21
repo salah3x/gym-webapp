@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
-import { AppMaterialModule } from '../shared/app-material.module';
 import { PacksComponent } from './packs/packs.component';
 import { ClientAddComponent } from './client-add/client-add.component';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -14,9 +13,8 @@ import { ClientAddComponent } from './client-add/client-add.component';
     ClientAddComponent
   ],
   imports: [
-    CommonModule,
-    AdminRoutingModule,
-    AppMaterialModule
+    SharedModule,
+    AdminRoutingModule
   ]
 })
 export class AdminModule { }

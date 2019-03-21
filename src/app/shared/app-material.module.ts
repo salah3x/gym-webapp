@@ -12,24 +12,11 @@ import {
   MatProgressSpinnerModule,
   MatSnackBarModule,
   MatTableModule,
-  MatSlideToggleModule
+  MatSlideToggleModule,
+  MatStepperModule
 } from '@angular/material';
 
 @NgModule({
-  imports: [
-    MatButtonModule,
-    MatIconModule,
-    MatListModule,
-    MatSidenavModule,
-    MatMenuModule,
-    MatTooltipModule,
-    MatToolbarModule,
-    MatInputModule,
-    MatProgressSpinnerModule,
-    MatSnackBarModule,
-    MatDialogModule,
-    MatTableModule
-  ],
   exports: [
     MatButtonModule,
     MatIconModule,

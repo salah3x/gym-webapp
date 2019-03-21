@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+
 import { SuperAdminComponent } from './super-admin.component';
 import { UsersComponent } from './users/users.component';
 import { SuperAdminRoutingModule } from './super-admin-routing.module';
-import { AppMaterialModule } from '../shared/app-material.module';
-import { HttpClientModule } from '@angular/common/http';
+import { SharedModule } from '../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,10 +12,9 @@ import { HttpClientModule } from '@angular/common/http';
     UsersComponent
   ],
   imports: [
-    CommonModule,
-    SuperAdminRoutingModule,
-    AppMaterialModule,
-    HttpClientModule
+    SharedModule,
+    HttpClientModule,
+    SuperAdminRoutingModule
   ]
 })
 export class SuperAdminModule { }
