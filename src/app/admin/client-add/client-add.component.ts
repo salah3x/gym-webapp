@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar, MatStepper } from '@angular/material';
 import { finalize } from 'rxjs/operators';
 
 @Component({
@@ -11,6 +11,8 @@ import { finalize } from 'rxjs/operators';
 })
 export class ClientAddComponent implements OnInit {
 
+  @ViewChild('f') form: NgForm;
+  @ViewChild('stepper') stepper: MatStepper;
   photoUrl: string;
   downloadUrl: string;
   isUploading = false;
@@ -25,8 +27,12 @@ export class ClientAddComponent implements OnInit {
   ngOnInit() {
   }
 
-  onSubmit(f: NgForm) {
-    console.log(f.value);
+  onSubmit() {
+    console.log(this.form.value);
+    this.stepper.reset();
+    this.form.resetForm();
+    this.photoUrl = undefined;
+    this.downloadUrl = undefined;
   }
 
   uploadPhoto(event: Event) {
@@ -70,4 +76,21 @@ export class ClientAddComponent implements OnInit {
       this.photoUrl = undefined;
     }
   }
+
+  canDeactivate(): boolean {
+    if (this.form.dirty && !confirm('Discard changes ?')) {
+      return false;
+    }
+    if (this.downloadUrl) {
+      this.fileRef.delete().subscribe();
+    }
+    return true;
+  }
+
+  // @HostListener('window:beforeunload', ['$event'])
+  // unloadNotification($event: any) {
+  //   if (this.form.dirty) {
+  //       $event.returnValue = true;
+  //   }
+  // }
 }

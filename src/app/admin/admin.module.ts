@@ -6,6 +6,7 @@ import { AdminComponent } from './admin.component';
 import { PacksComponent } from './packs/packs.component';
 import { ClientAddComponent } from './client-add/client-add.component';
 import { SharedModule } from '../shared/shared.module';
+import { CanDeactivateClient } from './client-add/can-deactivate-client.service';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,9 @@ import { SharedModule } from '../shared/shared.module';
     SharedModule,
     AdminRoutingModule,
     AngularFireStorageModule
+  ],
+  providers: [
+    CanDeactivateClient
   ]
 })
 export class AdminModule { }

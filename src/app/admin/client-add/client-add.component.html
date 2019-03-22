@@ -1,6 +1,6 @@
 <p class="header">Register a new client</p>
-<form #f="ngForm" (ngSubmit)="onSubmit(f)">
-  <mat-vertical-stepper linear class="mat-elevation-z1">
+<form #f="ngForm" (ngSubmit)="onSubmit()">
+  <mat-vertical-stepper #stepper linear class="mat-elevation-z1">
     <mat-step ngModelGroup="id" [stepControl]="f.controls['id']">
       <ng-template matStepLabel>Identification information</ng-template>
       <div ngModelGroup="name" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
@@ -27,6 +27,7 @@
           <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
           <mat-error>Registration date is required</mat-error>
+          <mat-hint align="end">mm/dd/yyyy</mat-hint>
         </mat-form-field>
       </div>
       <div>
