@@ -1,4 +1,5 @@
 import { NgModule } from '@angular/core';
+import { AngularFireStorageModule, StorageBucket } from '@angular/fire/storage';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -14,7 +15,8 @@ import { SharedModule } from '../shared/shared.module';
   ],
   imports: [
     SharedModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    AngularFireStorageModule
   ]
 })
 export class AdminModule { }

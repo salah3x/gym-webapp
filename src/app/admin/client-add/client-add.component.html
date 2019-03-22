@@ -1,3 +1,117 @@
-<p>
-  client-add works!
-</p>
+<p class="header">Register a new client</p>
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
+  <mat-vertical-stepper linear class="mat-elevation-z1">
+    <mat-step ngModelGroup="id" [stepControl]="f.controls['id']">
+      <ng-template matStepLabel>Identification information</ng-template>
+      <div ngModelGroup="name" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+        <mat-form-field appearance="outline" fxFlex="45">
+          <mat-label>First name</mat-label>
+          <input matInput ngModel name="first" required>
+          <mat-error>First name is required</mat-error>
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex="45">
+          <mat-label>Last name</mat-label>
+          <input matInput ngModel name="last" required>
+          <mat-error>Last name is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+        <mat-radio-group [ngModel]="'f'" name="sex" required fxFlex="45" fxLayout.lt-sm="column"
+          fxLayoutAlign="space-evenly center">
+          <mat-radio-button value="f">Female</mat-radio-button>
+          <mat-radio-button value="m">Male</mat-radio-button>
+        </mat-radio-group>
+        <mat-form-field appearance="outline" fxFlex="45">
+          <mat-label>Registration date</mat-label>
+          <input matInput [matDatepicker]="picker" ngModel name="registrationDate" required>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
+          <mat-error>Registration date is required</mat-error>
+        </mat-form-field>
+      </div>
+      <div>
+        <button type="button" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step [stepControl]="f.controls['photo']" optional>
+      <ng-template matStepLabel>Upload photo</ng-template>
+      <div class="upload" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center">
+        <input hidden type="file" #file accept="image/*" (change)="uploadPhoto($event)" />
+        <input hidden matInput name="photo" [ngModel]="photoUrl" required />
+        <button type="button" [disabled]="photoUrl || isUploading" mat-raised-button color="primary"
+          (click)="file.click()" matTooltip="Upload a photo" fxFlex="30">
+          <mat-icon>{{photoUrl? 'cloud_done': 'cloud_upload'}}</mat-icon>
+        </button>
+        <button *ngIf="photoUrl" mat-mini-fab color="warn" matTooltip="Delete photo" type="button"
+          (click)="deletePhoto()">
+          <mat-icon>delete</mat-icon>
+        </button>
+        <img *ngIf="downloadUrl" [src]="downloadUrl" fxFlex="50" />
+      </div>
+      <div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
+        <mat-progress-bar class="bar" mode="determinate" [value]="uploadPct"></mat-progress-bar>
+        <p class="pct" *ngIf="isUploading">{{uploadPct | number:'1.0-0'}}%</p>
+        <div>
+          <button mat-mini-fab type="button" color="accent" [matTooltip]="isPaused? 'Resume upload': 'Pause upload'"
+            (click)="isPaused = isPaused? !task.resume(): task.pause() ">
+            <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
+          </button>
+          <button *ngIf="!isPaused" mat-mini-fab type="button" color="warn" matTooltip="Cancel upload"
+            (click)="cancelUpload()">
+            <mat-icon>close</mat-icon>
+          </button>
+        </div>
+      </div>
+      <div class="upload">
+        <button type="button" mat-raised-button matStepperPrevious [disabled]="isUploading">Previous</button>
+        <button type="button" class="btn" mat-raised-button matStepperNext [disabled]="isUploading">Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step optional>
+      <ng-template matStepLabel>Additional information</ng-template>
+      <div fxLayout="column" fxLayoutAlign="space-around">
+        <div fxLayout.lt-md="column" fxLayoutAlign="space-around center">
+          <mat-form-field appearance="outline">
+            <mat-label>CIN</mat-label>
+            <mat-icon matSuffix>credit_card</mat-icon>
+            <input matInput ngModel name="cin">
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Phone number</mat-label>
+            <input matInput ngModel name="phone">
+            <mat-icon matSuffix>phone_android</mat-icon>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="outline">
+          <mat-label>Address
+            <mat-icon matSuffix>location_on</mat-icon>
+          </mat-label>
+          <textarea matInput ngModel name="address" rows="3"></textarea>
+        </mat-form-field>
+      </div>
+      <div class="upload">
+        <button type="button" mat-raised-button matStepperPrevious>Previous</button>
+        <button type="button" class="btn" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Submit</ng-template>
+      <div fxLayout="column" fxLayoutAlign="space-around stretch" >
+        <mat-form-field appearance="outline">
+          <mat-label>Note
+            <mat-icon matSuffix>note</mat-icon>
+          </mat-label>
+          <textarea matInput ngModel name="note" rows="3"></textarea>
+        </mat-form-field>
+        <h3>Register this new client ?</h3>
+        <div class="upload">
+          <button type="button" mat-raised-button matStepperPrevious>Previous</button>
+          <button type="submit" class="btn" color="primary" mat-raised-button matStepperNext>Register</button>
+        </div>
+      </div>
+    </mat-step>
+  </mat-vertical-stepper>
+</form>

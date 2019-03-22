@@ -13,7 +13,11 @@ import {
   MatSnackBarModule,
   MatTableModule,
   MatSlideToggleModule,
-  MatStepperModule
+  MatStepperModule,
+  MatRadioModule,
+  MatDatepickerModule,
+  MatNativeDateModule,
+  MatProgressBarModule
 } from '@angular/material';
 
 @NgModule({
@@ -30,7 +34,12 @@ import {
     MatSnackBarModule,
     MatDialogModule,
     MatTableModule,
-    MatSlideToggleModule
+    MatSlideToggleModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
+    MatProgressBarModule
   ],
 })
 export class AppMaterialModule { }

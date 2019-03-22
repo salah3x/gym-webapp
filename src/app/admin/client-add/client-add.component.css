@@ -1,0 +1,33 @@
+mat-vertical-stepper {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.mat-radio-button {
+    margin-bottom: 20px;
+}
+
+.header {
+    text-align: center;
+    font-size: 24px;
+}
+
+.btn {
+    margin-left: 10px;
+}
+
+.upload {
+    margin-top: 10px;
+}
+
+.bar {
+    margin-top: 10px;
+}
+
+.pct {
+    text-align: center;
+}
+
+img {
+    width: 40%;
+}
