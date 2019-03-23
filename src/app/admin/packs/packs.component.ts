@@ -5,12 +5,8 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { map, take } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { Pack, Subscription } from 'src/app/shared/client.model';
+import { Pack, Subscription, PackWithId } from 'src/app/shared/client.model';
 import { PackAddComponent } from './pack-add/pack-add.component';
-
-interface PackWithId extends Pack {
-  id: string;
-}
 
 @Component({
   selector: 'app-packs',

@@ -31,3 +31,7 @@ mat-vertical-stepper {
 img {
     width: 40%;
 }
+
+mat-slide-toggle {
+    margin-left: calc(50% - 60px);
+}

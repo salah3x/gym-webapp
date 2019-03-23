@@ -1,8 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
-import { MatSnackBar, MatStepper } from '@angular/material';
-import { finalize } from 'rxjs/operators';
+import { MatSnackBar, MatStepper, MatSelectChange } from '@angular/material';
+import { AngularFirestore } from '@angular/fire/firestore';
+import { firestore } from 'firebase/app';
+import { finalize, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+
+import { Client, Pack, PackWithId, SubscriptionWithId, Subscription } from 'src/app/shared/client.model';
 
 @Component({
   selector: 'app-client-add',
@@ -20,15 +25,34 @@ export class ClientAddComponent implements OnInit {
   isPaused = false;
   fileRef: AngularFireStorageReference;
   task: AngularFireUploadTask;
+  packs: Observable<PackWithId[]>;
+  subscriptions: Observable<SubscriptionWithId[]>;
 
   constructor(private storage: AngularFireStorage,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar,
+              private afs: AngularFirestore) { }
 
   ngOnInit() {
+    this.packs = this.afs.collection<Pack>('packs').snapshotChanges().pipe(
+      map(actions => actions.map(a => {
+        const data = a.payload.doc.data() as Pack;
+        const id = a.payload.doc.id;
+        return { id, ...data } as PackWithId;
+      }))
+    );
   }
 
   onSubmit() {
-    console.log(this.form.value);
+    let client: Client = this.form.value;
+    client = {
+      ...client,
+      ...this.form.value.id,
+      ...this.form.value.subsInfo,
+      registrationDate: firestore.Timestamp.fromDate(this.form.value.id.registrationDate)
+    };
+    delete (client as any).id;
+    delete (client as any).subsInfo;
+    console.log(client);
     this.stepper.reset();
     this.form.resetForm();
     this.photoUrl = undefined;
@@ -74,6 +98,20 @@ export class ClientAddComponent implements OnInit {
     if (this.task.cancel()) {
       this.isPaused = false;
       this.photoUrl = undefined;
+    }
+  }
+
+  onSelectPack(event: MatSelectChange) {
+    if (event.value) {
+      this.subscriptions = this.afs.collection<Subscription>(`packs/${event.value}/subscriptions`).snapshotChanges().pipe(
+        map(actions => actions.map(a => {
+          const data = a.payload.doc.data() as Subscription;
+          const id = a.payload.doc.id;
+          return { id, ...data } as SubscriptionWithId;
+        }))
+      );
+    } else {
+      this.subscriptions = null;
     }
   }
 

@@ -19,7 +19,8 @@ import {
   MatNativeDateModule,
   MatProgressBarModule,
   MatExpansionModule,
-  MatTreeModule
+  MatTreeModule,
+  MatSelectModule
 } from '@angular/material';
 
 @NgModule({
@@ -43,7 +44,8 @@ import {
     MatNativeDateModule,
     MatProgressBarModule,
     MatExpansionModule,
-    MatTreeModule
+    MatTreeModule,
+    MatSelectModule
   ],
 })
 export class AppMaterialModule { }

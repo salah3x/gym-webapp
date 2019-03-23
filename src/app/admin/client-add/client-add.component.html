@@ -98,9 +98,37 @@
       </div>
     </mat-step>
 
+    <mat-step ngModelGroup="subsInfo" [stepControl]="f.controls['subsInfo']">
+      <ng-template matStepLabel>Subscription pack</ng-template>
+      <div ngModelGroup="pack" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+        <mat-form-field>
+          <mat-select (selectionChange)="onSelectPack($event)" ngModel name="idPack" required>
+            <mat-option>-- None --</mat-option>
+            <mat-option *ngFor="let p of packs | async" [value]="p.id">{{p.name}}</mat-option>
+          </mat-select>
+          <mat-label>Pack</mat-label>
+          <mat-error>Pack is required</mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-select [ngModel]="'new'" name="idSubscription" required>
+            <mat-option value="new" selected>New subscription</mat-option>
+            <mat-option *ngIf="subscriptions" disabled>----------------------------</mat-option>
+            <mat-option *ngFor="let s of subscriptions | async" [value]="s.id">{{s.name}}</mat-option>
+          </mat-select>
+          <mat-label>Subscription</mat-label>
+          <mat-error>Subscription is required</mat-error>
+        </mat-form-field>
+      </div>
+      <mat-slide-toggle ngModel name="insurance">Insurance</mat-slide-toggle>
+      <div class="upload">
+        <button type="button" mat-raised-button matStepperPrevious>Previous</button>
+        <button type="button" class="btn" mat-raised-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+
     <mat-step>
       <ng-template matStepLabel>Submit</ng-template>
-      <div fxLayout="column" fxLayoutAlign="space-around stretch" >
+      <div fxLayout="column" fxLayoutAlign="space-around stretch">
         <mat-form-field appearance="outline">
           <mat-label>Note
             <mat-icon matSuffix>note</mat-icon>

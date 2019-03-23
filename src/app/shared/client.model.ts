@@ -1,17 +1,22 @@
-import * as firebase from 'firebase';
+import { firestore } from 'firebase/app';
 
 export interface Client {
     name: {
         first: string;
         last: string;
     };
-    registrationDate: firebase.firestore.Timestamp;
+    registrationDate: firestore.Timestamp;
     sex: string;
     photo?: string;
     cin?: string;
     phone?: string;
     address?: string;
     note?: string;
+    insurance: boolean;
+    pack: {
+        idPack: string;
+        idSubscription: string;
+    };
 }
 
 export interface Pack {
@@ -20,7 +25,15 @@ export interface Pack {
     description?: string;
 }
 
+export interface PackWithId extends Pack {
+    id: string;
+}
+
 export interface Subscription {
     name?: string;
     subscriberIds: string[];
+}
+
+export interface SubscriptionWithId extends Subscription {
+    id: string;
 }
