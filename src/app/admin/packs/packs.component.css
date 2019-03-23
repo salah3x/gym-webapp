@@ -1,0 +1,32 @@
+.header {
+    font-size: 24px;
+    text-align: center;
+}
+
+mat-expansion-panel {
+    width: 90%;
+    margin-left: 5%;
+}
+
+.title {
+    text-align: center;
+}
+
+.mat-list-item {
+    font-size: 12px;
+}
+
+table {
+    width: 100%;
+    text-align: center;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}
+
+.new-fab.mat-mini-fab {
+    position: fixed;
+    right: 25px;
+    bottom: 25px;
+}

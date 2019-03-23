@@ -17,7 +17,9 @@ import {
   MatRadioModule,
   MatDatepickerModule,
   MatNativeDateModule,
-  MatProgressBarModule
+  MatProgressBarModule,
+  MatExpansionModule,
+  MatTreeModule
 } from '@angular/material';
 
 @NgModule({
@@ -39,7 +41,9 @@ import {
     MatRadioModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatExpansionModule,
+    MatTreeModule
   ],
 })
 export class AppMaterialModule { }

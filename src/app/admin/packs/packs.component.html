@@ -1,3 +1,54 @@
-<p>
-  packs works!
-</p>
+<button mat-mini-fab type="button" class="new-fab" color="primary" (click)="openNewPackDialog()"
+  matTooltip="Add a new pack">
+  <mat-icon>add</mat-icon>
+</button>
+<p class="header" *ngIf="packs && !packs.length">No packs have been added</p>
+<p class="header" *ngIf="packs">List of packs</p>
+<mat-accordion *ngIf="packs">
+  <mat-expansion-panel *ngFor="let p of packs" (opened)="getSubscriptions(p.id)">
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <b>Price : {{p.price}} MAD/month</b>
+      </mat-panel-title>
+      <mat-panel-description>
+        <b>{{p.name}}</b>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <div fxLayout.lt-sm="column" fxLayoutAlign="space-between center">
+      <p [innerHTML]="toHtml(p.description)" fxFlex="35"></p>
+      <table mat-table [dataSource]="subscriptions | async" class="mat-elevation-z1" fxFlex>
+        <ng-container matColumnDef="title">
+          <td mat-header-cell *matHeaderCellDef colspan="2">
+            <b>Subscriptions' list ({{packs.length}})</b>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="name">
+          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <td mat-cell *matCellDef="let element">
+            {{element.name}}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="subscriberIds">
+          <th mat-header-cell *matHeaderCellDef> Clients </th>
+          <td mat-cell *matCellDef="let element">
+            <span *ngFor="let id of element.subscriberIds; index as i">
+              <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>
+              {{ i ==  element.subscriberIds.length -1 ? '': ' | '}}
+            </span>
+            <!-- <mat-list>
+              <mat-list-item *ngFor="let id of element.subscriberIds">
+                {{id}}
+              </mat-list-item>
+            </mat-list> -->
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <button mat-icon-button type="button" color="warn" fxFlex="5" (click)="deletePack(p.id)" matTooltip="Delete pack">
+        <mat-icon>delete</mat-icon>
+      </button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

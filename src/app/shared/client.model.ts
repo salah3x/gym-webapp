@@ -13,3 +13,14 @@ export interface Client {
     address?: string;
     note?: string;
 }
+
+export interface Pack {
+    name: string;
+    price: number;
+    description?: string;
+}
+
+export interface Subscription {
+    name?: string;
+    subscriberIds: string[];
+}
