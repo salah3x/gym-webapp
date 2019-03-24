@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
         this.router.navigate(['']);
       });
     } else {
-      this.dialog.open(SigninComponent);
+      this.dialog.open(SigninComponent, {width: '350px'});
     }
   }
 

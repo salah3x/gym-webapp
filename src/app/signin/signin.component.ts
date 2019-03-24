@@ -31,7 +31,9 @@ export class SigninComponent implements OnInit {
   }
 
   onForget(email: string) {
-    this.auth.auth.sendPasswordResetEmail(email)
+    if (confirm(`An password reset email will be sent to ${email}\nContinue ?`)) {
+      this.auth.auth.sendPasswordResetEmail(email)
       .then(() => this.snackbar.open('Check your mailbox.', 'Close', {duration: 3000}));
+    }
   }
 }

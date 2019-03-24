@@ -13,13 +13,12 @@
       <mat-error>This field is required</mat-error>
     </mat-form-field>
   </div>
-  <div fxLayout.lt-sm="column" fxLayoutAlign="space-between stretch" mat-dialog-actions>
-    <button fxFlex="45" [disabled]="!f.valid" mat-raised-button color="primary" type="submit">Ok</button>
-    <button fxFlex="45" mat-dialog-close mat-raised-button>Cancel</button>
+  <div fxLayout="column" fxLayoutAlign="space-around stretch" mat-dialog-actions>
+    <button [disabled]="!f.valid" mat-raised-button color="primary" type="submit">Ok</button>
+    <button *ngIf="!loading" type="button" [disabled]="!f.controls['email']?.valid" mat-button (click)="onForget(f.controls['email']?.value)">
+      Reset password
+    </button>
   </div>
   <br>
-  <button *ngIf="!loading" type="button" [disabled]="!f.controls['email']?.valid" mat-button (click)="onForget(f.controls['email']?.value)">
-    Reset password
-  </button>
   <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
 </form>
