@@ -1,13 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
-import { MatSnackBar, MatStepper, MatSelectChange } from '@angular/material';
+import { MatSnackBar, MatStepper, MatSelectChange, MatSlideToggle, MatSelect } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
-import { finalize, map } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { finalize, map, take } from 'rxjs/operators';
 
-import { Client, Pack, PackWithId, SubscriptionWithId, Subscription } from 'src/app/shared/client.model';
+import { Client, Pack, PackWithId, SubscriptionWithId, Subscription, Payment } from 'src/app/shared/client.model';
 
 @Component({
   selector: 'app-client-add',
@@ -25,38 +24,75 @@ export class ClientAddComponent implements OnInit {
   isPaused = false;
   fileRef: AngularFireStorageReference;
   task: AngularFireUploadTask;
-  packs: Observable<PackWithId[]>;
-  subscriptions: Observable<SubscriptionWithId[]>;
+  packs: PackWithId[];
+  subscriptions: SubscriptionWithId[];
+  selectedPrice = 0;
+  @ViewChild('i') insurance: MatSlideToggle;
+  @ViewChild('s') subSelect: MatSelect;
+  @ViewChild('p') packSelect: MatSelect;
 
   constructor(private storage: AngularFireStorage,
               private snack: MatSnackBar,
               private afs: AngularFirestore) { }
 
   ngOnInit() {
-    this.packs = this.afs.collection<Pack>('packs').snapshotChanges().pipe(
+    this.afs.collection<Pack>('packs').snapshotChanges().pipe(
       map(actions => actions.map(a => {
         const data = a.payload.doc.data() as Pack;
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
       }))
-    );
+    ).subscribe(data => this.packs = data);
   }
 
-  onSubmit() {
-    let client: Client = this.form.value;
+  onSubmit(f: NgForm) {
+    let client: Client = JSON.parse(JSON.stringify(f.value));
     client = {
       ...client,
-      ...this.form.value.id,
-      ...this.form.value.subsInfo,
-      registrationDate: firestore.Timestamp.fromDate(this.form.value.id.registrationDate)
+      ... JSON.parse(JSON.stringify(f.value.id)),
+      ... JSON.parse(JSON.stringify(f.value.subsInfo)),
+      registrationDate: firestore.Timestamp.fromDate(f.value.id.registrationDate)
     };
     delete (client as any).id;
     delete (client as any).subsInfo;
-    console.log(client);
-    this.stepper.reset();
-    this.form.resetForm();
-    this.photoUrl = undefined;
-    this.downloadUrl = undefined;
+    if (!client.photo) {
+      client.photo = null;
+    }
+    const clientId = this.afs.createId();
+    let subscription: Subscription;
+    if (f.value.subsInfo.pack.idSubscription === 'new') {
+      client.pack.idSubscription = this.afs.createId();
+      subscription = {name: client.name.first + ' ' + client.name.last, subscriberIds: [clientId]};
+    } else {
+      subscription = {
+        subscriberIds: [...this.subscriptions.filter(s => s.id === client.pack.idSubscription)[0].subscriberIds,
+          clientId]
+      };
+    }
+    const payment: Payment = {
+      idClient: clientId,
+      price: this.selectedPrice,
+      date:  firestore.Timestamp.fromDate(new Date()),
+      note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
+        (f.value.subsInfo.pack.idSubscription === 'new' && client.insurance ? ' + ' : '') +
+        (client.insurance ? 'Insurance' : ''),
+    };
+    const batch = this.afs.firestore.batch()
+      .set(this.afs.doc<Client>(`clients/${clientId}`).ref, client)
+      .set(this.afs.doc<Subscription>(`packs/${client.pack.idPack}/subscriptions/${client.pack.idSubscription}`).ref,
+        subscription, {merge: true});
+    if (payment.price) {
+      batch.set(this.afs.doc<Payment>(`payments/${this.afs.createId()}`).ref, payment);
+    }
+    batch.commit()
+      .then(() => {
+        this.snack.open('Client added successfully', 'Close', { duration: 2000 });
+        this.stepper.reset();
+        f.resetForm();
+        this.photoUrl = null;
+        this.downloadUrl = null;
+      }).catch((err) => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })
+          .onAction().subscribe(() => this.onSubmit(f)));
   }
 
   uploadPhoto(event: Event) {
@@ -88,8 +124,8 @@ export class ClientAddComponent implements OnInit {
     if (this.photoUrl) {
       this.fileRef.delete().subscribe(() => {
         this.snack.open('Photo deleted successfully', 'Close', { duration: 2000 });
-        this.photoUrl = undefined;
-        this.downloadUrl = undefined;
+        this.photoUrl = null;
+        this.downloadUrl = null;
       });
     }
   }
@@ -97,22 +133,39 @@ export class ClientAddComponent implements OnInit {
   cancelUpload() {
     if (this.task.cancel()) {
       this.isPaused = false;
-      this.photoUrl = undefined;
+      this.photoUrl = null;
     }
   }
 
   onSelectPack(event: MatSelectChange) {
     if (event.value) {
-      this.subscriptions = this.afs.collection<Subscription>(`packs/${event.value}/subscriptions`).snapshotChanges().pipe(
+      this.afs.collection<Subscription>(`packs/${event.value}/subscriptions`).snapshotChanges().pipe(
         map(actions => actions.map(a => {
           const data = a.payload.doc.data() as Subscription;
           const id = a.payload.doc.id;
           return { id, ...data } as SubscriptionWithId;
         }))
-      );
+      ).subscribe(data => this.subscriptions = data);
+      this.selectedPrice = this.packs.filter(p => p.id === event.value)[0].price;
     } else {
-      this.subscriptions = null;
+      this.subscriptions = [];
+      this.selectedPrice = 0;
     }
+    this.subSelect.ngControl.control.setValue('new');
+    this.insurance.checked = this.form.value.subsInfo.insurance = false;
+  }
+
+  onSelectSubscription(id: string) {
+    if (id !== 'new') {
+      this.selectedPrice = 0;
+    } else {
+      this.selectedPrice = this.packs.filter(p => p.id === this.packSelect.value)[0].price;
+    }
+    this.insurance.checked = this.form.value.subsInfo.insurance = false;
+  }
+
+  onSelectInsurance() {
+    this.selectedPrice += this.insurance.checked ? 100 : -100;
   }
 
   canDeactivate(): boolean {

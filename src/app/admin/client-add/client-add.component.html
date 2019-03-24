@@ -1,5 +1,5 @@
 <p class="header">Register a new client</p>
-<form #f="ngForm" (ngSubmit)="onSubmit()">
+<form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <mat-vertical-stepper #stepper linear class="mat-elevation-z1">
     <mat-step ngModelGroup="id" [stepControl]="f.controls['id']">
       <ng-template matStepLabel>Identification information</ng-template>
@@ -37,28 +37,28 @@
 
     <mat-step [stepControl]="f.controls['photo']" optional>
       <ng-template matStepLabel>Upload photo</ng-template>
-      <div class="upload" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center">
+      <div class="upload" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
         <input hidden type="file" #file accept="image/*" (change)="uploadPhoto($event)" />
         <input hidden matInput name="photo" [ngModel]="photoUrl" required />
         <button type="button" [disabled]="photoUrl || isUploading" mat-raised-button color="primary"
           (click)="file.click()" matTooltip="Upload a photo" fxFlex="30">
           <mat-icon>{{photoUrl? 'cloud_done': 'cloud_upload'}}</mat-icon>
         </button>
-        <button *ngIf="photoUrl" mat-mini-fab color="warn" matTooltip="Delete photo" type="button"
+        <img *ngIf="downloadUrl" [src]="downloadUrl" fxFlex="50" />
+        <button *ngIf="photoUrl" mat-icon-button color="warn" matTooltip="Delete photo" type="button"
           (click)="deletePhoto()">
           <mat-icon>delete</mat-icon>
         </button>
-        <img *ngIf="downloadUrl" [src]="downloadUrl" fxFlex="50" />
       </div>
       <div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
         <mat-progress-bar class="bar" mode="determinate" [value]="uploadPct"></mat-progress-bar>
         <p class="pct" *ngIf="isUploading">{{uploadPct | number:'1.0-0'}}%</p>
         <div>
-          <button mat-mini-fab type="button" color="accent" [matTooltip]="isPaused? 'Resume upload': 'Pause upload'"
+          <button mat-icon-button type="button" color="accent" [matTooltip]="isPaused? 'Resume upload': 'Pause upload'"
             (click)="isPaused = isPaused? !task.resume(): task.pause() ">
             <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
           </button>
-          <button *ngIf="!isPaused" mat-mini-fab type="button" color="warn" matTooltip="Cancel upload"
+          <button *ngIf="!isPaused" mat-icon-button type="button" color="warn" matTooltip="Cancel upload"
             (click)="cancelUpload()">
             <mat-icon>close</mat-icon>
           </button>
@@ -102,24 +102,26 @@
       <ng-template matStepLabel>Subscription pack</ng-template>
       <div ngModelGroup="pack" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
         <mat-form-field>
-          <mat-select (selectionChange)="onSelectPack($event)" ngModel name="idPack" required>
+          <mat-select (selectionChange)="onSelectPack($event)" #p ngModel name="idPack" required>
             <mat-option>-- None --</mat-option>
-            <mat-option *ngFor="let p of packs | async" [value]="p.id">{{p.name}}</mat-option>
+            <mat-option *ngFor="let p of packs" [value]="p.id">{{p.name}}</mat-option>
           </mat-select>
           <mat-label>Pack</mat-label>
           <mat-error>Pack is required</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select [ngModel]="'new'" name="idSubscription" required>
-            <mat-option value="new" selected>New subscription</mat-option>
+          <mat-select [ngModel]="'new'" name="idSubscription" #s
+            (selectionChange)="onSelectSubscription($event.value)" required>
+            <mat-option value="new">*New subscription*</mat-option>
             <mat-option *ngIf="subscriptions" disabled>----------------------------</mat-option>
-            <mat-option *ngFor="let s of subscriptions | async" [value]="s.id">{{s.name}}</mat-option>
+            <mat-option *ngFor="let s of subscriptions" [value]="s.id">{{s.name}}</mat-option>
           </mat-select>
           <mat-label>Subscription</mat-label>
           <mat-error>Subscription is required</mat-error>
         </mat-form-field>
       </div>
-      <mat-slide-toggle ngModel name="insurance">Insurance</mat-slide-toggle>
+      <mat-slide-toggle ngModel name="insurance" (change)="onSelectInsurance()" #i>Insurance</mat-slide-toggle>
+      <p class="pct"><b>Total : {{selectedPrice}} MAD</b></p>
       <div class="upload">
         <button type="button" mat-raised-button matStepperPrevious>Previous</button>
         <button type="button" class="btn" mat-raised-button matStepperNext>Next</button>
@@ -138,7 +140,8 @@
         <h3>Register this new client ?</h3>
         <div class="upload">
           <button type="button" mat-raised-button matStepperPrevious>Previous</button>
-          <button type="submit" class="btn" color="primary" mat-raised-button matStepperNext>Register</button>
+          <button type="submit" [disabled]="f.submitted" class="btn" color="primary" mat-raised-button
+            matStepperNext>Register</button>
         </div>
       </div>
     </mat-step>
