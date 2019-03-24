@@ -15,8 +15,8 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div fxLayout.lt-sm="column" fxLayoutAlign="space-between center">
-      <p [innerHTML]="toHtml(p.description)" fxFlex="35"></p>
-      <table mat-table [dataSource]="subscriptions | async" class="mat-elevation-z1" fxFlex>
+      <p [innerHTML]="toHtml(p.description)" fxFlex="30"></p>
+      <table mat-table [dataSource]="subscriptions | async" class="mat-elevation-z1" fxFlex="60">
         <ng-container matColumnDef="title">
           <td mat-header-cell *matHeaderCellDef colspan="2">
             <b>Subscriptions' list ({{(subscriptions | async)?.length}})</b>
@@ -46,7 +46,8 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
-      <button mat-icon-button type="button" color="warn" fxFlex="5" (click)="deletePack(p.id)" matTooltip="Delete pack">
+      <button [disabled]="p.id === 'Rlt5JOspNeWlfFIJVWc0' || p.id === 'ZYQoxr3bHe8bGD3WZfCF'" mat-icon-button
+        type="button" color="warn" fxFlex="5" (click)="deletePack(p.id)" matTooltip="Delete pack">
         <mat-icon>delete</mat-icon>
       </button>
     </div>

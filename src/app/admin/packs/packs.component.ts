@@ -41,14 +41,18 @@ export class PacksComponent implements OnInit {
   }
 
   deletePack(idPack: string) {
+    if (idPack === 'Rlt5JOspNeWlfFIJVWc0' || idPack === 'ZYQoxr3bHe8bGD3WZfCF') {
+      this.snack.open('Cannot delete essential packs', 'Close', { duration: 3000 });
+      return;
+    }
     if (confirm('Are you sure ?')) {
       this.afs.collection<Subscription>(`packs/${idPack}/subscriptions`).valueChanges()
         .pipe(take(1)).subscribe(data => {
         if (!data.length) {
           this.afs.doc(`packs/${idPack}`).delete()
-            .then(() => this.snack.open('Pack deleted successufully', 'Close', { duration: 4000 }));
+            .then(() => this.snack.open('Pack deleted successufully', 'Close', { duration: 3000 }));
         } else {
-          this.snack.open('Deletion failed, pack has active subscriptions', 'Close', { duration: 4000 });
+          this.snack.open('Deletion failed, pack has active subscriptions', 'Close', { duration: 3000 });
         }
       });
     }
