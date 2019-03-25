@@ -3,7 +3,9 @@ import { firestore } from 'firebase/app';
 export interface Client {
     name: {
         first: string;
+        first_lowercase: string; // for quering in firestore
         last: string;
+        last_lowercase: string; // for quering in firestore
     };
     registrationDate: firestore.Timestamp;
     sex: string;
@@ -17,6 +19,10 @@ export interface Client {
         idPack: string;
         idSubscription: string;
     };
+}
+
+export interface ClientWithId extends Client {
+    id: string;
 }
 
 export interface Pack {

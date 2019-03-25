@@ -1,3 +1,30 @@
-<p>
-  clients works!
-</p>
+<mat-form-field class="search-bar">
+  <input (keyup)="search($event.target.value)" #i matInput placeholder="Search by name or CIN">
+</mat-form-field>
+<p class="title" *ngIf="!i.value">Type something in the search bar</p>
+<p class="title" *ngIf="clients?.length < 1 && !isLoading && i.value">No clients found</p>
+<mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+<table mat-table *ngIf="clients?.length > 0" [dataSource]="clients" class="mat-elevation-z1">
+  <ng-container matColumnDef="photo">
+    <th mat-header-cell *matHeaderCellDef> Photo </th>
+    <td mat-cell *matCellDef="let element">
+      <img *ngIf="element.photo | async" [src]="element.photo | async"/>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Full name </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.name.first}} {{element.name.last}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="action">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button type="button" color="primary" (click)="performCheckin(element.id)" matTooltip="Check in">
+        <mat-icon>transfer_within_a_station</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

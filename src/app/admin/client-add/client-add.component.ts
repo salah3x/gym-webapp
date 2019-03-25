@@ -58,6 +58,9 @@ export class ClientAddComponent implements OnInit {
     if (!client.photo) {
       client.photo = null;
     }
+    client.name.first_lowercase = client.name.first.toLowerCase();
+    client.name.last_lowercase = client.name.last.toLowerCase();
+    client.cin = client.cin.toLowerCase();
     const clientId = this.afs.createId();
     let subscription: Subscription;
     if (f.value.subsInfo.pack.idSubscription === 'new') {
