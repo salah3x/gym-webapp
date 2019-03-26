@@ -24,11 +24,6 @@
         (click)="performCheckin(element.id)" matTooltip="Check in">
         <mat-icon>directions_walk</mat-icon>
       </button>&nbsp;|&nbsp;
-      <button mat-icon-button type="button" [disabled]="isCheckingIn" color="accent"
-        (click)="performCheckin(element.id, true)" matTooltip="Check in and add a note">
-        <mat-icon>directions_walk</mat-icon>
-        <mat-icon>note_add</mat-icon>
-      </button>&nbsp;&nbsp;&nbsp;|
       <a mat-icon-button [routerLink]="'./' + element.id" matTooltip="View profile">
         <mat-icon>account_box</mat-icon>
       </a>

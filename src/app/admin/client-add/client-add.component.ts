@@ -79,7 +79,7 @@ export class ClientAddComponent implements OnInit {
       date:  firestore.Timestamp.fromDate(new Date()),
       note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
         (f.value.subsInfo.pack.idSubscription === 'new' && client.insurance ? ' + ' : '') +
-        (client.insurance ? 'Insurance' : ''),
+        (client.insurance ? 'Insurance fee' : ''),
     };
     const batch = this.afs.firestore.batch()
       .set(this.afs.doc<Client>(`clients/${clientId}`).ref, client)

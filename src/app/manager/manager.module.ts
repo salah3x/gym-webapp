@@ -8,13 +8,15 @@ import { ClientsComponent } from './clients/clients.component';
 import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './clients/profile/profile.component';
 import { RemoveItemPipe } from './clients/profile/remove-item.pipe';
+import { PaymentAddComponent } from './clients/profile/payment-add/payment-add.component';
 
 @NgModule({
   declarations: [
     ManagerComponent,
     ClientsComponent,
     ProfileComponent,
-    RemoveItemPipe
+    RemoveItemPipe,
+    PaymentAddComponent
   ],
   imports: [
     SharedModule,
@@ -24,6 +26,7 @@ import { RemoveItemPipe } from './clients/profile/remove-item.pipe';
   ],
   providers: [
     { provide: FirestoreSettingsToken, useValue: {} }
-  ]
+  ],
+  entryComponents: [PaymentAddComponent]
 })
 export class ManagerModule { }

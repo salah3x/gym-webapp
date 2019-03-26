@@ -1,6 +1,15 @@
 <p class="title" *ngIf="!client && !isLoading">Client not found</p>
 <div class="container" *ngIf="client" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
   <img class="mat-elevation-z2" *ngIf="client.url | async as url" [src]="url" />
+  <div fxLayout="column">
+    <button class="action" *ngIf="isAdmin" mat-raised-button color="primary" (click)="openPaymentDialog()" matTooltip="Make a payment">
+      <mat-icon>monetization_on</mat-icon>
+    </button>
+    <button class="action" mat-raised-button [disabled]="isCheckingIn" color="default"
+      (click)="performCheckin(client.id)" matTooltip="Check in and add a note">
+      <mat-icon>directions_walk</mat-icon>
+    </button>
+  </div>
   <div class="mat-elevation-z1 id" fxFlex="60">
     <p class="title">{{client.name.first + ' ' + client.name.last}}</p>
     <p><b>Registration date : </b><i>{{client.registrationDate.toDate() | date:'longDate'}}</i></p>

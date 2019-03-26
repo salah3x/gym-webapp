@@ -1,0 +1,16 @@
+h1 {
+    text-align: center;
+}
+
+button {
+    width: 100%;
+}
+
+mat-radio-group {
+    margin: 10px auto 10px auto;
+}
+
+mat-progress-spinner {
+    margin-top: 20px;
+    margin-left: calc(50% - 15px);
+}

@@ -56,7 +56,7 @@ export class ClientsComponent implements OnInit {
       ),
       map(array => Array.from(new Set(array.map(c => c.id)))
         .map(id => array.find(c => c.id === id))
-        .sort((a, b) => a.name.first.localeCompare(b.name.first))
+        // .sort((a, b) => a.name.first.localeCompare(b.name.first))
       ),
       map(data => {
         data.map(c => {
@@ -90,17 +90,15 @@ export class ClientsComponent implements OnInit {
     this.searchTerm.next(s);
   }
 
-  performCheckin(id: string, withNote: boolean = false) {
+  performCheckin(id: string) {
     this.isCheckingIn = true;
     this.afs.collection<CheckIn>(`clients/${id}/checkins`, ref => ref
       .where('date', '>=', firestore.Timestamp.fromDate(new Date(new Date().setHours(0, 0, 0, 0))))
       .where('date', '<=', firestore.Timestamp.fromDate(new Date())))
       .valueChanges().pipe(take(1)).subscribe(data => {
         if (!data.length || confirm('This client has already checked in today.\nCheck in anyway ?')) {
-          const note = withNote ? prompt('Optional note :') : '';
           this.afs.collection<CheckIn>(`clients/${id}/checkins`).add({
-            date: firestore.Timestamp.fromDate(new Date()),
-            note,
+            date: firestore.Timestamp.fromDate(new Date())
           }).then(() => {
             this.snack.open('Checked in successfully', 'Close', { duration: 2000 });
             this.isCheckingIn = false;
