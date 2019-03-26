@@ -2,10 +2,10 @@
 
 This is a webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
 
-## Features
+## Modules/Features
 
 - **Superadmin module**: Manage users and roles (Access control).
-- **Admin module**: View incomes and charges, manage packs and register new cleints.
+- **Admin module**: View incomes and charges, manage packs, register new clients and accept payments.
 - **Manager module**: Search for clients, perform check ins and view their profiles.
 
 ## Development server (angular cli)
@@ -36,7 +36,7 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 * Install firebase tools: `npm install -g firebase-tools`
 * Authenticate the cli and access Firebase projects: `firebase login`
 * Initialize your site (choose the `dist/gym-webapp` folder for the hosting plan): `firebase init`
-* Deploy the site and the backend functions to Firebase: `firebase deploy [--only hosting | functions]` (This will build the project first and do some linting)
+* Deploy the website and the backend functions to Firebase: `firebase deploy [--only hosting | functions]` (This will build the project first and do some linting)
 
 ## Further help
 
