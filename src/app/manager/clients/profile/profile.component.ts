@@ -88,7 +88,7 @@ export class ProfileComponent implements OnInit {
     }
     this.dialog.open(PaymentAddComponent, {
       width: '350px',
-      data: { idClient: this.client.id, pack: this.client.pack, insurance: this.client.insurance }
+      data: { ...this.client }
     });
   }
 
