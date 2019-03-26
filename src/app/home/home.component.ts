@@ -11,7 +11,7 @@ export class HomeComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
-      .style.backgroundImage = 'url("http://www.howleysbutchers.ie/wp-content/uploads/2016/03/empty-gym.jpg")';
+      .style.backgroundImage = 'url("/assets/empty-gym.jpg")';
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
       .style.backgroundPosition = 'center';
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
