@@ -8,7 +8,7 @@
   <ng-container matColumnDef="photo">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <img *ngIf="element.photo | async" [src]="element.photo | async" />
+      <img *ngIf="element.url | async as url" [src]="url" />
     </td>
   </ng-container>
   <ng-container matColumnDef="name">
@@ -36,8 +36,9 @@
   </ng-container>
   <ng-container matColumnDef="state">
     <th mat-header-cell *matHeaderCellDef></th>
-    <td mat-cell *matCellDef="let element" [matTooltip]="(element.phone | async)? 'Payed': 'Not payed'"
-      [ngStyle]="{'backgroundColor': (element.phone | async)? '#4CAF50': '#F44336'}">
+    <td mat-cell *matCellDef="let element"
+      [matTooltip]="(element.payed | async) === 'yes'? 'Payed': (element.payed | async) === 'no'? 'Not payed': ''"
+      [ngStyle]="{'backgroundColor': (element.payed | async) === 'yes'? '#4CAF50': (element.payed | async) === 'no'? '#F44336': ''}">
     </td>
   </ng-container>
   <tr mat-header-row style="display: none;" *matHeaderRowDef="displayedColumns"></tr>

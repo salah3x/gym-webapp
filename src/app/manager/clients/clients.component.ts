@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Subject, of, combineLatest } from 'rxjs';
-import { switchMap, map, debounceTime, take } from 'rxjs/operators';
+import { switchMap, map, debounceTime, take, catchError } from 'rxjs/operators';
 import { firestore } from 'firebase/app';
 
 import { ClientWithId, Client, CheckIn, Payment } from 'src/app/shared/client.model';
@@ -60,16 +60,17 @@ export class ClientsComponent implements OnInit {
       ),
       map(data => {
         data.map(c => {
-          // Using .photo & .phone as placeholders for some observables
-          c.photo = (this.storage.ref(c.photo).getDownloadURL() as unknown as string);
+          // Add .url & .payed as placeholders for some observables
+          (c as any).url = this.storage.ref(c.photo).getDownloadURL().pipe(catchError(() =>
+            of(c.sex === 'f' ? '/assets/default-profile-female.png' : '/assets/default-profile-male.png')));
           const date = new Date();
           date.setMonth(date.getMonth() - 1);
-          c.phone = (this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
+          (c as any).payed = this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
             .where('date', '>=', firestore.Timestamp.fromDate(date)))
             .valueChanges().pipe(
               map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1).length !== 0),
-              take(1)
-            )as unknown as string);
+              map(p => p ? 'yes' : 'no')
+            );
         });
         return data;
       })

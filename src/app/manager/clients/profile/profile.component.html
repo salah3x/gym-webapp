@@ -1,0 +1,41 @@
+<p class="title" *ngIf="!client && !isLoading">Client not found</p>
+<div class="container" *ngIf="client" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+  <img class="mat-elevation-z2" *ngIf="client.url | async as url" [src]="url" />
+  <div class="mat-elevation-z1 id" fxFlex="60">
+    <p class="title">{{client.name.first + ' ' + client.name.last}}</p>
+    <p><b>Registration date : </b><i>{{client.registrationDate.toDate() | date:'longDate'}}</i></p>
+    <p><b>Insurance : </b><i>{{client.insurance? 'Yes': 'No'}}</i></p>
+    <p><b>Pack : </b><i>{{(client.pack.pack | async)?.name}}
+        (<b>{{(client.pack.pack | async)?.price}} MAD/month</b>)</i>
+      <mat-icon *ngIf="client.payed | async as payed"
+        [matTooltip]="payed === 'yes'? 'Payed': payed === 'no'? 'Not payed': ''"
+        [color]="payed === 'yes'? 'primary': payed === 'no'? 'warn': ''">
+        {{payed === 'yes'? 'done': payed === 'no'? 'close': ''}}
+      </mat-icon>
+    </p>
+    <ng-container *ngIf="client.pack.subscription | async | removeItem:client.id as sub">
+      <div *ngIf="sub.subscriberIds.length > 0" class="mat-elevation-z0 sub">
+        <p>Subscription : <b>{{sub.name}}</b></p>
+        <p>[
+          <span *ngFor="let id of sub.subscriberIds; index as i">
+            <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>
+            {{ i ==  sub.subscriberIds.length -1 ? '': ' | '}}
+          </span>
+          ]</p>
+      </div>
+    </ng-container>
+  </div>
+</div>
+<div *ngIf="client" class="mat-elevation-z1 info">
+  <p class="title">Personal information</p>
+  <div fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" class="info2">
+    <div>
+      <p><b>CIN : </b><i>{{client.cin?.toUpperCase() || 'Not provided'}}</i></p>
+      <p><b>Phone : </b><i>{{client.phone || 'Not provided'}}</i></p>
+    </div>
+    <div>
+      <p><b>Address : </b><span [innerHTML]="toHtml(client.address)"></span></p>
+      <p><b>Note : </b><span [innerHTML]="toHtml(client.note)"></span></p>
+    </div>
+  </div>
+</div>
