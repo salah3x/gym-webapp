@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Subject, of, combineLatest } from 'rxjs';
-import { switchMap, map, distinct, debounceTime } from 'rxjs/operators';
+import { switchMap, map, debounceTime, take } from 'rxjs/operators';
+import { firestore } from 'firebase/app';
 
-import { ClientWithId, Client } from 'src/app/shared/client.model';
-import { MatSnackBar } from '@angular/material';
+import { ClientWithId, Client, CheckIn, Payment } from 'src/app/shared/client.model';
 
 @Component({
   selector: 'app-clients',
@@ -16,8 +17,9 @@ export class ClientsComponent implements OnInit {
 
   searchTerm = new Subject<string>();
   clients: ClientWithId[];
-  displayedColumns = ['photo', 'name', 'action'];
+  displayedColumns = ['photo', 'name', 'action', 'state'];
   isLoading = false;
+  isCheckingIn = false;
 
   constructor(private afs: AngularFirestore,
               private snack: MatSnackBar,
@@ -30,7 +32,6 @@ export class ClientsComponent implements OnInit {
         if (!s.trim()) {
           return of([[], [], []]);
         }
-        console.log('Searching for :', s);
         const firstNameRef = this.afs.collection<Client>('clients', ref => ref.orderBy('name.first_lowercase')
           .startAt(s).endAt(s + '\uf8ff'));
         const lastNameRef = this.afs.collection<Client>('clients', ref => ref.orderBy('name.last_lowercase')
@@ -58,13 +59,24 @@ export class ClientsComponent implements OnInit {
         .sort((a, b) => a.name.first.localeCompare(b.name.first))
       ),
       map(data => {
-        data.map(c => c.photo = (this.storage.ref(c.photo).getDownloadURL() as unknown as string));
+        data.map(c => {
+          // Using .photo & .phone as placeholders for some observables
+          c.photo = (this.storage.ref(c.photo).getDownloadURL() as unknown as string);
+          const date = new Date();
+          date.setMonth(date.getMonth() - 1);
+          c.phone = (this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
+            .where('date', '>=', firestore.Timestamp.fromDate(date)))
+            .valueChanges().pipe(
+              map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1).length !== 0),
+              take(1)
+            )as unknown as string);
+        });
         return data;
       })
     ).subscribe(data => {
       this.clients = data;
       this.isLoading = false;
-    }, err => {
+    }, () => {
       this.snack.open('Connexion failed', 'Close', { duration: 2000 });
       this.isLoading = false;
     });
@@ -77,7 +89,30 @@ export class ClientsComponent implements OnInit {
     this.searchTerm.next(s);
   }
 
-  performCheckin(id: string) {
-    // this.afs.collection(`clients/${id}/checkins`, ref => ref.where('date' ,'>='))
+  performCheckin(id: string, withNote: boolean = false) {
+    this.isCheckingIn = true;
+    this.afs.collection<CheckIn>(`clients/${id}/checkins`, ref => ref
+      .where('date', '>=', firestore.Timestamp.fromDate(new Date(new Date().setHours(0, 0, 0, 0))))
+      .where('date', '<=', firestore.Timestamp.fromDate(new Date())))
+      .valueChanges().pipe(take(1)).subscribe(data => {
+        if (!data.length || confirm('This client has already checked in today.\nCheck in anyway ?')) {
+          const note = withNote ? prompt('Optional note :') : '';
+          this.afs.collection<CheckIn>(`clients/${id}/checkins`).add({
+            date: firestore.Timestamp.fromDate(new Date()),
+            note,
+          }).then(() => {
+            this.snack.open('Checked in successfully', 'Close', { duration: 2000 });
+            this.isCheckingIn = false;
+          }).catch(() => {
+            this.snack.open('Check in failed', 'Close', { duration: 2000 });
+            this.isCheckingIn = false;
+          });
+        } else {
+          this.isCheckingIn = false;
+        }
+      }, () => {
+        this.isCheckingIn = false;
+        this.snack.open('Check in failed', 'Close', { duration: 2000 });
+      });
   }
 }

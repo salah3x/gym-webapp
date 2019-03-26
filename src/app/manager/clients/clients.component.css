@@ -24,3 +24,7 @@ mat-spinner {
     margin-top: 10px;
     margin-left: calc(50% - 15px);
 }
+
+table {
+    text-align: center;
+}

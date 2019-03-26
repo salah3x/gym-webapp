@@ -47,6 +47,12 @@ export interface SubscriptionWithId extends Subscription {
 export interface Payment {
     date: firestore.Timestamp;
     price: number;
+    idSubscription: string;
     idClient: string;
+    note?: string;
+}
+
+export interface CheckIn {
+    date: firestore.Timestamp;
     note?: string;
 }

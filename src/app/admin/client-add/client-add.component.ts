@@ -74,6 +74,7 @@ export class ClientAddComponent implements OnInit {
     }
     const payment: Payment = {
       idClient: clientId,
+      idSubscription: client.pack.idSubscription,
       price: this.selectedPrice,
       date:  firestore.Timestamp.fromDate(new Date()),
       note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
