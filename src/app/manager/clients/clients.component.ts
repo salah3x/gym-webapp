@@ -3,7 +3,7 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Subject, of, combineLatest } from 'rxjs';
-import { switchMap, map, debounceTime, take, catchError } from 'rxjs/operators';
+import { switchMap, map, debounceTime, take, catchError, tap } from 'rxjs/operators';
 import { firestore } from 'firebase/app';
 
 import { ClientWithId, Client, CheckIn, Payment } from 'src/app/shared/client.model';
@@ -27,6 +27,7 @@ export class ClientsComponent implements OnInit {
 
   ngOnInit() {
     this.searchTerm.pipe(
+      tap(s => s.trim() ? this.isLoading = true : this.isLoading = false),
       debounceTime(1000),
       switchMap(s => {
         if (!s.trim()) {
@@ -84,7 +85,6 @@ export class ClientsComponent implements OnInit {
   }
 
   search(s: string) {
-    this.isLoading = true;
     s = s.toLowerCase();
     this.clients = [];
     this.searchTerm.next(s);
