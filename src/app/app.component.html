@@ -25,9 +25,9 @@
         </mat-nav-list>
     </mat-sidenav>
     <mat-sidenav-content>
-        <mat-toolbar color="primary" class="toolbar mat-elevation-z4" >
+        <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
             <div *ngIf="isAuthenticated">
-                <button (click)="sidenav.toggle()" class="menu-btn" mat-icon-button type="button">
+                <button (click)="sidenav.toggle()" matTooltip="Main menu" class="menu-btn" mat-icon-button type="button">
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
@@ -36,8 +36,7 @@
             </div>
             <span class="fill-remaining-space"></span>
             <mat-menu #appMenu="matMenu">
-                <button (click)="onSigninOrSignout()"
-                    mat-menu-item>{{ isAuthenticated? 'Logout': 'Login'}}</button>
+                <button (click)="onSigninOrSignout()" mat-menu-item>{{ isAuthenticated? 'Logout': 'Login'}}</button>
             </mat-menu>
             <button [matMenuTriggerFor]="appMenu" class="menu-btn" [matTooltip]="(auth.user |async)?.email"
                 color="default" mat-mini-fab>
@@ -45,5 +44,15 @@
             </button>
         </mat-toolbar>
         <router-outlet></router-outlet>
+        <mat-toolbar color="primary" class=" footer" fxLayoutAlign="center center" fxLayoutGap="10">
+            <p><i>Made with </i>
+                <mat-icon color='warn'>favorite</mat-icon>
+                <i>v0.1.0</i>&nbsp;&nbsp;&nbsp;
+            </p>
+            <a fxFlexAlign="end" href="https://github.com/salah3x/gym-webapp/issues/new" 
+                matTooltip="Submit an issue" target="_blank">
+                <img src="/assets/github.png"/>
+            </a>
+        </mat-toolbar>
     </mat-sidenav-content>
 </mat-sidenav-container>

@@ -16,14 +16,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       .style.backgroundPosition = 'center';
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
       .style.backgroundSize = 'cover';
-    (this.renderer.selectRootElement('.mat-toolbar.mat-primary', true) as HTMLElement)
-    .style.background = '#00000090';
+    (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
+      .style.background = '#00000090';
+    (this.renderer.selectRootElement('.footer', true) as HTMLElement)
+      .style.display = 'none';
   }
 
   ngOnDestroy() {
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
       .style.backgroundImage = '';
-    (this.renderer.selectRootElement('.mat-toolbar.mat-primary', true) as HTMLElement)
+    (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
       .style.background = '#3f51b5';
+    (this.renderer.selectRootElement('.footer', true) as HTMLElement)
+      .style.display = 'flex';
   }
 }

@@ -3,7 +3,7 @@ mat-sidenav {
 }
   
 mat-sidenav-content {
-    height: 100vh;;
+    height: 100vh;
 }
   
 .active {
@@ -32,4 +32,20 @@ mat-sidenav-content {
 
 .mat-toolbar-single-row {
     height: 56px;
+}
+
+.footer {
+    height: 40px;
+}
+
+.footer p {
+    font-size: 12px;
+}
+
+.footer p mat-icon {
+    font-size: 14px;
+}
+
+.footer a img {
+    width: 25px;
 }
