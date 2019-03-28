@@ -10,6 +10,7 @@ import { map, tap } from 'rxjs/operators';
 import { Client, ClientWithId, Pack, Subscription, Payment } from 'src/app/shared/client.model';
 import { PaymentAddComponent } from './payment-add/payment-add.component';
 import { ClientService } from '../client-service.service';
+import { InfoEditComponent } from './info-edit/info-edit.component';
 
 @Component({
   selector: 'app-profile',
@@ -83,6 +84,15 @@ export class ProfileComponent implements OnInit {
     });
   }
 
+  openEditDialog() {
+    if (!this.isAdmin) {
+      return;
+    }
+    this.dialog.open(InfoEditComponent, {
+      width: '500px',
+      data: { ...this.client }
+    });
+  }
   performCheckin(id: string) {
     this.service.performCheckin(id, this.isCheckingIn);
   }

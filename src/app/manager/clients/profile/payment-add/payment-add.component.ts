@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { take } from 'rxjs/operators';
@@ -19,7 +19,8 @@ export class PaymentAddComponent implements OnInit {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: ClientWithId,
               private afs: AngularFirestore,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar,
+              private dialogRef: MatDialogRef<PaymentAddComponent>) { }
 
   ngOnInit() {
   }
@@ -37,6 +38,7 @@ export class PaymentAddComponent implements OnInit {
         }).then(() => {
           this.loading = false;
           this.snack.open('Payment Added successfully', 'Close', { duration: 3000 });
+          this.dialogRef.close();
         }).catch(() => {
           this.loading = false;
           this.snack.open('Payment failed', 'Close', { duration: 3000 });
@@ -58,6 +60,7 @@ export class PaymentAddComponent implements OnInit {
         .then(() => {
           this.loading = false;
           this.snack.open('Insurance payed successfully', 'Close', { duration: 3000 });
+          this.dialogRef.close();
         }).catch(() => {
           this.loading = false;
           this.snack.open('Failed paying insurance', 'Close', { duration: 3000 });

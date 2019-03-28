@@ -11,6 +11,7 @@ import { RemoveItemPipe } from './clients/profile/remove-item.pipe';
 import { PaymentAddComponent } from './clients/profile/payment-add/payment-add.component';
 import { CheckInsComponent } from './clients/profile/check-ins/check-ins.component';
 import { ClientService } from './clients/client-service.service';
+import { InfoEditComponent } from './clients/profile/info-edit/info-edit.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ClientService } from './clients/client-service.service';
     ProfileComponent,
     RemoveItemPipe,
     PaymentAddComponent,
-    CheckInsComponent
+    CheckInsComponent,
+    InfoEditComponent
   ],
   imports: [
     SharedModule,
@@ -31,6 +33,6 @@ import { ClientService } from './clients/client-service.service';
     ClientService,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
-  entryComponents: [PaymentAddComponent]
+  entryComponents: [PaymentAddComponent, InfoEditComponent]
 })
 export class ManagerModule { }

@@ -37,7 +37,11 @@
   </div>
 </div>
 <div *ngIf="client" class="mat-elevation-z1 info">
-  <p class="title">Personal information</p>
+  <p class="title">Personal information
+    <button matTooltip="Edit" *ngIf="isAdmin" color="primary" mat-icon-button (click)="openEditDialog()">
+      <mat-icon>edit</mat-icon>
+    </button>
+  </p>
   <div fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" class="info2">
     <div>
       <p><b>CIN : </b><i>{{client.cin?.toUpperCase() || 'Not provided'}}</i></p>
@@ -54,11 +58,11 @@
   <app-check-ins [id]="client.id"></app-check-ins>
 </div>
 <table *ngIf="client" mat-table [dataSource]="payments | async" class="mat-elevation-z1">
-    <ng-container matColumnDef="title">
-        <td mat-header-cell *matHeaderCellDef colspan="4">
-          <b>{{(payments | async)?.length ? 'Payment history': 'No payments found'}}</b>
-        </td>
-      </ng-container>
+  <ng-container matColumnDef="title">
+    <td mat-header-cell *matHeaderCellDef colspan="4">
+      <b>{{(payments | async)?.length ? 'Payment history': 'No payments found'}}</b>
+    </td>
+  </ng-container>
   <ng-container matColumnDef="date">
     <th mat-header-cell *matHeaderCellDef> Date </th>
     <td mat-cell *matCellDef="let element">
