@@ -25,7 +25,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/d3/d3.min.js",
+              "node_modules/cal-heatmap/cal-heatmap.js"
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
@@ -82,7 +85,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "node_modules/d3/d3.min.js",
+              "node_modules/cal-heatmap/cal-heatmap.js"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"

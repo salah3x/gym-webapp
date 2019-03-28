@@ -21,8 +21,6 @@ export class ProfileComponent implements OnInit {
 
   client: ClientWithId;
   isLoading = true;
-  checkins: Observable<CheckIn[]>;
-  payments: Observable<Payment[]>;
   isCheckingIn = false;
   isAdmin = false;
 
@@ -35,6 +33,7 @@ export class ProfileComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit() {
+    this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
     const id = this.route.snapshot.params.id;
     this.afs.doc<Client>(`clients/${id}`).valueChanges()
       .pipe(
@@ -57,29 +56,36 @@ export class ProfileComponent implements OnInit {
           (c.pack as any).subscription = this.afs.doc<Subscription>(`packs/${c.pack.idPack}/subscriptions/${c.pack.idSubscription}`)
             .valueChanges();
           return c;
-        }
-        )).subscribe(
-          c => { this.isLoading = false; this.client = { ...c, id }; },
-          () => this.isLoading = false
-        );
-    // Get checkins and payments of this client
-    // payments are either made by him/her or by someone else in the same subscription
-    this.checkins = this.afs.collection<CheckIn>(`clients/${id}/checkins`).valueChanges();
-    this.payments = this.afs.doc<Client>(`clients/${id}`).valueChanges().pipe(
-      take(1),
-      switchMap(c => combineLatest(
-        this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', id)).valueChanges(),
-        this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)).valueChanges())
-      ),
-      map(list => {
-        const [first, second] = list;
-        return first.concat(second);
-      }),
-      map(array => Array.from(new Set(array.map(c => c.date.seconds)))
-        .map(seconds => array.find(c => c.date.seconds === seconds))
-      ));
-    // Determining if the current logged in user has 'admin' role
-    this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
+        })
+      ).subscribe(
+        c => { this.isLoading = false; this.client = { ...c, id }; },
+        () => { this.isLoading = false; this.snack.open('Connexion failed', 'Close', { duration: 3000 }); }
+      );
+    // Get checkins and payments of this client (for the past past year)
+    // payments are either made by the client or by someone else in the same subscription
+    // const startDate = new Date();
+    // startDate.setFullYear(startDate.getFullYear() - 1);
+    // const timestamp = firestore.Timestamp.fromDate(startDate);
+    // this.payments = this.afs.doc<Client>(`clients/${id}`).valueChanges().pipe(
+    //   switchMap(c => {
+    //     return combineLatest(
+    //       this.afs.collection<Payment>('payments', ref => ref
+    //         .where('idClient', '==', id)
+    //         .where('date', '>=', timestamp)
+    //       ).valueChanges(),
+    //       this.afs.collection<Payment>('payments', ref => ref
+    //         .where('idSubscription', '==', c.pack.idSubscription)
+    //         .where('date', '>=', timestamp)
+    //       ).valueChanges()
+    //     );
+    //   }),
+    //   map(list => {
+    //     const [first, second] = list;
+    //     return first.concat(second);
+    //   }),
+    //   map(array => Array.from(new Set(array.map(c => c.date.seconds)))
+    //     .map(seconds => array.find(c => c.date.seconds === seconds))
+    //   ));
   }
 
   openPaymentDialog() {

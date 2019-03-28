@@ -9,6 +9,7 @@ import { SharedModule } from '../shared/shared.module';
 import { ProfileComponent } from './clients/profile/profile.component';
 import { RemoveItemPipe } from './clients/profile/remove-item.pipe';
 import { PaymentAddComponent } from './clients/profile/payment-add/payment-add.component';
+import { CheckInsComponent } from './clients/profile/check-ins/check-ins.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { PaymentAddComponent } from './clients/profile/payment-add/payment-add.c
     ClientsComponent,
     ProfileComponent,
     RemoveItemPipe,
-    PaymentAddComponent
+    PaymentAddComponent,
+    CheckInsComponent
   ],
   imports: [
     SharedModule,

@@ -2,12 +2,13 @@
 <div class="container" *ngIf="client" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
   <img class="mat-elevation-z2" *ngIf="client.url | async as url" [src]="url" />
   <div fxLayout="column">
-    <button class="action" *ngIf="isAdmin" mat-raised-button color="primary" (click)="openPaymentDialog()" matTooltip="Make a payment">
+    <button class="action" *ngIf="isAdmin" mat-raised-button color="primary" (click)="openPaymentDialog()"
+      matTooltip="Make a payment">
       <mat-icon>monetization_on</mat-icon>
     </button>
     <button class="action" mat-raised-button [disabled]="isCheckingIn" color="default"
       (click)="performCheckin(client.id)" matTooltip="Check in and add a note">
-      <mat-icon>directions_walk</mat-icon>
+      <mat-icon>transfer_within_a_station</mat-icon>
     </button>
   </div>
   <div class="mat-elevation-z1 id" fxFlex="60">
@@ -18,7 +19,7 @@
         (<b>{{(client.pack.pack | async)?.price}} MAD/month</b>)</i>
       <mat-icon *ngIf="client.payed | async as payed"
         [matTooltip]="payed === 'yes'? 'Payed': payed === 'no'? 'Not payed': ''"
-        [color]="payed === 'yes'? 'primary': payed === 'no'? 'warn': ''">
+        [ngStyle]="{'color': payed === 'yes'? '#4CAF50': payed === 'no'? '#F44336': ''}">
         {{payed === 'yes'? 'done': payed === 'no'? 'close': ''}}
       </mat-icon>
     </p>
@@ -47,4 +48,8 @@
       <p><b>Note : </b><span [innerHTML]="toHtml(client.note)"></span></p>
     </div>
   </div>
+</div>
+<div *ngIf="client" class="mat-elevation-z1 checkins">
+  <p>Check-ins list</p>
+  <app-check-ins [id]="client.id"></app-check-ins>
 </div>

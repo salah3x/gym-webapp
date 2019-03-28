@@ -32,7 +32,7 @@ img {
     text-align: center;
     width: 90%;
     padding: 10px 0px 10px 0px;
-    margin-top: 5px;
+    margin-top: 10px;
     margin-left: 5%;
 }
 
@@ -42,4 +42,17 @@ img {
 
 .action {
     margin: 10px 0px 10px 0px;
+}
+
+.checkins {
+    margin-top: 10px;
+    margin-left: 5%;
+    width: 90%;
+}
+
+.checkins p {
+    margin: 0px;
+    padding-top: 20px;
+    text-align: center;
+    font-size: 24px;
 }

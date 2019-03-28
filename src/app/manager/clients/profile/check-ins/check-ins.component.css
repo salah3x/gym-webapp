@@ -1,0 +1,14 @@
+.container {
+    padding: 10px;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.01);
+}
+
+.right-btn {
+    float: right;
+}
+
+p {
+    text-align: center;
+    padding: 10px;
+}
