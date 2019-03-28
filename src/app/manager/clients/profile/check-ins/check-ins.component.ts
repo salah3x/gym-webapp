@@ -62,10 +62,12 @@ export class CheckInsComponent implements OnInit {
           return value > 0 ? '' : new Date(date).getDate().toString();
         },
         animationDuration: 300,
+        tooltip: true,
         subDomainTitleFormat: {
-          empty: 'No training session',
-          filled: 'Training sessions : {count}'
-        }
+          empty: 'No training sessions',
+          filled: '{count} training {name}'
+        },
+        onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1000, 100)
       });
       this.isLoading = false;
     }, () => this.isLoading = false);
@@ -75,7 +77,7 @@ export class CheckInsComponent implements OnInit {
 
   onNext() {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() + 1);
-    this.cal.next(1);
+    this.cal.next();
     this.startDate.next(this.curentStartDate);
     this.calendar.nativeElement.scrollLeft = 1000;
   }

@@ -1,8 +1,7 @@
 .container {
     padding: 10px;
     overflow: auto;
-    direction: rtl;
-    background-color: rgba(0, 0, 0, 0.01);
+    background-color: rgba(0, 0, 0, 0.02);
 }
 
 .right-btn {
