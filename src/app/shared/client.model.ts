@@ -54,5 +54,4 @@ export interface Payment {
 
 export interface CheckIn {
     date: firestore.Timestamp;
-    note?: string;
 }

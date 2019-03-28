@@ -1,12 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { AngularFireStorage } from '@angular/fire/storage';
 import { Subject, of, combineLatest } from 'rxjs';
-import { switchMap, map, debounceTime, take, catchError, tap } from 'rxjs/operators';
-import { firestore } from 'firebase/app';
+import { switchMap, map, debounceTime, tap } from 'rxjs/operators';
 
-import { ClientWithId, Client, CheckIn, Payment } from 'src/app/shared/client.model';
+import { ClientWithId, Client } from 'src/app/shared/client.model';
+import { ClientService } from './client-service.service';
 
 @Component({
   selector: 'app-clients',
@@ -23,7 +22,7 @@ export class ClientsComponent implements OnInit {
 
   constructor(private afs: AngularFirestore,
               private snack: MatSnackBar,
-              private storage: AngularFireStorage) { }
+              private service: ClientService) { }
 
   ngOnInit() {
     this.searchTerm.pipe(
@@ -62,16 +61,8 @@ export class ClientsComponent implements OnInit {
       map(data => {
         data.map(c => {
           // Add .url & .payed as placeholders for some observables
-          (c as any).url = this.storage.ref(c.photo).getDownloadURL().pipe(catchError(() =>
-            of(c.sex === 'f' ? '/assets/default-profile-female.png' : '/assets/default-profile-male.png')));
-          const date = new Date();
-          date.setMonth(date.getMonth() - 1);
-          (c as any).payed = this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
-            .where('date', '>=', firestore.Timestamp.fromDate(date)))
-            .valueChanges().pipe(
-              map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1).length !== 0),
-              map(p => p ? 'yes' : 'no')
-            );
+          (c as any).url = this.service.getUrl(c.photo, c.sex);
+          (c as any).payed = this.service.hasPayed(c.pack.idSubscription);
         });
         return data;
       })
@@ -91,27 +82,6 @@ export class ClientsComponent implements OnInit {
   }
 
   performCheckin(id: string) {
-    this.isCheckingIn = true;
-    this.afs.collection<CheckIn>(`clients/${id}/checkins`, ref => ref
-      .where('date', '>=', firestore.Timestamp.fromDate(new Date(new Date().setHours(0, 0, 0, 0))))
-      .where('date', '<=', firestore.Timestamp.fromDate(new Date())))
-      .valueChanges().pipe(take(1)).subscribe(data => {
-        if (!data.length || confirm('This client has already checked in today.\nCheck in anyway ?')) {
-          this.afs.collection<CheckIn>(`clients/${id}/checkins`).add({
-            date: firestore.Timestamp.fromDate(new Date())
-          }).then(() => {
-            this.snack.open('Checked in successfully', 'Close', { duration: 2000 });
-            this.isCheckingIn = false;
-          }).catch(() => {
-            this.snack.open('Check in failed', 'Close', { duration: 2000 });
-            this.isCheckingIn = false;
-          });
-        } else {
-          this.isCheckingIn = false;
-        }
-      }, () => {
-        this.isCheckingIn = false;
-        this.snack.open('Check in failed', 'Close', { duration: 2000 });
-      });
+    this.service.performCheckin(id, this.isCheckingIn);
   }
 }
