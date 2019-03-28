@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   isLoading = true;
   isCheckingIn = false;
   isAdmin = false;
-  payments: Observable<Payment[]>
+  payments: Observable<Payment[]>;
   displayedColumns = ['date', 'price', 'note', 'by'];
 
   constructor(private route: ActivatedRoute,
@@ -46,7 +46,8 @@ export class ProfileComponent implements OnInit {
         (c as any).url = this.service.getUrl(c.photo, c.sex);
         (c as any).payed = this.service.hasPayed(c.pack.idSubscription);
         (c.pack as any).pack = this.afs.doc<Pack>(`packs/${c.pack.idPack}`).valueChanges();
-        (c.pack as any).subscription = this.afs.doc<Subscription>(`packs/${c.pack.idPack}/subscriptions/${c.pack.idSubscription}`).valueChanges();
+        (c.pack as any).subscription = this.afs.doc<Subscription>(`packs/${c.pack.idPack}/subscriptions/${c.pack.idSubscription}`)
+          .valueChanges();
         return c;
       }),
       // Get all payments of this client (for the past year)
@@ -63,8 +64,8 @@ export class ProfileComponent implements OnInit {
             const [first, second] = list;
             return first.concat(second);
           }),
-          map(array => Array.from(new Set(array.map(c => c.date.seconds)))
-            .map(seconds => array.find(c => c.date.seconds === seconds))
+          map(array => Array.from(new Set(array.map(item => item.date.seconds)))
+            .map(seconds => array.find(item => item.date.seconds === seconds))
           )
         );
       })
