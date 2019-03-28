@@ -1,7 +1,7 @@
-<button mat-icon-button color="primary" (click)="onPrevious()" matTooltip="Previoud month">
+<button mat-icon-button color="primary" [disabled]="isLoading" (click)="onPrevious()" matTooltip="Previoud month">
   <mat-icon>arrow_back</mat-icon>
 </button>
-<button class="right-btn" mat-icon-button color="primary" (click)="onNext()" matTooltip="Next month">
+<button class="right-btn" mat-icon-button color="primary" [disabled]="isLoading" (click)="onNext()" matTooltip="Next month">
   <mat-icon>arrow_forward</mat-icon>
 </button>
 <div class="container" id="cal-heatmap">
