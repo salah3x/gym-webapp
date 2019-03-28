@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -17,7 +17,7 @@ import { InfoEditComponent } from './info-edit/info-edit.component';
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit, OnDestroy {
 
   client: ClientWithId;
   isLoading = true;
@@ -32,7 +32,8 @@ export class ProfileComponent implements OnInit {
               private auth: AngularFireAuth,
               private snack: MatSnackBar,
               private dialog: MatDialog,
-              private service: ClientService) { }
+              private service: ClientService,
+              private titleService: Title) { }
 
   ngOnInit() {
     this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
@@ -70,7 +71,11 @@ export class ProfileComponent implements OnInit {
         );
       })
     ).subscribe(
-      c => { this.isLoading = false; this.client = { ...c, id }; },
+      c => {
+        this.isLoading = false;
+        this.client = { ...c, id };
+        this.titleService.setTitle(this.titleService.getTitle() + ' | ' + c.name.first + ' ' + c.name.last);
+      },
       () => { this.isLoading = false; this.snack.open('Connexion failed', 'Close', { duration: 3000 }); }
     );
   }
@@ -103,5 +108,9 @@ export class ProfileComponent implements OnInit {
       return '<i>Not provided</i>';
     }
     return this.sanitizer.bypassSecurityTrustHtml(('<i>' + text + '</i>').replace(/\n/g, '<br>'));
+  }
+
+  ngOnDestroy() {
+    this.titleService.setTitle(this.titleService.getTitle().split(' | ')[0]);
   }
 }
