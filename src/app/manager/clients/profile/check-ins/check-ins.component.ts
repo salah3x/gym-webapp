@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Renderer2, ViewChild, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Subject } from 'rxjs';
@@ -20,6 +20,7 @@ export class CheckInsComponent implements OnInit {
   curentStartDate = new Date(`${new Date().getFullYear() - 1}/${new Date().getMonth() + 2}/1`);
   startDate = new Subject<Date>();
   isLoading = false;
+  @ViewChild('c') calendar: ElementRef;
 
   constructor(private afs: AngularFirestore) { }
 
@@ -60,7 +61,7 @@ export class CheckInsComponent implements OnInit {
         subDomainTextFormat: (date: number, value: number) => {
           return value > 0 ? '' : new Date(date).getDate().toString();
         },
-        animationDuration: 500,
+        animationDuration: 300,
         subDomainTitleFormat: {
           empty: 'No training session',
           filled: 'Training sessions : {count}'
@@ -76,11 +77,13 @@ export class CheckInsComponent implements OnInit {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() + 1);
     this.cal.next(1);
     this.startDate.next(this.curentStartDate);
+    this.calendar.nativeElement.scrollLeft = 1000;
   }
 
   onPrevious() {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 1);
     this.cal.previous();
     this.startDate.next(this.curentStartDate);
+    this.calendar.nativeElement.scrollLeft = 0;
   }
 }
