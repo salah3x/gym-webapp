@@ -1,0 +1,23 @@
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /images {
+    	// Cascade read to any image type at any path if user has 'user' role
+			match /{allImages=**} {
+      	allow read: if request.auth.token.user != null;
+    	}
+    	// Allow write files to the path "photos/*", subject to the constraints:
+    	// 1) User has 'admin' role
+      // 2) File is less than 5MB
+      // 3) Content type is an image
+      match /{imageId} {
+      	allow create: if request.auth.token.admin != null
+        							&& request.resource.size < 5 * 1024 * 1024
+            					&& request.resource.contentType.matches('image/.*');
+        allow delete: if request.auth.token.admin != null;
+      }
+		}
+		match /{allPaths=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -25,6 +25,14 @@
     "predeploy": [
       "npm --prefix functions run lint",
       "npm --prefix functions run build"
-    ]
+    ],
+    "source": "functions"
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "storage": {
+    "rules": "storage.rules"
   }
 }
