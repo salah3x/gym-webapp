@@ -53,3 +53,40 @@
   <p>Training sessions</p>
   <app-check-ins [id]="client.id"></app-check-ins>
 </div>
+<table *ngIf="client" mat-table [dataSource]="payments | async" class="mat-elevation-z1">
+    <ng-container matColumnDef="title">
+        <td mat-header-cell *matHeaderCellDef colspan="4">
+          <b>{{(payments | async)?.length ? 'Payment history': 'No payments found'}}</b>
+        </td>
+      </ng-container>
+  <ng-container matColumnDef="date">
+    <th mat-header-cell *matHeaderCellDef> Date </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.date.toDate() | date:'MMM d, y, h:mm a'}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="price">
+    <th mat-header-cell *matHeaderCellDef> Price (MAD) </th>
+    <td mat-cell *matCellDef="let element">
+      <b>{{element.price}}</b>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="note">
+    <th mat-header-cell *matHeaderCellDef> Description </th>
+    <td mat-cell *matCellDef="let element">
+      {{element.note}}
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="by">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <i *ngIf="element.idClient !== client.id">
+        Payed by <a matTooltip="View profile"
+          [routerLink]="['manager', 'clients', element.idClient]">{{element.idClient}}</a>
+      </i>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
