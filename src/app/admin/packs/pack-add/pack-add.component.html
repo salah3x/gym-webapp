@@ -12,6 +12,7 @@
       <input type="number" matInput ngModel name="price" required>
       <mat-error>Price is required</mat-error>
       <mat-hint align="end">MAD/month</mat-hint>
+      <mat-icon matSuffix>attach_money</mat-icon>
     </mat-form-field>
   </div>
   <div fxLayout="column" fxLayoutAlign="space-around strech">
@@ -22,7 +23,7 @@
       <textarea matInput ngModel name="description" rows="3"></textarea>
     </mat-form-field>
     <button type="submit" mat-raised-button color="primary" 
-      matTooltip="Save pack" [disabled]="!f.valid">
+      matTooltip="Save pack" [disabled]="!f.valid || isLoading">
       <mat-icon>save_alt</mat-icon>
     </button>
   </div>

@@ -1,0 +1,35 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f)" fxLayout="column" fxLayoutAlign="space-between stretch">
+  <p class="header" mat-dialog-title>Add a new Charge</p>
+  <div fxLayout="column" fxLayoutAlign="space-around strech">
+    <mat-form-field appearance="outline">
+      <mat-label>Name</mat-label>
+      <input matInput ngModel name="name" required>
+      <mat-error>Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Cost</mat-label>
+      <input type="number" matInput ngModel name="cost" required>
+      <mat-error>Cost is required</mat-error>
+      <mat-hint align="end">MAD</mat-hint>
+      <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Date</mat-label>
+      <input matInput [matDatepicker]="picker" [ngModel]="curentDate" name="date" required>
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker touchUi #picker></mat-datepicker>
+      <mat-error>Date is required</mat-error>
+      <mat-hint align="end">mm/dd/yyyy</mat-hint>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Description
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-label>
+      <textarea matInput ngModel name="description" rows="3" required></textarea>
+    </mat-form-field>
+    <button type="submit" mat-raised-button color="primary" matTooltip="Save charge" [disabled]="!f.valid || isLoading">
+      <mat-icon>save_alt</mat-icon>
+    </button>
+  </div>
+  <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+</form>

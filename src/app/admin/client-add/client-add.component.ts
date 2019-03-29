@@ -18,6 +18,7 @@ export class ClientAddComponent implements OnInit {
   @ViewChild('f') form: NgForm;
   @ViewChild('stepper') stepper: MatStepper;
   photoUrl: string;
+  curentDate = new Date();
   downloadUrl: string;
   isUploading = false;
   uploadPct = 0;

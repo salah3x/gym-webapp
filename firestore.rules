@@ -18,6 +18,9 @@ service cloud.firestore {
       allow read: if request.auth.token.user;
       allow write: if request.auth.token.admin;
     }
+  	match /charges/{payment} {
+      allow read, write: if request.auth.token.admin;
+    }
     match /{document=**} {
       allow read, write: if false;
     }

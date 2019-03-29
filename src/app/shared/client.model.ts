@@ -55,3 +55,10 @@ export interface Payment {
 export interface CheckIn {
     date: firestore.Timestamp;
 }
+
+export interface Charge {
+    name: string;
+    cost: number;
+    date: firestore.Timestamp;
+    description: string;
+}

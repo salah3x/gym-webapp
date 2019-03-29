@@ -4,6 +4,7 @@ import { AdminComponent } from './admin.component';
 import { ClientAddComponent } from './client-add/client-add.component';
 import { PacksComponent } from './packs/packs.component';
 import { CanDeactivateClient } from './client-add/can-deactivate-client.service';
+import { ChargesPaymentsComponent } from './charges-payments/charges-payments.component';
 
 const routes: Routes = [
   {
@@ -12,7 +13,8 @@ const routes: Routes = [
     children: [
       {path: '', redirectTo: 'addClient', pathMatch: 'full'},
       {path: 'addClient', component: ClientAddComponent, canDeactivate: [CanDeactivateClient]},
-      {path: 'packs', component: PacksComponent}
+      {path: 'packs', component: PacksComponent},
+      {path: 'analytics', component: ChargesPaymentsComponent}
     ]
   }
 ];

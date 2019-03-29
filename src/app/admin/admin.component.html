@@ -1,5 +1,5 @@
 <mat-drawer-container>
-  <mat-drawer #drawer mode="side"  opened="true" class="mat-elevation-z4">
+  <mat-drawer #drawer mode="side" opened="true" class="mat-elevation-z4">
     <mat-nav-list>
       <mat-list-item routerLinkActive="active">
         <a matLine routerLink="./addClient/">New clients</a>
@@ -15,15 +15,18 @@
         </button>
       </mat-list-item>
       <mat-divider></mat-divider>
+      <mat-list-item routerLinkActive="active">
+        <a matLine routerLink="./analytics/">Charges/Payments</a>
+        <button mat-icon-button>
+          <mat-icon>trending_up</mat-icon>
+        </button>
+      </mat-list-item>
+      <mat-divider></mat-divider>
     </mat-nav-list>
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
-    <button
-      (click)="drawer.toggle()"
-      class="toggler"
-      mat-mini-fab
-      [matTooltip]="drawer.opened ? 'Close': 'Open'"
+    <button (click)="drawer.toggle()" class="toggler" mat-mini-fab [matTooltip]="drawer.opened ? 'Close': 'Open'"
       matTooltipPosition="after">
       <mat-icon>{{drawer.opened ? 'first_page': 'last_page'}}</mat-icon>
     </button>
