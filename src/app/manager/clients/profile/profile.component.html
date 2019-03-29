@@ -7,7 +7,7 @@
       <mat-icon>monetization_on</mat-icon>
     </button>
     <button class="action" mat-raised-button [disabled]="isCheckingIn" color="default"
-      (click)="performCheckin(client.id)" matTooltip="Check in and add a note">
+      (click)="performCheckin(client.id)" matTooltip="Check in">
       <mat-icon>transfer_within_a_station</mat-icon>
     </button>
   </div>
@@ -60,7 +60,7 @@
 <table *ngIf="client" mat-table [dataSource]="payments | async" class="mat-elevation-z1">
   <ng-container matColumnDef="title">
     <td mat-header-cell *matHeaderCellDef colspan="4">
-      <b>{{(payments | async)?.length ? 'Payment history': 'No payments found'}}</b>
+      <b>{{(payments | async)?.length ? 'Payments history': 'No payments found'}}</b>
     </td>
   </ng-container>
   <ng-container matColumnDef="date">

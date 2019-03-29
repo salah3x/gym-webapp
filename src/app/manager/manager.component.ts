@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-manager',
@@ -7,9 +8,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManagerComponent implements OnInit {
 
-  constructor() { }
+  constructor(private sidenavService: SidenavService) { }
 
   ngOnInit() {
+    this.sidenavService.close();
   }
 
 }

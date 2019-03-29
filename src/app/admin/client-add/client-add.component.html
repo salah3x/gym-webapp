@@ -72,14 +72,14 @@
 
     <mat-step optional>
       <ng-template matStepLabel>Additional information</ng-template>
-      <div fxLayout="column" fxLayoutAlign="space-around">
+      <div fxLayout="column" fxLayoutAlign="space-between">
         <div fxLayout.lt-md="column" fxLayoutAlign="space-around center">
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" fxFlex="45">
             <mat-label>CIN</mat-label>
             <mat-icon matSuffix>credit_card</mat-icon>
             <input matInput ngModel name="cin">
           </mat-form-field>
-          <mat-form-field appearance="outline">
+          <mat-form-field appearance="outline" fxFlex="45">
             <mat-label>Phone number</mat-label>
             <input matInput ngModel name="phone">
             <mat-icon matSuffix>phone_android</mat-icon>
@@ -133,7 +133,7 @@
       <div fxLayout="column" fxLayoutAlign="space-around stretch">
         <mat-form-field appearance="outline">
           <mat-label>Note
-            <mat-icon matSuffix>note</mat-icon>
+            <mat-icon matSuffix>description</mat-icon>
           </mat-label>
           <textarea matInput ngModel name="note" rows="3"></textarea>
         </mat-form-field>

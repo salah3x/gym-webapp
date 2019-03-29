@@ -6,6 +6,7 @@ import { switchMap, debounceTime } from 'rxjs/operators';
 import 'cal-heatmap';
 
 import { CheckIn } from 'src/app/shared/client.model';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-check-ins',
@@ -22,7 +23,7 @@ export class CheckInsComponent implements OnInit {
   isLoading = false;
   @ViewChild('c') calendar: ElementRef;
 
-  constructor(private afs: AngularFirestore) { }
+  constructor(private afs: AngularFirestore, private snack: MatSnackBar) { }
 
   ngOnInit() {
     this.startDate.pipe(
@@ -67,10 +68,13 @@ export class CheckInsComponent implements OnInit {
           empty: 'No training sessions',
           filled: '{count} training {name}'
         },
-        onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1000, 100)
+        onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1500, 100)
       });
       this.isLoading = false;
-    }, () => this.isLoading = false);
+    }, () => {
+      this.isLoading = false;
+      this.snack.open('Failed getting data', 'close', { duration: 4000 });
+    });
     // Emmit the first event
     this.startDate.next(this.curentStartDate);
   }
@@ -79,7 +83,7 @@ export class CheckInsComponent implements OnInit {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() + 1);
     this.cal.next();
     this.startDate.next(this.curentStartDate);
-    this.calendar.nativeElement.scrollLeft = 1000;
+    this.calendar.nativeElement.scrollLeft = 1500;
   }
 
   onPrevious() {
