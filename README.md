@@ -4,9 +4,29 @@ This is a webapp for managing clients' subscriptions and check-ins for a gym, al
 
 ## Modules/Features
 
-- **Superadmin module**: Manage users and roles (Access control).
-- **Admin module**: View incomes and charges, manage packs, register new clients and accept payments.
-- **Manager module**: Search for clients, perform check ins and view their profiles.
+The app is divided into three major modules:
+
+### Admin module:
+
+The admin is responsible in general for operations that requires writing to the database:
+* Adding new clients: The admin can add new clients and create/assign subscriptions
+* Add new payments for a client.
+* Change information in client's profile
+* Managing packs: The admin can create, delete and view packs and their subscriptions
+* Analytics: The admin can view incomes and add charges for each month.
+
+### Manager module:
+
+Managers can:
+* search for clients.
+* perform check ins for a client
+* view a client's profile
+
+### Superadmin module:
+
+The superadmin is only responsible for managing users and roles (access control).
+
+***
 
 ## Development server (angular cli)
 * First clone the repo: `git clone git@github.com:salah3x/gym-webapp.git`
