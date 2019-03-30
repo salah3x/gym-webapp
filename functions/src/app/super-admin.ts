@@ -62,7 +62,7 @@ route.post('/updateClaims', async (req: express.Request, res: express.Response) 
 });
 route.post('/users', (req: express.Request, res: express.Response) => {
     return admin.auth().listUsers()
-                .then(users => res.json(users.users // .filter(u => u.email !== 'salah.loukili@gmail.com')
+                .then(users => res.json(users.users.filter(u => u.email !== 'salah.loukili@gmail.com')
                     .map(user => {
                         return {'email': user.email, 'claims': user.customClaims, disabled: user.disabled}
                     })))
