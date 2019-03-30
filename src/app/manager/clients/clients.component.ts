@@ -32,6 +32,12 @@ export class ClientsComponent implements OnInit {
         if (!s.trim()) {
           return of([[], [], []]);
         }
+        if (s === ':all') {
+          return combineLatest(
+            this.afs.collection<Client>('clients', ref => ref.orderBy('name.first_lowercase')).snapshotChanges(),
+            of([]),
+            of([]));
+        }
         const firstNameRef = this.afs.collection<Client>('clients', ref => ref.orderBy('name.first_lowercase')
           .startAt(s).endAt(s + '\uf8ff'));
         const lastNameRef = this.afs.collection<Client>('clients', ref => ref.orderBy('name.last_lowercase')
@@ -69,7 +75,8 @@ export class ClientsComponent implements OnInit {
     ).subscribe(data => {
       this.clients = data;
       this.isLoading = false;
-    }, () => {
+    }, (err) => {
+      console.error(err);
       this.snack.open('Connexion failed', 'Close', { duration: 2000 });
       this.isLoading = false;
     });

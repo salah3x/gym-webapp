@@ -12,6 +12,7 @@
 table {
     width: 80%;
     margin-left: 10%;
+    text-align: center;
 }
 
 img {
@@ -25,6 +26,6 @@ mat-spinner {
     margin-left: calc(50% - 15px);
 }
 
-table {
+.subTitle {
     text-align: center;
 }

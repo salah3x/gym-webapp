@@ -4,6 +4,7 @@
   <input (keyup)="search($event.target.value)" #i autofocus matInput>
 </mat-form-field>
 <p class="title" *ngIf="!i.value.trim()">Type something in the search bar</p>
+<p class="subTitle" *ngIf="!i.value.trim()">Type ':all' for the full list</p>
 <p class="title" *ngIf="clients?.length < 1 && !isLoading && i.value.trim()">No clients found</p>
 <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
 <table mat-table *ngIf="clients?.length > 0" [dataSource]="clients" class="mat-elevation-z1">
