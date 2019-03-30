@@ -2,3 +2,15 @@
   matTooltip="Add a new charge">
   <mat-icon>add</mat-icon>
 </button>
+<div class="container mat-elevation-z1">
+  <p class="title">Charges and payments</p>
+  <button mat-icon-button color="primary" (click)="onPrevious()" matTooltip="Previoud month">
+    <mat-icon>arrow_back</mat-icon>
+  </button>
+  <button class="right-btn" mat-icon-button color="primary" (click)="onNext()" matTooltip="Next month">
+    <mat-icon>arrow_forward</mat-icon>
+  </button>
+  <canvas baseChart [datasets]="barChartData" [labels]="barChartLabels" [options]="barChartOptions" legend="true"
+    chartType="bar" (chartClick)="chartClicked($event)">
+  </canvas>
+</div>

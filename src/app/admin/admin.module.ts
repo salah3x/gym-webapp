@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { ChartsModule } from 'ng2-charts';
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { AdminComponent } from './admin.component';
@@ -25,7 +26,8 @@ import { ChargeAddComponent } from './charges-payments/charge-add/charge-add.com
     SharedModule,
     AdminRoutingModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    ChartsModule
   ],
   providers: [
     CanDeactivateClient,

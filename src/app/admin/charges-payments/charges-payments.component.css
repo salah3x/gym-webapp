@@ -3,3 +3,20 @@
     right: 25px;
     bottom: 65px;
 }
+
+.title {
+    padding-top: 20px;
+    text-align: center;
+    font-size: 24px;
+}
+
+.container {
+    width: 90%;
+    margin-left: 5%;
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
+
+.right-btn {
+    float: right;
+}

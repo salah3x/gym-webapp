@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Renderer2, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Subject } from 'rxjs';
@@ -18,7 +18,7 @@ export class CheckInsComponent implements OnInit {
   @Input() id: string;
   cal = new CalHeatMap();
   isFirstTime = true;
-  curentStartDate = new Date(`${new Date().getFullYear() - 1}/${new Date().getMonth() + 2}/1`);
+  curentStartDate = new Date();
   startDate = new Subject<Date>();
   isLoading = false;
   @ViewChild('c') calendar: ElementRef;
@@ -26,6 +26,8 @@ export class CheckInsComponent implements OnInit {
   constructor(private afs: AngularFirestore, private snack: MatSnackBar) { }
 
   ngOnInit() {
+    this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 11, 1);
+    this.curentStartDate.setHours(0, 0, 0);
     this.startDate.pipe(
       debounceTime(500),
       switchMap(date => {
