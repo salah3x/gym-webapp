@@ -1,0 +1,18 @@
+.close {
+    float: right;
+}
+
+.title {
+    text-align: center;
+}
+
+table {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+
+th.mat-header-cell {
+    text-align: center;
+}

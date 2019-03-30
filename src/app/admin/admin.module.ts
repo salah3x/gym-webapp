@@ -12,6 +12,7 @@ import { CanDeactivateClient } from './client-add/can-deactivate-client.service'
 import { PackAddComponent } from './packs/pack-add/pack-add.component';
 import { ChargesPaymentsComponent } from './charges-payments/charges-payments.component';
 import { ChargeAddComponent } from './charges-payments/charge-add/charge-add.component';
+import { ListViewComponent } from './charges-payments/list-view/list-view.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ChargeAddComponent } from './charges-payments/charge-add/charge-add.com
     ClientAddComponent,
     PackAddComponent,
     ChargesPaymentsComponent,
-    ChargeAddComponent
+    ChargeAddComponent,
+    ListViewComponent
   ],
   imports: [
     SharedModule,
@@ -33,6 +35,10 @@ import { ChargeAddComponent } from './charges-payments/charge-add/charge-add.com
     CanDeactivateClient,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
-  entryComponents: [PackAddComponent, ChargeAddComponent]
+  entryComponents: [
+    PackAddComponent,
+    ChargeAddComponent,
+    ListViewComponent
+  ]
 })
 export class AdminModule { }

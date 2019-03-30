@@ -58,7 +58,7 @@ export class CheckInsComponent implements OnInit {
         start: this.curentStartDate,
         data: d,
         legend: [1, 2, 3, 4],
-        legendColors: ['#ffb3b3', '#b30000'],
+        legendColors: ['#B9A0FB', '#1B0063'],
         displayLegend: false,
         itemName: 'session',
         subDomainTextFormat: (date: number, value: number) => {

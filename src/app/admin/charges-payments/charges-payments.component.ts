@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { ChartOptions, ChartDataSets } from 'chart.js';
@@ -9,6 +9,7 @@ import { debounceTime, switchMap, map, tap } from 'rxjs/operators';
 
 import { ChargeAddComponent } from './charge-add/charge-add.component';
 import { Payment, Charge } from 'src/app/shared/client.model';
+import { ListViewComponent } from './list-view/list-view.component';
 
 @Component({
   selector: 'app-charges-payments',
@@ -34,11 +35,13 @@ export class ChargesPaymentsComponent implements OnInit {
   };
   barChartLabels: Label[] = [];
   barChartData: ChartDataSets[] = [
-    { data: [], label: 'Payments' },
-    { data: [], label: 'Charges' }
+    { data: [], label: 'Payments', backgroundColor: '#4CAF50', hoverBackgroundColor: '#388E3C', borderColor: '#9E9E9E' },
+    { data: [], label: 'Charges', backgroundColor: '#FF5252', hoverBackgroundColor: '#D32F2F', borderColor: '#9E9E9E' }
   ];
 
-  constructor(private dialog: MatDialog, private afs: AngularFirestore) { }
+  constructor(private dialog: MatDialog,
+              private afs: AngularFirestore,
+              private snack: MatSnackBar) { }
 
   ngOnInit() {
     this.startDate$.pipe(
@@ -56,7 +59,7 @@ export class ChargesPaymentsComponent implements OnInit {
             const arr: number[] = new Array(this.monthToShow).fill(0);
             ps.forEach(item =>
               (arr[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
-                += item.price);
+              += item.price);
             return arr;
           })
         ),
@@ -68,7 +71,7 @@ export class ChargesPaymentsComponent implements OnInit {
             const arr: number[] = new Array(this.monthToShow).fill(0);
             ps.forEach(item =>
               (arr[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
-                += item.cost);
+              += item.cost);
             return arr;
           })
         )
@@ -76,7 +79,7 @@ export class ChargesPaymentsComponent implements OnInit {
     ).subscribe(data => {
       this.barChartData[0].data = data[0];
       this.barChartData[1].data = data[1];
-    });
+    }, () => this.snack.open('Failed loading data', 'Close', { duration: 2000 }));
     this.curentStartDate.setHours(0, 0, 0);
     this.curentEndDate.setMonth(this.curentEndDate.getMonth() + 1, 0);
     this.curentEndDate.setHours(23, 59, 59);
@@ -111,7 +114,12 @@ export class ChargesPaymentsComponent implements OnInit {
   }
 
   chartClicked(event: any) {
-    // console.log(event.active);
+    if (event.active.length !== 0) {
+      this.dialog.open(ListViewComponent, {
+        width: '80%',
+        data: this.barChartLabels[event.active[0]._index]
+      });
+    }
   }
 
   openNewChargeDialog() {
