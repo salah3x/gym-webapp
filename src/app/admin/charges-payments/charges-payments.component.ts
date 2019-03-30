@@ -24,13 +24,20 @@ export class ChargesPaymentsComponent implements OnInit {
   startDate$ = new Subject<{ start: Date, end: Date }>();
   barChartOptions: ChartOptions = {
     responsive: true,
-    // We use these empty structures as placeholders for dynamic theming.
-    scales: { xAxes: [{}], yAxes: [{}] },
-    plugins: {
-      datalabels: {
-        anchor: 'end',
-        align: 'end',
+    legend: {
+      onHover(e) {
+         (e.target as any).style.cursor = 'pointer';
       }
+    },
+    hover: {
+        onHover(e) {
+          const point = this.getElementAtEvent(e);
+          if (point.length) {
+            (e.target as any).style.cursor = 'pointer';
+          } else {
+            (e.target as any).style.cursor = 'default';
+          }
+        }
     }
   };
   barChartLabels: Label[] = [];
