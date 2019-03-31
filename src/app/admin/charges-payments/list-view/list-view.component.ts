@@ -34,6 +34,7 @@ export class ListViewComponent implements OnInit {
     this.payments = this.afs.collection<Payment>('payments', ref => ref
       .where('date', '>=', firestore.Timestamp.fromDate(startDate))
       .where('date', '<=', firestore.Timestamp.fromDate(endDate))
+      .orderBy('date', 'desc')
     ).valueChanges()
       .pipe(catchError(() => {
         this.snack.open('Failed loading list of payments', 'Close', { duration: 3000 });
@@ -42,6 +43,7 @@ export class ListViewComponent implements OnInit {
     this.charges = this.afs.collection<Charge>('charges', ref => ref
       .where('date', '>=', firestore.Timestamp.fromDate(startDate))
       .where('date', '<=', firestore.Timestamp.fromDate(endDate))
+      .orderBy('date', 'desc')
     ).valueChanges()
       .pipe(catchError(() => {
         this.snack.open('Failed loading list of charges', 'Close', { duration: 3000 });

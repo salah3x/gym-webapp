@@ -58,8 +58,10 @@ export class ProfileComponent implements OnInit, OnDestroy {
           return;
         }
         this.payments = combineLatest(
-          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', id)).valueChanges(),
-          this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)).valueChanges()
+          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', id)
+            .orderBy('date', 'desc')).valueChanges(),
+          this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
+            .orderBy('date', 'desc')).valueChanges()
         ).pipe(
           map(list => {
             const [first, second] = list;

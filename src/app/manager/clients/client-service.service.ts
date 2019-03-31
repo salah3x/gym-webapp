@@ -56,7 +56,7 @@ export class ClientService {
     const date = new Date();
     date.setMonth(date.getMonth() - 1);
     return this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', idSubscription)
-    .where('date', '>=', firestore.Timestamp.fromDate(date)))
+    .where('date', '>=', firestore.Timestamp.fromDate(date)).orderBy('date', 'desc'))
     .valueChanges().pipe(
       map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1).length !== 0),
       map(p => p ? 'yes' : 'no')
