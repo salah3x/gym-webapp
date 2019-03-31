@@ -32,12 +32,14 @@ The superadmin is only responsible for managing users and roles (access control)
 * First clone the repo: `git clone git@github.com:salah3x/gym-webapp.git`
 * Install dependencies for the web app (assuming `node`, `npm` and `ng` are already installed): `cd gym-webapp && npm install`
 * Install dependencies for the backend project: `cd functions && npm install`
+* Run `cd ..` to navigate back to the parent folder.
 * Run `ng serve` for a dev server.
 * Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
 ## Development server (firebase cli)
-* Serve the hosting plan (content of `dist/gym-webapp`) locally: `firebase serve --only hosting`
-* Serve the cloud functions in a local server: `firebase serve --only functions[:function_name]`
+* Serve the angular web app (content of `dist/gym-webapp`) locally: `npm run serve`
+> This is used to emulate the firebase hosting plan, use `ng serve` for development instead.
+* Serve the cloud functions locally: `npm --prefix functions run serve`
 
 ## Build
 
@@ -56,7 +58,10 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 * Install firebase tools: `npm install -g firebase-tools`
 * Authenticate the cli and access Firebase projects: `firebase login`
 * Initialize your site (choose the `dist/gym-webapp` folder for the hosting plan): `firebase init`
-* Deploy the website and the backend functions to Firebase: `firebase deploy [--only hosting | functions]` (This will build the project first and do some linting)
+* Deploy the angular web app to Firebase: `npm run deploy` 
+* Deploy the backend to cloud functions: `npm --prefix functions run deploy`
+* Or deploy everything using firebase cli: `firebase deploy` (This will deploy the angular web app, the express backend, the cloud storage rules and firestore rules & indexes)
+> The deployment phase will build the projects first and do some linting.
 
 ## Further help
 
