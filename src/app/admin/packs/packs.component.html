@@ -29,7 +29,7 @@
           </td>
         </ng-container>
         <ng-container matColumnDef="subscriberIds">
-          <th mat-header-cell *matHeaderCellDef> Profile </th>
+          <th mat-header-cell *matHeaderCellDef> Members </th>
           <td mat-cell *matCellDef="let element">
             <span *ngFor="let id of element.subscriberIds; index as i">
               <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>

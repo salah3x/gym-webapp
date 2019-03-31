@@ -59,14 +59,19 @@ export class ClientAddComponent implements OnInit {
     if (!client.photo) {
       client.photo = null;
     }
-    client.name.first_lowercase = client.name.first.toLowerCase();
-    client.name.last_lowercase = client.name.last.toLowerCase();
+    client.name.first_lowercase = client.name.first.toLowerCase().trim();
+    client.name.last_lowercase = client.name.last.toLowerCase().trim();
     client.cin = client.cin.toLowerCase();
     const clientId = this.afs.createId();
     let subscription: Subscription;
     if (f.value.subsInfo.pack.idSubscription === 'new') {
       client.pack.idSubscription = this.afs.createId();
-      subscription = {name: client.name.first + ' ' + client.name.last, subscriberIds: [clientId]};
+      subscription = {
+        name: client.name.first_lowercase.replace(/\s+/g, '-')
+        + '-' + client.name.last_lowercase.replace(/\s+/g, '-')
+        + '-' + client.pack.idSubscription.slice(0, 4),
+        subscriberIds: [clientId]
+      };
     } else {
       subscription = {
         subscriberIds: [...this.subscriptions.filter(s => s.id === client.pack.idSubscription)[0].subscriberIds,
@@ -77,7 +82,7 @@ export class ClientAddComponent implements OnInit {
       idClient: clientId,
       idSubscription: client.pack.idSubscription,
       price: this.selectedPrice,
-      date:  firestore.Timestamp.fromDate(new Date()),
+      date:  client.registrationDate,
       note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
         (f.value.subsInfo.pack.idSubscription === 'new' && client.insurance ? ' + ' : '') +
         (client.insurance ? 'Insurance fee' : ''),
@@ -94,6 +99,7 @@ export class ClientAddComponent implements OnInit {
         this.snack.open('Client added successfully', 'Close', { duration: 2000 });
         this.stepper.reset();
         f.resetForm();
+        this.selectedPrice = 0;
         this.photoUrl = null;
         this.downloadUrl = null;
       }).catch((err) => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })

@@ -23,10 +23,10 @@
         {{payed === 'yes'? 'done': payed === 'no'? 'close': ''}}
       </mat-icon>
     </p>
+    <p><b>Subscription : </b><i>{{(client.pack.subscription | async).name}}</i></p>
     <ng-container *ngIf="client.pack.subscription | async | removeItem:client.id as sub">
-      <div *ngIf="sub.subscriberIds.length > 0" class="mat-elevation-z0 sub">
-        <p>Subscription : <b>{{sub.name}}</b></p>
-        <p>[
+      <div *ngIf="sub.subscriberIds.length > 0" class="mat-elevation-z0">
+        <p><b>Members: </b>[
           <span *ngFor="let id of sub.subscriberIds; index as i">
             <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>
             {{ i ==  sub.subscriberIds.length -1 ? '': ' | '}}
