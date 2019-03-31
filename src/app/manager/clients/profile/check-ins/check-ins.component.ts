@@ -33,8 +33,9 @@ export class CheckInsComponent implements OnInit {
       switchMap(date => {
         this.isLoading = true;
         const startTimestamp = firestore.Timestamp.fromDate(date);
-        const endDate = new Date(this.curentStartDate);
+        const endDate = new Date(date);
         endDate.setMonth(endDate.getMonth() + 12, 0);
+        endDate.setHours(23, 59, 59);
         const endTimestamp = firestore.Timestamp.fromDate(endDate);
         return this.afs.collection<CheckIn>(`clients/${this.id}/checkins`, ref =>
           ref.where('date', '>=', startTimestamp).where('date', '<=', endTimestamp)
