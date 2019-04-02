@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject, of, combineLatest } from 'rxjs';
@@ -12,7 +12,7 @@ import { ClientService } from './client-service.service';
   templateUrl: './clients.component.html',
   styleUrls: ['./clients.component.css']
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent implements OnInit, OnDestroy {
 
   searchTerm = new Subject<string>();
   clients: ClientWithId[];
@@ -75,8 +75,7 @@ export class ClientsComponent implements OnInit {
     ).subscribe(data => {
       this.clients = data;
       this.isLoading = false;
-    }, (err) => {
-      console.error(err);
+    }, () => {
       this.snack.open('Connexion failed', 'Close', { duration: 2000 });
       this.isLoading = false;
     });
@@ -90,5 +89,9 @@ export class ClientsComponent implements OnInit {
 
   performCheckin(id: string) {
     this.service.performCheckin(id, this.isCheckingIn);
+  }
+
+  ngOnDestroy() {
+    this.searchTerm.unsubscribe();
   }
 }

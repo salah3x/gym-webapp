@@ -3,10 +3,10 @@ import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { firestore } from 'firebase/app';
+import { of, Observable } from 'rxjs';
 import { take, catchError, map } from 'rxjs/operators';
 
 import { CheckIn, Payment } from 'src/app/shared/client.model';
-import { of } from 'rxjs';
 
 @Injectable()
 export class ClientService {
@@ -44,8 +44,12 @@ export class ClientService {
       });
   }
 
-  getUrl(path: string, sex: string) {
-    return this.storage.ref(path).getDownloadURL().pipe(
+  getUrl(path: string, sex: string): Observable<string> {
+    if (!path) {
+      return of(sex === 'f' ? '/assets/default-profile-female.png' :
+      '/assets/default-profile-male.png');
+    }
+    return this.storage.ref('').getDownloadURL().pipe(
       catchError(() => of(sex === 'f' ? '/assets/default-profile-female.png' :
         '/assets/default-profile-male.png')
       )

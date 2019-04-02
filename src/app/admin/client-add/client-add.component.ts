@@ -7,6 +7,7 @@ import { firestore } from 'firebase/app';
 import { finalize, map, take } from 'rxjs/operators';
 
 import { Client, Pack, PackWithId, SubscriptionWithId, Subscription, Payment } from 'src/app/shared/client.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-add',
@@ -34,7 +35,8 @@ export class ClientAddComponent implements OnInit {
 
   constructor(private storage: AngularFireStorage,
               private snack: MatSnackBar,
-              private afs: AngularFirestore) { }
+              private afs: AngularFirestore,
+              private router: Router) { }
 
   ngOnInit() {
     this.afs.collection<Pack>('packs').snapshotChanges().pipe(
@@ -43,7 +45,7 @@ export class ClientAddComponent implements OnInit {
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
       }))
-    ).subscribe(data => this.packs = data);
+    ).subscribe(data => this.packs = data, () => this.snack.open('Failed loading packs information', 'Close', { duration: 3000 }));
   }
 
   onSubmit(f: NgForm) {
@@ -57,7 +59,7 @@ export class ClientAddComponent implements OnInit {
     delete (client as any).id;
     delete (client as any).subsInfo;
     if (!client.photo) {
-      client.photo = null;
+      client.photo = '';
     }
     client.name.first_lowercase = client.name.first.toLowerCase().trim();
     client.name.last_lowercase = client.name.last.toLowerCase().trim();
@@ -96,13 +98,9 @@ export class ClientAddComponent implements OnInit {
     }
     batch.commit()
       .then(() => {
-        this.snack.open('Client added successfully', 'Close', { duration: 2000 });
-        this.stepper.reset();
-        f.resetForm();
-        this.selectedPrice = 0;
-        this.photoUrl = null;
-        this.downloadUrl = null;
-      }).catch((err) => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })
+        this.snack.open('Client added successfully', 'View profile', { duration: 3000 });
+        this.router.navigate(['manager', 'clients', clientId]);
+      }).catch(() => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })
           .onAction().subscribe(() => this.onSubmit(f)));
   }
 
@@ -121,22 +119,21 @@ export class ClientAddComponent implements OnInit {
     ).subscribe();
     this.task.then(t => {
       this.photoUrl = t.ref.fullPath;
-      this.snack.open('Upload finished successfully', 'Close', { duration: 2000 });
+      this.snack.open('Upload finished successfully', 'Close', { duration: 3000 });
       this.isUploading = false;
     }).catch(() => {
-      this.snack.open('Upload failed', 'Retry', { duration: 6000 })
-        .onAction().subscribe(() => this.uploadPhoto(event));
+      this.snack.open('Upload failed', 'Close', { duration: 3000 });
       this.isUploading = false;
     });
-    (event.target as HTMLInputElement).value = null;
+    (event.target as HTMLInputElement).value = '';
   }
 
   deletePhoto() {
     if (this.photoUrl) {
       this.fileRef.delete().subscribe(() => {
-        this.snack.open('Photo deleted successfully', 'Close', { duration: 2000 });
-        this.photoUrl = null;
-        this.downloadUrl = null;
+        this.snack.open('Photo deleted successfully', 'Close', { duration: 3000 });
+        this.photoUrl = '';
+        this.downloadUrl = '';
       });
     }
   }
@@ -144,7 +141,7 @@ export class ClientAddComponent implements OnInit {
   cancelUpload() {
     if (this.task.cancel()) {
       this.isPaused = false;
-      this.photoUrl = null;
+      this.photoUrl = '';
     }
   }
 
