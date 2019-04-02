@@ -41,7 +41,7 @@
   <table *ngIf="(charges | async) as cs" mat-table [dataSource]="cs" class="mat-elevation-z1">
     <ng-container matColumnDef="title">
       <td mat-header-cell *matHeaderCellDef colspan="4">
-        <b>{{cs?.length ? 'List of charges': 'No payments found'}}</b>
+        <b>{{cs?.length ? 'List of charges': 'No charges found'}}</b>
       </td>
     </ng-container>
     <ng-container matColumnDef="date">
