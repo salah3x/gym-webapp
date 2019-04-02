@@ -61,16 +61,8 @@ export class CheckInsComponent implements OnInit {
         legend: [1, 2, 3, 4],
         legendColors: ['#B9A0FB', '#1B0063'],
         displayLegend: false,
-        itemName: 'session',
-        subDomainTextFormat: (date: number, value: number) => {
-          return value > 0 ? '' : new Date(date).getDate().toString();
-        },
+        itemName: ['training session', 'training sessions'],
         animationDuration: 300,
-        tooltip: true,
-        subDomainTitleFormat: {
-          empty: 'No training sessions',
-          filled: '{count} training {name}'
-        },
         onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1500, 100)
       });
       this.isLoading = false;
