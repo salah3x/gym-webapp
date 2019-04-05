@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewEncapsulation, Renderer2, ElementRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, Renderer2, ElementRef } from '@angular/core';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit, OnDestroy {
     (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
       .style.background = '#00000090';
     (this.renderer.selectRootElement('.footer', true) as HTMLElement)
-      .style.display = 'none';
+      .style.visibility = 'hidden';
   }
 
   ngOnDestroy() {
@@ -28,6 +28,6 @@ export class HomeComponent implements OnInit, OnDestroy {
     (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
       .style.background = '#3f51b5';
     (this.renderer.selectRootElement('.footer', true) as HTMLElement)
-      .style.display = 'flex';
+    .style.visibility = 'visible';
   }
 }
