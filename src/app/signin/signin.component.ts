@@ -24,16 +24,17 @@ export class SigninComponent implements OnInit {
     this.auth.auth.signInWithEmailAndPassword(f.value.email, f.value.password).then(value => {
       this.snackbar.open('Hello ' + value.user.email, 'Close', {duration: 3000});
       this.dialogRef.close();
-    }).catch(reason => {
+    }).catch(() => {
       this.snackbar.open('Login failed, check your information.', 'Fermer', {duration: 3000});
       this.loading = false;
     });
   }
 
   onForget(email: string) {
-    if (confirm(`An password reset email will be sent to ${email}\nContinue ?`)) {
+    if (confirm(`A password reset link will be sent to ${email}\nContinue ?`)) {
       this.auth.auth.sendPasswordResetEmail(email)
-      .then(() => this.snackbar.open('Check your mailbox.', 'Close', {duration: 3000}));
+      .then(() => this.snackbar.open('Check your mailbox.', 'Close', {duration: 3000}))
+      .catch(() => this.snackbar.open('Failed sending email.', 'Close', {duration: 3000}));
     }
   }
 }
