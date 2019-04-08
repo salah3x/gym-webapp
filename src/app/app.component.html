@@ -1,6 +1,9 @@
 <mat-sidenav-container>
     <mat-sidenav #sidenav mode="over">
         <mat-nav-list *ngIf="isAuthenticated">
+            <button (click)="sidenav.close()" matTooltip="Close menu" class="menu-close-btn" mat-icon-button type="button">
+                <mat-icon>close</mat-icon>
+            </button>
             <mat-list-item routerLinkActive="active" *ngIf="hasClaim('superadmin')">
                 <a matLine routerLink="./superadmin/">Super Admin</a>
                 <button mat-icon-button>
@@ -27,8 +30,7 @@
     <mat-sidenav-content>
         <mat-toolbar color="primary" class="toolbar mat-elevation-z4">
             <div *ngIf="isAuthenticated">
-                <button (click)="sidenav.toggle()" matTooltip="Main menu" class="menu-btn" mat-icon-button
-                    type="button">
+                <button (click)="sidenav.open()" matTooltip="Main menu" class="menu-btn" mat-icon-button type="button">
                     <mat-icon>menu</mat-icon>
                 </button>
             </div>
@@ -38,7 +40,8 @@
             <span class="fill-remaining-space"></span>
             <mat-menu #appMenu="matMenu">
                 <button (click)="onSigninOrSignout()" mat-menu-item>{{ isAuthenticated? 'Logout': 'Login'}}
-                    <mat-icon>exit_to_app</mat-icon></button>
+                    <mat-icon>exit_to_app</mat-icon>
+                </button>
             </mat-menu>
             <button [matMenuTriggerFor]="appMenu" class="menu-btn" [matTooltip]="(auth.user |async)?.email"
                 color="default" mat-mini-fab>
@@ -51,8 +54,8 @@
                 <mat-icon color='warn'>favorite</mat-icon>
                 <i>v0.2.0</i>&nbsp;&nbsp;&nbsp;
             </p>
-            <a fxFlexAlign="end" href="https://github.com/salah3x/gym-webapp/issues/new/choose" matTooltip="Report a bug or request a new feature"
-                target="_blank">
+            <a fxFlexAlign="end" href="https://github.com/salah3x/gym-webapp/issues/new/choose"
+                matTooltip="Report a bug or request a new feature" target="_blank">
                 <img src="/assets/github.png" />
             </a>
         </mat-toolbar>

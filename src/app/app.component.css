@@ -1,5 +1,6 @@
 mat-sidenav {
-    width: 250px;
+    max-width: 250px;
+    width: 85%;
 }
   
 mat-sidenav-content {
@@ -21,6 +22,10 @@ mat-sidenav-content {
 
 .menu-btn{
     margin-right: 10px;
+}
+
+.menu-close-btn {
+    margin-left: 10px;
 }
 
 .toolbar{

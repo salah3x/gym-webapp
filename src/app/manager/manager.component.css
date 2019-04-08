@@ -3,7 +3,8 @@ mat-drawer-container {
 }
 
 mat-drawer {
-    width: 200px;
+    max-width: 200px;
+    width: 85%;
     background-color: rgb(250, 250, 250);
 }
   
