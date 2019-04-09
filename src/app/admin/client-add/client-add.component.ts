@@ -98,7 +98,8 @@ export class ClientAddComponent implements OnInit {
     }
     batch.commit()
       .then(() => {
-        this.snack.open('Client added successfully', 'View profile', { duration: 3000 });
+        this.snack.open('Client added successfully', 'Close', { duration: 3000 });
+        this.form.resetForm();
         this.router.navigate(['manager', 'clients', clientId]);
       }).catch(() => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })
           .onAction().subscribe(() => this.onSubmit(f)));
