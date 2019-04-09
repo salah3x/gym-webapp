@@ -31,7 +31,9 @@ export class PacksComponent implements OnInit {
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
       }))
-    ).subscribe(data => this.packs = data);
+    ).subscribe(
+      data => this.packs = data,
+      () => this.snack.open('Fialed loading packs', 'Close', { duration: 3000 }));
   }
 
   openNewPackDialog() {

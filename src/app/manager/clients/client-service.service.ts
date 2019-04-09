@@ -49,7 +49,7 @@ export class ClientService {
       return of(sex === 'f' ? '/assets/default-profile-female.png' :
       '/assets/default-profile-male.png');
     }
-    return this.storage.ref('').getDownloadURL().pipe(
+    return this.storage.ref(path).getDownloadURL().pipe(
       catchError(() => of(sex === 'f' ? '/assets/default-profile-female.png' :
         '/assets/default-profile-male.png')
       )
