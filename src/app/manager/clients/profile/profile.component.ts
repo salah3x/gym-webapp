@@ -5,7 +5,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, combineLatest } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { map, tap, switchMap } from 'rxjs/operators';
 
 import { Client, ClientWithId, Pack, Subscription, Payment } from 'src/app/shared/client.model';
 import { PaymentAddComponent } from './payment-add/payment-add.component';
@@ -37,8 +37,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
-    const id = this.route.snapshot.params.id;
-    this.afs.doc<Client>(`clients/${id}`).valueChanges().pipe(
+    this.route.params.pipe(
+      switchMap(params => this.afs.doc<Client>(`clients/${params.id}`).snapshotChanges()),
+      map(c => {
+        const data = c.payload.data() as Client;
+        const id = c.payload.id;
+        return { id, ...data } as ClientWithId;
+      }),
       // add a url field with an observable of dawnload url
       // add a payed field (if the client has payed this month's fee)
       // add a pack field with an observable of the pack object
@@ -54,14 +59,12 @@ export class ProfileComponent implements OnInit, OnDestroy {
       // Get all payments of this client (for the past year)
       // payments are either made by the client or by someone else in the same subscription
       tap(c => {
-        if (this.payments) {
-          return;
-        }
         this.payments = combineLatest(
-          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', id)
+          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', c.id)
             .orderBy('date', 'desc')).valueChanges(),
           this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
-            .orderBy('date', 'desc')).valueChanges()
+          .orderBy('date', 'desc')).valueChanges()
+          .pipe(map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1)))
         ).pipe(
           map(list => {
             const [first, second] = list;
@@ -75,11 +78,13 @@ export class ProfileComponent implements OnInit, OnDestroy {
     ).subscribe(
       c => {
         this.isLoading = false;
-        this.client = { ...c, id };
+        this.client = c;
         this.titleService.setTitle(this.titleService.getTitle() + ' | ' + c.name.first + ' ' + c.name.last);
       },
-      () => { this.isLoading = false; this.snack.open('Connexion failed', 'Close', { duration: 3000 }); }
-    );
+      () => {
+        this.isLoading = false;
+        this.snack.open('Connexion failed', 'Close', { duration: 3000 });
+      });
   }
 
   openPaymentDialog() {
