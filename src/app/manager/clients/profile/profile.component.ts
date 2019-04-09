@@ -38,6 +38,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
     this.route.params.pipe(
+      // Set id to undefined to rerender the app-check-ins component
+      tap(() => this.client && (this.client.id = undefined)),
       switchMap(params => this.afs.doc<Client>(`clients/${params.id}`).snapshotChanges()),
       map(c => {
         const data = c.payload.data() as Client;

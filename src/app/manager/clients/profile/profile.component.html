@@ -53,14 +53,14 @@
     </div>
   </div>
 </div>
-<div *ngIf="client" class="mat-elevation-z1 checkins">
+<div *ngIf="client?.id" class="mat-elevation-z1 checkins">
   <p>Training sessions</p>
   <app-check-ins [id]="client.id"></app-check-ins>
 </div>
 <table *ngIf="client" mat-table [dataSource]="payments | async" class="mat-elevation-z1">
   <ng-container matColumnDef="title">
     <td mat-header-cell *matHeaderCellDef colspan="4">
-      <b>{{(payments | async)?.length ? 'Payments history': 'No payments found'}}</b>
+      <p>{{(payments | async)?.length ? 'Payments history': 'No payments found'}}</p>
     </td>
   </ng-container>
   <ng-container matColumnDef="date">
