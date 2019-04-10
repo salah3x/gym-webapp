@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 import {MatDialogRef, MatSnackBar} from '@angular/material';
 import {NgForm} from '@angular/forms';
 import {AngularFireAuth} from '@angular/fire/auth';
@@ -9,6 +9,8 @@ import {AngularFireAuth} from '@angular/fire/auth';
   styleUrls: ['./signin.component.css']
 })
 export class SigninComponent implements OnInit {
+
+  @ViewChild('i18n') public i18n: ElementRef;
   hide = true;
   loading = false;
 
@@ -22,19 +24,19 @@ export class SigninComponent implements OnInit {
   onSubmit(f: NgForm) {
     this.loading = true;
     this.auth.auth.signInWithEmailAndPassword(f.value.email, f.value.password).then(value => {
-      this.snackbar.open('Hello ' + value.user.email, 'Close', {duration: 3000});
+      this.snackbar.open(this.i18n.nativeElement.childNodes[0].textContent + ' ' + value.user.email, 'X', {duration: 3000});
       this.dialogRef.close();
     }).catch(() => {
-      this.snackbar.open('Login failed, check your information.', 'Fermer', {duration: 3000});
+      this.snackbar.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', {duration: 3000});
       this.loading = false;
     });
   }
 
   onForget(email: string) {
-    if (confirm(`A password reset link will be sent to ${email}\nContinue ?`)) {
+    if (confirm(this.i18n.nativeElement.childNodes[2].textContent)) {
       this.auth.auth.sendPasswordResetEmail(email)
-      .then(() => this.snackbar.open('Check your mailbox.', 'Close', {duration: 3000}))
-      .catch(() => this.snackbar.open('Failed sending email.', 'Close', {duration: 3000}));
+      .then(() => this.snackbar.open(this.i18n.nativeElement.childNodes[3].textContent, 'X', {duration: 3000}))
+      .catch(() => this.snackbar.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', {duration: 3000}));
     }
   }
 }

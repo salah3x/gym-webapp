@@ -9,5 +9,5 @@ body {
 }
 
 .translation {
-  visibility: hidden;
+  display: none;
 }

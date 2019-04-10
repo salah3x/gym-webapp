@@ -2,7 +2,100 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-    <trans-unit id="appCloseMenu" datatype="html">
+    <trans-unit id="appLogin" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="signInError1" datatype="html">
+        <source>This field is required
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <target>Ce champ est obligatoire</target>
+      </trans-unit>
+      <trans-unit id="signInError2" datatype="html">
+        <source>Email must be valid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <target>L'email doit être valide</target>
+      </trans-unit>
+      <trans-unit id="signInPswd" datatype="html">
+        <source>Password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <target>Mot de passe</target>
+      </trans-unit>
+      <trans-unit id="signInReset" datatype="html">
+        <source>Reset password</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+        <target>Réinitialiser le mot de passe</target>
+      </trans-unit>
+      <trans-unit id="signInMsg1" datatype="html">
+        <source>Welcome back</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <target>Bienvenue</target>
+      </trans-unit>
+      <trans-unit id="signInMsg2" datatype="html">
+        <source>Login failed, check your information.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+        <target>Échec de la connexion, vérifiez vos informations.</target>
+      </trans-unit>
+      <trans-unit id="signInMsg3" datatype="html">
+        <source>A password reset link will be sent to <x id="INTERPOLATION" equiv-text="{{email.value}}"/>, Continue ?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+        <target>Un lien de réinitialisation du mot de passe sera envoyé à <x id="INTERPOLATION" equiv-text="{{email.value}}"/>, Continuer ?</target>
+      </trans-unit>
+      <trans-unit id="signInMsg4" datatype="html">
+        <source>Check your mailbox.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <target>Vérifiez votre boîte de messagerie.</target>
+      </trans-unit>
+      <trans-unit id="signInMsg5" datatype="html">
+        <source>Failed sending email.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/signin/signin.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <target>Échec de l'envoi du courrier électronique.</target>
+      </trans-unit>
+      <trans-unit id="appCloseMenu" datatype="html">
         <source>Close menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
@@ -49,14 +142,6 @@
           <context context-type="linenumber">45</context>
         </context-group>
         <target>Se déconnecter</target>
-      </trans-unit>
-      <trans-unit id="appLogin" datatype="html">
-        <source>Login</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">46</context>
-        </context-group>
-        <target>Se connecter</target>
       </trans-unit>
       <trans-unit id="appMsg1" datatype="html">
         <source>You have successfully disconnected.</source>

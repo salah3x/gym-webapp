@@ -1,24 +1,36 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" fxLayout="column" fxLayoutAlign="space-between center">
-  <h1 mat-dialog-title>Login</h1>
+  <h1 mat-dialog-title i18n="@@appLogin">Login</h1>
   <div mat-dialog-content>
     <mat-form-field>
       <input matInput name="email" ngModel placeholder="Email" email required #email>
       <mat-icon matSuffix>person</mat-icon>
-      <mat-error *ngIf="f.controls['email']?.hasError('required')">This field is required</mat-error>
-      <mat-error *ngIf="f.controls['email']?.hasError('email')">Email must be valid</mat-error>
+      <mat-error *ngIf="f.controls['email']?.hasError('required')" i18n="@@signInError1">This field is required
+      </mat-error>
+      <mat-error *ngIf="f.controls['email']?.hasError('email')" i18n="@@signInError2">Email must be valid</mat-error>
     </mat-form-field>
     <mat-form-field>
-      <input [type]="hide ? 'password' : 'text'" matInput name="password" ngModel placeholder="Password" required>
-      <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      <mat-error>This field is required</mat-error>
+      <input [type]="hide ? 'password' : 'text'" matInput name="password" ngModel i18n-placeholder="@@signInPswd"
+        placeholder="Password" required>
+      <mat-icon style="cursor: pointer;" (click)="hide = !hide" matSuffix>{{hide ? 'visibility_off' : 'visibility'}}
+      </mat-icon>
+      <mat-error i18n="@@signInError1">This field is required</mat-error>
     </mat-form-field>
   </div>
   <div fxLayout="column" fxLayoutAlign="space-around stretch" mat-dialog-actions>
-    <button [disabled]="!f.valid" mat-raised-button color="primary" type="submit">Ok</button>
-    <button *ngIf="!loading" type="button" [disabled]="!f.controls['email']?.valid" mat-button (click)="onForget(f.controls['email']?.value)">
+    <button [disabled]="!f.valid" mat-raised-button color="primary" type="submit" i18n="@@appLogin">Login</button>
+    <button *ngIf="!loading" type="button" [disabled]="!f.controls['email']?.valid" mat-button
+      (click)="onForget(f.controls['email']?.value)" i18n="@@signInReset">
       Reset password
     </button>
   </div>
   <br>
   <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
 </form>
+<!-- This hidden section is for xi18n command, translated text will be used in typescript-->
+<div #i18n class="translation">
+  <p i18n="@@signInMsg1">Welcome back</p>
+  <p i18n="@@signInMsg2">Login failed, check your information.</p>
+  <p i18n="@@signInMsg3">A password reset link will be sent to {{email.value}}, Continue ?</p>
+  <p i18n="@@signInMsg4">Check your mailbox.</p>
+  <p i18n="@@signInMsg5">Failed sending email.</p>
+</div>
