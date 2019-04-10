@@ -55,6 +55,15 @@
                   "maximumError": "5mb"
                 }
               ]
+            },
+            "fr": {
+              "aot": true,
+              "outputPath": "dist/gym-webapp/fr",
+              "baseHref": "/",
+              "i18nFile": "src/locale/messages.fr.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "fr",
+              "i18nMissingTranslation": "error"
             }
           }
         },
@@ -66,6 +75,9 @@
           "configurations": {
             "production": {
               "browserTarget": "gym-webapp:build:production"
+            },
+            "fr": {
+              "browserTarget": "gym-webapp:build:fr"
             }
           }
         },
