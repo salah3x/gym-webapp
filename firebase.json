@@ -1,14 +1,14 @@
 {
   "hosting": {
-    "public": "dist/gym-webapp",
+    "public": "dist/gym-webapp/fr",
     "ignore": [
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
     ],
     "predeploy": [
-      "ng lint",
-      "ng build --prod"
+      "npm run lint",
+      "npm run build:fr-prod"
     ],
     "rewrites": [
       {
