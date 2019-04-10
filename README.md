@@ -63,13 +63,27 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 * Or deploy everything using firebase cli: `firebase deploy` (This will deploy the angular web app, the express backend, the cloud storage rules and firestore rules & indexes)
 > The deployment phase will build the projects first and do some linting.
 
+## Internationalization
+
+The webapp has support for i18n, it already supports English and French.
+
+By default the build command generates the english version of the app, run `npm run start:fr` for a dev server or `npm run build:fr-prod` to build the french version for production.
+
+To support other languages:
+- 1 - Copy the `src/locale/messages.xlf to src/locale/messages.[LANG].xlf`
+- 2 - Translate the file to the target language. (You can use an XLIFF editor)
+- 3 - [Optional] Add a `[LANG]` configuration in `angular.json` (See the `fr` configuration in the `build` and `serve` config) 
+- 4 - run `ng serve --configuration=[LANG]`  for a dev server.
+- 5 - run `ng build --prod --i18n-locale [LANG] --i18n-format xlf --i18n-file src/locale/messages.[LANG].xlf` to build the app for production.
+ > For more information about i18n and how to translate an xlf file check out [the official docs](https://angular.io/guide/i18n).
+
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-To start with firebase go to the [firebase console](https://console.firebase.google.com/) and create your first project.
+To get started with firebase go to the [firebase console](https://console.firebase.google.com/) and create your first project.
 
-To get more informations about firebase cli use `firebase --help` or visit [the official docs](https://firebase.google.com/docs/cli/).
+To get more information about firebase cli use `firebase --help` or visit [the official docs](https://firebase.google.com/docs/cli/).
 
 ***
 
