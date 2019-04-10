@@ -2,6 +2,70 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+    <trans-unit id="appCloseMenu" datatype="html">
+        <source>Close menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+        <target>Fermer le menu</target>
+      </trans-unit>
+      <trans-unit id="appMenuItem1" datatype="html">
+        <source>Super Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <target>Super Administrateur</target>
+      </trans-unit>
+      <trans-unit id="appMenuItem2" datatype="html">
+        <source>Admin</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+        <target>Administrateur</target>
+      </trans-unit>
+      <trans-unit id="appMenuItem3" datatype="html">
+        <source>Manager</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <target>Gérant</target>
+      </trans-unit>
+      <trans-unit id="appOpenMenu" datatype="html">
+        <source>Main menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+        <target>Menu principal</target>
+      </trans-unit>
+      <trans-unit id="appLogout" datatype="html">
+        <source>Logout</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+        <target>Se déconnecter</target>
+      </trans-unit>
+      <trans-unit id="appLogin" datatype="html">
+        <source>Login</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+        <target>Se connecter</target>
+      </trans-unit>
+      <trans-unit id="appMsg1" datatype="html">
+        <source>You have successfully disconnected.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">68</context>
+        </context-group>
+        <target>Vous vous êtes déconnecté avec succès.</target>
+      </trans-unit>
       <trans-unit id="home-title" datatype="html">
         <source>Gym Manager</source>
         <context-group purpose="location">
