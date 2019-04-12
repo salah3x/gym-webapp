@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { mergeMap, take } from 'rxjs/operators';
@@ -17,6 +17,7 @@ export class UsersComponent implements OnInit {
               private auth: AngularFireAuth,
               private snack: MatSnackBar) { }
 
+  @ViewChild('i18n') public i18n: ElementRef;
   isWorking = false;
   users: User[];
   displayedColumns: string[] = ['email', 'claims.superadmin', 'claims.admin', 'claims.manager'];
@@ -42,12 +43,13 @@ export class UsersComponent implements OnInit {
         });
         this.users = data;
       },
-      error => this.snack.open(`Server Error : ${error.error.message || 'Unknown'}`, 'Close', { duration: 4000 })
+      error => this.snack.open(this.i18n.nativeElement.childNodes[0].textContent
+        + error.error.message || this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 4000 })
     );
   }
 
   onChange(toggle: MatSlideToggle, checked: boolean, ele: any, claim: string) {
-    if (claim === 'superadmin' && !confirm('Are you sure ?')) {
+    if (claim === 'superadmin' && !confirm(this.i18n.nativeElement.childNodes[2].textContent)) {
       toggle.checked = !checked;
       return;
     }
@@ -61,7 +63,8 @@ export class UsersComponent implements OnInit {
       () => this.isWorking = false,
       error => {
         toggle.checked = !checked;
-        this.snack.open(`Server Error : ${error.error.message || 'Unknown'}`, 'Close', { duration: 4000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[0].textContent
+          + error.error.message || this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 4000 });
         this.isWorking = false;
       }
     );

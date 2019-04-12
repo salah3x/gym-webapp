@@ -100,6 +100,10 @@
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">9</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="appMenuItem2" datatype="html">
         <source>Admin</source>
@@ -107,12 +111,20 @@
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">16</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="appMenuItem3" datatype="html">
         <source>Manager</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
           <context context-type="linenumber">23</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">37</context>
         </context-group>
       </trans-unit>
       <trans-unit id="appOpenMenu" datatype="html">
@@ -148,6 +160,55 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/home/home.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-menuItem1" datatype="html">
+        <source>Users</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/super-admin.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-sideMenuBtnClose" datatype="html">
+        <source>Close menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/super-admin.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-sideMenuBtnOpen" datatype="html">
+        <source>Open menu</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/super-admin.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-refreshBtn" datatype="html">
+        <source>Refresh the list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-users-Msg1" datatype="html">
+        <source>Server Error : </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-users-Msg2" datatype="html">
+        <source>Unknown</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="s-users-Msg3" datatype="html">
+        <source>Are you sure ?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
+          <context context-type="linenumber">54</context>
         </context-group>
       </trans-unit>
     </body>
