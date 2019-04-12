@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Inject, LOCALE_ID } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Subject } from 'rxjs';
@@ -23,7 +23,9 @@ export class CheckInsComponent implements OnInit {
   isLoading = false;
   @ViewChild('c') calendar: ElementRef;
 
-  constructor(private afs: AngularFirestore, private snack: MatSnackBar) { }
+  constructor(private afs: AngularFirestore,
+              private snack: MatSnackBar,
+              @Inject(LOCALE_ID) protected locale: string) { }
 
   ngOnInit() {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 11, 1);
@@ -58,10 +60,11 @@ export class CheckInsComponent implements OnInit {
         domainMargin: 5,
         start: this.curentStartDate,
         data: d,
+        domainLabelFormat: (date: Date) => date.toLocaleDateString(this.locale, { month: 'short', year: 'numeric'}),
         legend: [1, 2, 3, 4],
         legendColors: ['#B9A0FB', '#1B0063'],
         displayLegend: false,
-        itemName: ['training session', 'training sessions'],
+        itemName: 'session',
         animationDuration: 300,
         onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1500, 100)
       });

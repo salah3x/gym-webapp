@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
@@ -48,7 +48,8 @@ export class ChargesPaymentsComponent implements OnInit {
 
   constructor(private dialog: MatDialog,
               private afs: AngularFirestore,
-              private snack: MatSnackBar) { }
+              private snack: MatSnackBar,
+              @Inject(LOCALE_ID) protected locale: string) { }
 
   ngOnInit() {
     this.startDate$.pipe(
@@ -65,8 +66,8 @@ export class ChargesPaymentsComponent implements OnInit {
           map(ps => {
             const arr: number[] = new Array(this.monthToShow).fill(0);
             ps.forEach(item =>
-              (arr[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
-              += item.price);
+              (arr[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
+                += item.price);
             return arr;
           })
         ),
@@ -77,8 +78,8 @@ export class ChargesPaymentsComponent implements OnInit {
           map(ps => {
             const arr: number[] = new Array(this.monthToShow).fill(0);
             ps.forEach(item =>
-              (arr[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
-              += item.cost);
+              (arr[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
+                += item.cost);
             return arr;
           })
         )
@@ -96,7 +97,7 @@ export class ChargesPaymentsComponent implements OnInit {
 
   initLabels() {
     for (let i = 0; i < this.monthToShow; i++) {
-      this.barChartLabels.unshift(this.curentStartDate.toLocaleString('en-us', { month: 'long', year: 'numeric' }));
+      this.barChartLabels.unshift(this.getMonth(this.curentStartDate));
       if (i === this.monthToShow - 1) {
         continue;
       }
@@ -109,7 +110,7 @@ export class ChargesPaymentsComponent implements OnInit {
     this.curentEndDate.setMonth(this.curentEndDate.getMonth() + 2, 0);
     this.startDate$.next({ start: this.curentStartDate, end: this.curentEndDate });
     this.barChartLabels.shift();
-    this.barChartLabels.push(this.curentEndDate.toLocaleString('en-us', { month: 'long', year: 'numeric' }));
+    this.barChartLabels.push(this.getMonth(this.curentEndDate));
   }
 
   onPrevious() {
@@ -117,7 +118,7 @@ export class ChargesPaymentsComponent implements OnInit {
     this.curentEndDate.setDate(0);
     this.startDate$.next({ start: this.curentStartDate, end: this.curentEndDate });
     this.barChartLabels.pop();
-    this.barChartLabels.unshift(this.curentStartDate.toLocaleString('en-us', { month: 'long', year: 'numeric' }));
+    this.barChartLabels.unshift(this.getMonth(this.curentStartDate));
   }
 
   chartClicked(event: any) {
@@ -139,10 +140,10 @@ export class ChargesPaymentsComponent implements OnInit {
     const newArray = Array(this.monthToShow);
     (array as any[]).forEach((item: any) => {
       if (this.isPayment(item)) {
-        (newArray[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
+        (newArray[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
           += item.price;
       } else if (this.isCharge(item)) {
-        (newArray[this.barChartLabels.indexOf(item.date.toDate().toLocaleString('en-us', { month: 'long', year: 'numeric' }))] as number)
+        (newArray[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
           += item.cost;
       }
     });
@@ -155,5 +156,9 @@ export class ChargesPaymentsComponent implements OnInit {
 
   isCharge(arg: any): arg is Charge {
     return arg.cost !== undefined;
+  }
+
+  getMonth(date: Date): string {
+    return date.toLocaleString(this.locale, { month: 'short', year: 'numeric' });
   }
 }
