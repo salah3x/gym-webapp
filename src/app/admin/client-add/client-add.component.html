@@ -52,10 +52,10 @@
       </div>
       <div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
         <mat-progress-bar class="bar" mode="determinate" [value]="uploadPct"></mat-progress-bar>
-        <p class="pct" *ngIf="isUploading">{{uploadPct | number:'1.0-0'}}%</p>
+        <p class="pct">{{uploadPct | number:'1.0-0'}}%</p>
         <div>
           <button mat-icon-button type="button" color="accent" [matTooltip]="isPaused? 'Resume upload': 'Pause upload'"
-            (click)="isPaused = isPaused? !task.resume(): task.pause() ">
+            (click)="isPaused = isPaused? !task.resume(): task.pause()">
             <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
           </button>
           <button *ngIf="!isPaused" mat-icon-button type="button" color="warn" matTooltip="Cancel upload"
@@ -110,8 +110,8 @@
           <mat-error>Pack is required</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select [ngModel]="'new'" name="idSubscription" #s
-            (selectionChange)="onSelectSubscription($event.value)" required>
+          <mat-select [ngModel]="'new'" name="idSubscription" #s (selectionChange)="onSelectSubscription($event.value)"
+            required>
             <mat-option value="new">*New subscription*</mat-option>
             <mat-option *ngIf="subscriptions" disabled>----------------------------</mat-option>
             <mat-option *ngFor="let s of subscriptions" [value]="s.id">{{s.name}}</mat-option>
