@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import {
   CanLoad,
   UrlSegment,
@@ -22,11 +22,14 @@ export class AuthGuardService implements CanLoad, CanActivate {
               private snackBar: MatSnackBar,
               private router: Router) { }
 
+  // To be set in AppComponent where translated text is available
+  i18n: ElementRef;
+
   isAllowed(path: string): Observable<boolean> {
     return this.afAuth.user.pipe(
       mergeMap(user => {
         if (!user) {
-          this.snackBar.open('Please login first.', 'Close', {duration: 3000});
+          this.snackBar.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
           this.router.navigate(['/']);
           return of(null);
         }
@@ -38,7 +41,7 @@ export class AuthGuardService implements CanLoad, CanActivate {
         }
         const isAllowed = r.claims[path];
         if (!isAllowed) {
-          this.snackBar.open('You are not allowed to access this page.', 'Close', {duration: 3000});
+          this.snackBar.open(this.i18n.nativeElement.childNodes[2].textContent, 'X', { duration: 3000 });
           this.router.navigate(['/']);
         }
         return isAllowed;

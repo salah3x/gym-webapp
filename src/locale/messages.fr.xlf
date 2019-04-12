@@ -163,6 +163,22 @@
         </context-group>
         <target>Vous vous êtes déconnecté avec succès.</target>
       </trans-unit>
+      <trans-unit id="appRouteGuard1" datatype="html">
+        <source>Please login first.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <target>S'il vous plait connectez-vous d'abord.</target>
+      </trans-unit>
+      <trans-unit id="appRouteGuard2" datatype="html">
+        <source>You are not allowed to access this page.</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/app.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+        <target>Vous n'êtes pas autorisé à accéder à cette page.</target>
+      </trans-unit>
       <trans-unit id="home-title" datatype="html">
         <source>Gym Manager</source>
         <context-group purpose="location">
@@ -225,7 +241,7 @@
           <context context-type="sourcefile">app/super-admin/users/users.component.html</context>
           <context context-type="linenumber">53</context>
         </context-group>
-        <target>Erreur du serveur :</target>
+        <target>Inconnu</target>
       </trans-unit>
       <trans-unit id="s-users-Msg3" datatype="html">
         <source>Are you sure ?</source>

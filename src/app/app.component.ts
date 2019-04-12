@@ -4,6 +4,7 @@ import {AngularFireAuth} from '@angular/fire/auth';
 import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material';
 import { SigninComponent } from './signin/signin.component';
 import { SidenavService } from './sidenav.service';
+import { AuthGuardService } from './shared/auth-guard.service';
 
 @Component({
   selector: 'app-root',
@@ -21,9 +22,11 @@ export class AppComponent implements OnInit {
               public auth: AngularFireAuth,
               private snackBar: MatSnackBar,
               private dialog: MatDialog,
-              private sidenavService: SidenavService) {}
+              private sidenavService: SidenavService,
+              private guard: AuthGuardService) {}
 
   ngOnInit() {
+    this.guard.i18n = this.i18n;
     this.auth.authState.subscribe(value => this.isAuthenticated = value != null);
     this.auth.idTokenResult.subscribe(r => {
       r ? this.claims = r.claims : this.claims = [];
