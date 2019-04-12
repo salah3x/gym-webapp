@@ -12,14 +12,14 @@
   </mat-drawer>
   <mat-drawer-content>
     <router-outlet></router-outlet>
-    <button (click)="drawer.toggle()" class="toggler" mat-mini-fab [matTooltip]="i18n.textContent"
-      matTooltipPosition="after">
+    <button (click)="drawer.toggle()" class="toggler" mat-mini-fab matTooltipPosition="after"
+      [matTooltip]="drawer.opened? i18n.childNodes[0].textContent: i18n.childNodes[1].textContent">
       <mat-icon>{{drawer.opened ? 'first_page': 'last_page'}}</mat-icon>
     </button>
   </mat-drawer-content>
 </mat-drawer-container>
 <!-- This hidden section is for xi18n command, translated text will be used in template attribute above -->
-<p class="translation" #i18n>
-  <ng-container i18n="@@s-sideMenuBtnClose" *ngIf="drawer.opened">Close menu</ng-container>
-  <ng-container i18n="@@s-sideMenuBtnOpen" *ngIf="!drawer.opened">Open menu</ng-container>
-</p>
+<div class="translation" #i18n>
+  <p i18n="@@s-sideMenuBtnClose">Close menu</p>
+  <p i18n="@@s-sideMenuBtnOpen">Open menu</p>
+</div>
