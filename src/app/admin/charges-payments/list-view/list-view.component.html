@@ -1,4 +1,5 @@
-<button mat-icon-button type="button" class="close" color="warn" (click)="close()" matTooltip="Close">
+<button mat-icon-button type="button" class="close" color="warn" (click)="close()" i18n-matTooltip="@@a-cList-closeBtn"
+  matTooltip="Close">
   <mat-icon>close</mat-icon>
 </button>
 <p mat-dialog-title class="title">{{data}}</p>
@@ -6,30 +7,33 @@
   <table *ngIf="(payments | async) as ps" mat-table [dataSource]="ps" class="mat-elevation-z1">
     <ng-container matColumnDef="title">
       <td mat-header-cell *matHeaderCellDef colspan="4">
-        <b>{{ps?.length ? 'Payments history': 'No payments found'}}</b>
+        <b>
+          <ng-container *ngIf="ps?.length" i18n="@@a-cList-ps">Payments history</ng-container>
+          <ng-container *ngIf="!ps?.length" i18n="@@a-cList-noPs">No payments found</ng-container>
+        </b>
       </td>
     </ng-container>
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDate"> Date </th>
       <td mat-cell *matCellDef="let element">
-        {{element.date.toDate() | date:'MMM d, y, HH:mm'}}
+        {{(element.date.toDate() | date:'mediumDate') + ' ' + (element.date.toDate() | date:'HH:mm')}}
       </td>
     </ng-container>
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef> Price (MAD) </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pPrice"> Price (MAD) </th>
       <td mat-cell *matCellDef="let element">
         <b>{{element.price}}</b>
       </td>
     </ng-container>
     <ng-container matColumnDef="note">
-      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDescription"> Description </th>
       <td mat-cell *matCellDef="let element">
         {{element.note}}
       </td>
     </ng-container>
     <ng-container matColumnDef="client">
       <th mat-header-cell *matHeaderCellDef></th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" i18n="@@a-cList-pPayedBy">
         Payed by <a matTooltip="View profile"
           [routerLink]="['manager', 'clients', element.idClient]">{{element.idClient}}</a>
       </td>
@@ -41,33 +45,42 @@
   <table *ngIf="(charges | async) as cs" mat-table [dataSource]="cs" class="mat-elevation-z1">
     <ng-container matColumnDef="title">
       <td mat-header-cell *matHeaderCellDef colspan="4">
-        <b>{{cs?.length ? 'List of charges': 'No charges found'}}</b>
+        <b>
+          <ng-container *ngIf="cs?.length" i18n="@@a-cList-cs">List of charges</ng-container>
+          <ng-container *ngIf="!cs?.length" i18n="@@a-cList-noCs">No charges found</ng-container>
+        </b>
       </td>
     </ng-container>
     <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef> Date </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cAdd-date"> Date </th>
       <td mat-cell *matCellDef="let element">
-        {{element.date.toDate() | date:'MMM d, y, HH:mm'}}
+          {{(element.date.toDate() | date:'mediumDate') + ' ' + (element.date.toDate() | date:'HH:mm')}}
       </td>
     </ng-container>
     <ng-container matColumnDef="cost">
-      <th mat-header-cell *matHeaderCellDef> Cost (MAD) </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-cCoct"> Cost (MAD) </th>
       <td mat-cell *matCellDef="let element">
         <b>{{element.cost}}</b>
       </td>
     </ng-container>
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef> Name </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cAdd-name"> Name </th>
       <td mat-cell *matCellDef="let element">
         {{element.name}}
       </td>
     </ng-container>
     <ng-container matColumnDef="description">
-      <th mat-header-cell *matHeaderCellDef> Description </th>
+      <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-cDescription"> Description </th>
       <td mat-cell *matCellDef="let element" [innerHtml]="toHtml(element.description)"></td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
     <tr mat-header-row *matHeaderRowDef="chargesColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: chargesColumns;"></tr>
   </table>
+</div>
+<!-- This hidden section is for xi18n command, translated text will be used typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@a-cList-msg1">Failed loading list of payments</p>
+  <p i18n="@@a-cList-msg2">Failed loading list of charges</p>
+  <p i18n="@@a-cList-msg3">Not provided</p>
 </div>

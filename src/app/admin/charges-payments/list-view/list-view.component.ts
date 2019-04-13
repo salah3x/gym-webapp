@@ -1,9 +1,9 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Observable, of } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 import { Payment, Charge } from 'src/app/shared/client.model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -15,6 +15,7 @@ import { DomSanitizer } from '@angular/platform-browser';
 })
 export class ListViewComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   payments: Observable<Payment[]>;
   charges: Observable<Charge[]>;
   paymentColumns = ['date', 'price', 'note', 'client'];
@@ -37,7 +38,7 @@ export class ListViewComponent implements OnInit {
       .orderBy('date', 'desc')
     ).valueChanges()
       .pipe(catchError(() => {
-        this.snack.open('Failed loading list of payments', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
         return of([]);
       }));
     this.charges = this.afs.collection<Charge>('charges', ref => ref
@@ -46,7 +47,7 @@ export class ListViewComponent implements OnInit {
       .orderBy('date', 'desc')
     ).valueChanges()
       .pipe(catchError(() => {
-        this.snack.open('Failed loading list of charges', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
         return of([]);
       }));
   }
@@ -57,7 +58,7 @@ export class ListViewComponent implements OnInit {
 
   toHtml(text: string) {
     if (!text || !text.length) {
-      return '<i>Not provided</i>';
+      return `<i>${this.i18n.nativeElement.childNodes[2].textContent}</i>`;
     }
     return this.sanitizer.bypassSecurityTrustHtml(('<i>' + text + '</i>').replace(/\n/g, '<br>'));
   }

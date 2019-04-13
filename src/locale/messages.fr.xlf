@@ -457,6 +457,10 @@
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
         <target>Nom</target>
       </trans-unit>
       <trans-unit id="a-cAdd-error1" datatype="html">
@@ -488,6 +492,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
           <context context-type="linenumber">17</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <target>Date</target>
       </trans-unit>
@@ -542,6 +550,122 @@
           <context context-type="linenumber">40</context>
         </context-group>
         <target>Échec de l'enregistrement de la charge</target>
+      </trans-unit>
+      <trans-unit id="a-cList-closeBtn" datatype="html">
+        <source>Close</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <target>Fermer</target>
+      </trans-unit>
+      <trans-unit id="a-cList-ps" datatype="html">
+        <source>Payments history</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+        <target>Historique des paiements</target>
+      </trans-unit>
+      <trans-unit id="a-cList-noPs" datatype="html">
+        <source>No payments found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+        <target>Aucun paiement trouvé</target>
+      </trans-unit>
+      <trans-unit id="a-cList-pDate" datatype="html">
+        <source> Date </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+        <target>Date</target>
+      </trans-unit>
+      <trans-unit id="a-cList-pPrice" datatype="html">
+        <source> Price (MAD) </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+        <target>Prix (MAD)</target>
+      </trans-unit>
+      <trans-unit id="a-cList-pDescription" datatype="html">
+        <source> Description </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="a-cList-pPayedBy" datatype="html">
+        <source>
+        Payed by <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/><x id="INTERPOLATION" equiv-text="{{element.idClient}}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+        <target>
+        Payé par <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/><x id="INTERPOLATION" equiv-text="{{element.idClient}}"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+      </target>
+      </trans-unit>
+      <trans-unit id="a-cList-cs" datatype="html">
+        <source>List of charges</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <target>Liste des charges</target>
+      </trans-unit>
+      <trans-unit id="a-cList-noCs" datatype="html">
+        <source>No charges found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <target>Aucune charge trouvée</target>
+      </trans-unit>
+      <trans-unit id="a-cList-cCoct" datatype="html">
+        <source> Cost (MAD) </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">61</context>
+        </context-group>
+        <target>Coût (MAD)</target>
+      </trans-unit>
+      <trans-unit id="a-cList-cDescription" datatype="html">
+        <source> Description </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+        <target>Description</target>
+      </trans-unit>
+      <trans-unit id="a-cList-msg1" datatype="html">
+        <source>Failed loading list of payments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+        <target>Echec du chargement de la liste des paiements</target>
+      </trans-unit>
+      <trans-unit id="a-cList-msg2" datatype="html">
+        <source>Failed loading list of charges</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">84</context>
+        </context-group>
+        <target>Echec du chargement de la liste des charges</target>
+      </trans-unit>
+      <trans-unit id="a-cList-msg3" datatype="html">
+        <source>Not provided</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
+          <context context-type="linenumber">85</context>
+        </context-group>
+        <target>Non fourni</target>
       </trans-unit>
       <trans-unit id="a-c-previous" datatype="html">
         <source>Previous month</source>
