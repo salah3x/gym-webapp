@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -11,6 +11,7 @@ import { Charge } from 'src/app/shared/client.model';
 })
 export class ChargeAddComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   isLoading = false;
   curentDate = new Date();
 
@@ -26,11 +27,11 @@ export class ChargeAddComponent implements OnInit {
     const charge: Charge = f.value;
     this.afs.collection<Charge>('charges').add(charge)
     .then(() => {
-      this.snack.open('Charge saved successfully', 'Close', { duration: 2000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
       this.isLoading = false;
       this.dialogRef.close();
     }).catch(() => {
-      this.snack.open('Failed saving', 'Close', { duration: 2000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
       this.isLoading = false;
     });
   }

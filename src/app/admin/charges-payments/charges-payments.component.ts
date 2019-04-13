@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, Inject, LOCALE_ID, ViewChild, ElementRef } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
@@ -18,6 +18,7 @@ import { ListViewComponent } from './list-view/list-view.component';
 })
 export class ChargesPaymentsComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   monthToShow = 6;
   curentStartDate = new Date();
   curentEndDate = new Date();
@@ -41,10 +42,7 @@ export class ChargesPaymentsComponent implements OnInit {
     }
   };
   barChartLabels: Label[] = [];
-  barChartData: ChartDataSets[] = [
-    { data: [], label: 'Payments', backgroundColor: '#4CAF50', hoverBackgroundColor: '#388E3C', borderColor: '#9E9E9E' },
-    { data: [], label: 'Charges', backgroundColor: '#FF5252', hoverBackgroundColor: '#D32F2F', borderColor: '#9E9E9E' }
-  ];
+  barChartData: ChartDataSets[];
 
   constructor(private dialog: MatDialog,
               private afs: AngularFirestore,
@@ -87,7 +85,7 @@ export class ChargesPaymentsComponent implements OnInit {
     ).subscribe(data => {
       this.barChartData[0].data = data[0];
       this.barChartData[1].data = data[1];
-    }, () => this.snack.open('Failed loading data', 'Close', { duration: 2000 }));
+    }, () => this.snack.open(this.i18n.nativeElement.childNodes[2].textContent, 'X', { duration: 3000 }));
     this.curentStartDate.setHours(0, 0, 0);
     this.curentEndDate.setMonth(this.curentEndDate.getMonth() + 1, 0);
     this.curentEndDate.setHours(23, 59, 59);
@@ -103,6 +101,12 @@ export class ChargesPaymentsComponent implements OnInit {
       }
       this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 1, 1);
     }
+    this.barChartData = [
+      { data: [], label: this.i18n.nativeElement.childNodes[0].textContent,
+        backgroundColor: '#4CAF50', hoverBackgroundColor: '#388E3C', borderColor: '#9E9E9E' },
+      { data: [], label: this.i18n.nativeElement.childNodes[1].textContent,
+        backgroundColor: '#FF5252', hoverBackgroundColor: '#D32F2F', borderColor: '#9E9E9E' }
+    ];
   }
 
   onNext() {

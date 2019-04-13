@@ -1,35 +1,41 @@
 <form #f="ngForm" (ngSubmit)="onSubmit(f)" fxLayout="column" fxLayoutAlign="space-between stretch">
-  <p class="header" mat-dialog-title>Add a new Charge</p>
+  <p class="header" mat-dialog-title i18n="@@a-c-addBtn">Add a new charge</p>
   <div fxLayout="column" fxLayoutAlign="space-around strech">
     <mat-form-field appearance="outline">
-      <mat-label>Name</mat-label>
+      <mat-label i18n="@@a-cAdd-name">Name</mat-label>
       <input matInput ngModel name="name" required>
-      <mat-error>Name is required</mat-error>
+      <mat-error i18n="@@a-cAdd-error1">Name is required</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Cost</mat-label>
+      <mat-label i18n="@@a-cAdd-cost">Cost</mat-label>
       <input type="number" matInput ngModel name="cost" required>
-      <mat-error>Cost is required</mat-error>
+      <mat-error i18n="@@a-cAdd-error2">Cost is required</mat-error>
       <mat-hint align="end">MAD</mat-hint>
       <mat-icon matSuffix>attach_money</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Date</mat-label>
+      <mat-label i18n="@@a-cAdd-date">Date</mat-label>
       <input matInput [matDatepicker]="picker" [ngModel]="curentDate" name="date" required>
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker touchUi #picker></mat-datepicker>
-      <mat-error>Date is required</mat-error>
-      <mat-hint align="end">mm/dd/yyyy</mat-hint>
+      <mat-error i18n="@@a-cAdd-error3">Date is required</mat-error>
+      <mat-hint align="end" i18n="@@a-cAdd-dateHint">mm/dd/yyyy</mat-hint>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Description
+      <mat-label i18n="@@a-cAdd-description">Description
         <mat-icon matSuffix>description</mat-icon>
       </mat-label>
       <textarea matInput ngModel name="description" rows="3"></textarea>
     </mat-form-field>
-    <button type="submit" mat-raised-button color="primary" matTooltip="Save charge" [disabled]="!f.valid || isLoading">
+    <button type="submit" mat-raised-button color="primary" i18n-matTooltip="@@a-cAdd-saveBtn" matTooltip="Save charge"
+      [disabled]="!f.valid || isLoading">
       <mat-icon>save_alt</mat-icon>
     </button>
   </div>
   <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
 </form>
+<!-- This hidden section is for xi18n command, translated text will be used typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@a-cAdd-msg1">Charge saved successfully</p>
+  <p i18n="@@a-cAdd-msg2">Failed saving charge</p>
+</div>

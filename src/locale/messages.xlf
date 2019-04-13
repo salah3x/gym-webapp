@@ -196,6 +196,10 @@
           <context context-type="sourcefile">app/admin/admin.component.html</context>
           <context context-type="linenumber">19</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="s-sideMenuBtnClose" datatype="html">
         <source>Close menu</source>
@@ -384,6 +388,131 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
           <context context-type="linenumber">59</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-addBtn" datatype="html">
+        <source>Add a new charge</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-name" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-error1" datatype="html">
+        <source>Name is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-cost" datatype="html">
+        <source>Cost</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-error2" datatype="html">
+        <source>Cost is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-date" datatype="html">
+        <source>Date</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-error3" datatype="html">
+        <source>Date is required</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-dateHint" datatype="html">
+        <source>mm/dd/yyyy</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-description" datatype="html">
+        <source>Description
+        <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+      </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-saveBtn" datatype="html">
+        <source>Save charge</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-msg1" datatype="html">
+        <source>Charge saved successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-cAdd-msg2" datatype="html">
+        <source>Failed saving charge</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-previous" datatype="html">
+        <source>Previous month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-next" datatype="html">
+        <source>Next month</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-payments" datatype="html">
+        <source>Payments</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-charges" datatype="html">
+        <source>Charges</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-c-mdg1" datatype="html">
+        <source>Failed loading data</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">
