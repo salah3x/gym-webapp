@@ -1,14 +1,14 @@
 <button mat-mini-fab type="button" class="new-fab" color="primary" (click)="openNewPackDialog()"
-  matTooltip="Add a new pack">
+  i18n-matTooltip="@@a-p-newBtn" matTooltip="Add a new pack">
   <mat-icon>add</mat-icon>
 </button>
-<p class="header" *ngIf="packs && !packs.length">No packs have been added</p>
-<p class="header" *ngIf="packs && packs.length">List of packs</p>
+<p class="header" *ngIf="packs && !packs.length" i18n="@@a-p-empty">No packs have been added</p>
+<p class="header" *ngIf="packs && packs.length" i18n="@@a-p-list">List of packs</p>
 <mat-accordion *ngIf="packs">
   <mat-expansion-panel *ngFor="let p of packs" (opened)="getSubscriptions(p.id)">
     <mat-expansion-panel-header>
       <mat-panel-title>
-        <b>Price : {{p.price}} MAD/month</b>
+        <b i18n="@@a-p-price">Price : {{p.price}} MAD/month</b>
       </mat-panel-title>
       <mat-panel-description>
         <b>{{p.name}}</b>
@@ -19,27 +19,22 @@
       <table mat-table [dataSource]="subscriptions | async" class="mat-elevation-z1" fxFlex="60">
         <ng-container matColumnDef="title">
           <td mat-header-cell *matHeaderCellDef colspan="2">
-            <b>Subscriptions' list ({{(subscriptions | async)?.length}})</b>
+            <b i18n="@@a-p-subList">Subscriptions' list ({{(subscriptions | async)?.length}})</b>
           </td>
         </ng-container>
         <ng-container matColumnDef="name">
-          <th mat-header-cell *matHeaderCellDef> Name </th>
+          <th mat-header-cell *matHeaderCellDef i18n="@@a-p-subName"> Name </th>
           <td mat-cell *matCellDef="let element">
             {{element.name}} {{element.subscriberIds?.length !== 1 ? '(' + element.subscriberIds.length + ')' : ''}}
           </td>
         </ng-container>
         <ng-container matColumnDef="subscriberIds">
-          <th mat-header-cell *matHeaderCellDef> Members </th>
+          <th mat-header-cell *matHeaderCellDef i18n="@@a-p-subMembers"> Members </th>
           <td mat-cell *matCellDef="let element">
             <span *ngFor="let id of element.subscriberIds; index as i">
               <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>
               {{ i ==  element.subscriberIds.length -1 ? '': ' | '}}
             </span>
-            <!-- <mat-list>
-              <mat-list-item *ngFor="let id of element.subscriberIds">
-                {{id}}
-              </mat-list-item>
-            </mat-list> -->
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
@@ -47,9 +42,19 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       </table>
       <button [disabled]="p.id === 'Rlt5JOspNeWlfFIJVWc0' || p.id === 'ZYQoxr3bHe8bGD3WZfCF'" mat-icon-button
-        type="button" color="warn" fxFlex="5" (click)="deletePack(p.id)" matTooltip="Delete pack">
+        type="button" color="warn" fxFlex="5" (click)="deletePack(p.id)" i18n-matTooltip="@@a-p-deleteBtn"
+        matTooltip="Delete pack">
         <mat-icon>delete</mat-icon>
       </button>
     </div>
   </mat-expansion-panel>
 </mat-accordion>
+<!-- This hidden section is for xi18n command, translated text will be used typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@a-p-msg1">Failed loading packs</p>
+  <p i18n="@@a-p-msg2">Cannot delete essential packs</p>
+  <p i18n="@@a-p-msg3">Pack deleted successfully</p>
+  <p i18n="@@a-p-msg4">Deletion failed, pack has active subscriptions</p>
+  <p i18n="@@a-p-msg5">Are you sure ?</p>
+  <p i18n="@@a-p-msg6">No description</p>
+</div>

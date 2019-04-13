@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { Pack } from 'src/app/shared/client.model';
 import { NgForm } from '@angular/forms';
 import { AngularFirestore } from '@angular/fire/firestore';
@@ -12,6 +12,7 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
 export class PackAddComponent implements OnInit {
 
   isLoading = false;
+  @ViewChild('i18n') public i18n: ElementRef;
 
   constructor(private afs: AngularFirestore,
               private dialogRef: MatDialogRef<PackAddComponent>,
@@ -25,11 +26,11 @@ export class PackAddComponent implements OnInit {
     const pack: Pack = f.value;
     this.afs.collection<Pack>('packs').add(pack)
     .then(() => {
-      this.snack.open('Pack saved successfully', 'Close', { duration: 2000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
       this.isLoading = false;
       this.dialogRef.close();
     }).catch(() => {
-      this.snack.open('Failed saving', 'Close', { duration: 2000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
       this.isLoading = false;
     });
   }
