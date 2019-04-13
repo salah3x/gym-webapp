@@ -8,7 +8,7 @@
     ],
     "predeploy": [
       "npm run lint",
-      "npm run build:fr-prod"
+      "npm run build:fr"
     ],
     "rewrites": [
       {
