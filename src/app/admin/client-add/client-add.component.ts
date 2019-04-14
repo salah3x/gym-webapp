@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { MatSnackBar, MatStepper, MatSelectChange, MatSlideToggle, MatSelect } from '@angular/material';
@@ -16,6 +16,7 @@ import { Router } from '@angular/router';
 })
 export class ClientAddComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   @ViewChild('f') form: NgForm;
   @ViewChild('stepper') stepper: MatStepper;
   photoUrl: string;
@@ -45,7 +46,10 @@ export class ClientAddComponent implements OnInit {
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
       }))
-    ).subscribe(data => this.packs = data, () => this.snack.open('Failed loading packs information', 'Close', { duration: 3000 }));
+    ).subscribe(
+      data => this.packs = data,
+      () => this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 })
+    );
   }
 
   onSubmit(f: NgForm) {
@@ -98,10 +102,11 @@ export class ClientAddComponent implements OnInit {
     }
     batch.commit()
       .then(() => {
-        this.snack.open('Client added successfully', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
         this.form.resetForm();
         this.router.navigate(['manager', 'clients', clientId]);
-      }).catch(() => this.snack.open('Failed registring client', 'Retry', { duration: 4000 })
+      }).catch(() => this.snack.open(this.i18n.nativeElement.childNodes[2].textContent,
+        this.i18n.nativeElement.childNodes[3].textContent, { duration: 4000 })
           .onAction().subscribe(() => this.onSubmit(f)));
   }
 
@@ -120,10 +125,10 @@ export class ClientAddComponent implements OnInit {
     ).subscribe();
     this.task.then(t => {
       this.photoUrl = t.ref.fullPath;
-      this.snack.open('Upload finished successfully', 'Close', { duration: 3000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
       this.isUploading = false;
     }).catch(() => {
-      this.snack.open('Upload failed', 'Close', { duration: 3000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[5].textContent, 'X', { duration: 3000 });
       this.isUploading = false;
     });
     (event.target as HTMLInputElement).value = '';
@@ -132,7 +137,7 @@ export class ClientAddComponent implements OnInit {
   deletePhoto() {
     if (this.photoUrl) {
       this.fileRef.delete().subscribe(() => {
-        this.snack.open('Photo deleted successfully', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[6].textContent, 'X', { duration: 3000 });
         this.photoUrl = '';
         this.downloadUrl = '';
       });
@@ -178,7 +183,7 @@ export class ClientAddComponent implements OnInit {
   }
 
   canDeactivate(): boolean {
-    if (this.form.dirty && !confirm('Discard changes ?')) {
+    if (this.form.dirty && !confirm(this.i18n.nativeElement.childNodes[7].textContent)) {
       return false;
     }
     if (this.downloadUrl) {
