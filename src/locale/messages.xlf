@@ -208,6 +208,10 @@
           <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/manager.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
           <context context-type="sourcefile">app/super-admin/super-admin.component.html</context>
           <context context-type="linenumber">23</context>
         </context-group>
@@ -217,6 +221,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/admin.component.html</context>
           <context context-type="linenumber">38</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/manager.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/super-admin/super-admin.component.html</context>
@@ -944,6 +952,13 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
           <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-menuItem2" datatype="html">
+        <source>Clients</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/manager.component.html</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">
