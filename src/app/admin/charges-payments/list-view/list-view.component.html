@@ -54,7 +54,7 @@
     <ng-container matColumnDef="date">
       <th mat-header-cell *matHeaderCellDef i18n="@@a-cAdd-date"> Date </th>
       <td mat-cell *matCellDef="let element">
-          {{(element.date.toDate() | date:'mediumDate') + ' ' + (element.date.toDate() | date:'HH:mm')}}
+        {{(element.date.toDate() | date:'mediumDate') + ' ' + (element.date.toDate() | date:'HH:mm')}}
       </td>
     </ng-container>
     <ng-container matColumnDef="cost">
@@ -82,5 +82,4 @@
 <div class="translation" #i18n>
   <p i18n="@@a-cList-msg1">Failed loading list of payments</p>
   <p i18n="@@a-cList-msg2">Failed loading list of charges</p>
-  <p i18n="@@a-cList-msg3">Not provided</p>
 </div>

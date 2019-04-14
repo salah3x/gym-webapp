@@ -140,28 +140,6 @@ export class ChargesPaymentsComponent implements OnInit {
     });
   }
 
-  toMonths(array: Payment[] | Charge[]): number[] {
-    const newArray = Array(this.monthToShow);
-    (array as any[]).forEach((item: any) => {
-      if (this.isPayment(item)) {
-        (newArray[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
-          += item.price;
-      } else if (this.isCharge(item)) {
-        (newArray[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
-          += item.cost;
-      }
-    });
-    return newArray;
-  }
-
-  isPayment(arg: any): arg is Payment {
-    return arg.price !== undefined;
-  }
-
-  isCharge(arg: any): arg is Charge {
-    return arg.cost !== undefined;
-  }
-
   getMonth(date: Date): string {
     return date.toLocaleString(this.locale, { month: 'short', year: 'numeric' });
   }

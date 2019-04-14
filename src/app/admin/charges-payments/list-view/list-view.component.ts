@@ -1,9 +1,10 @@
-import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef, LOCALE_ID } from '@angular/core';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Observable, of } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
+import * as moment from 'moment';
 
 import { Payment, Charge } from 'src/app/shared/client.model';
 import { DomSanitizer } from '@angular/platform-browser';
@@ -25,10 +26,12 @@ export class ListViewComponent implements OnInit {
               private dialogRef: MatDialogRef<ListViewComponent>,
               private snack: MatSnackBar,
               private sanitizer: DomSanitizer,
-              @Inject(MAT_DIALOG_DATA) public data: string) { }
+              @Inject(MAT_DIALOG_DATA) public data: string,
+              @Inject(LOCALE_ID) protected locale: string) { }
 
   ngOnInit() {
-    const startDate = new Date(this.data);
+    moment.locale(this.locale);
+    const startDate = moment(this.data, 'MMM YYYY').toDate();
     const endDate =  new Date(startDate);
     endDate.setMonth(endDate.getMonth() + 1, 0);
     endDate.setHours(23, 59, 59);
@@ -57,9 +60,6 @@ export class ListViewComponent implements OnInit {
   }
 
   toHtml(text: string) {
-    if (!text || !text.length) {
-      return `<i>${this.i18n.nativeElement.childNodes[2].textContent}</i>`;
-    }
     return this.sanitizer.bypassSecurityTrustHtml(('<i>' + text + '</i>').replace(/\n/g, '<br>'));
   }
 }
