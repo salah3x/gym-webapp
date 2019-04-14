@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -19,6 +19,7 @@ import { InfoEditComponent } from './info-edit/info-edit.component';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   client: ClientWithId;
   isLoading = true;
   isCheckingIn = false;
@@ -36,6 +37,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
               private titleService: Title) { }
 
   ngOnInit() {
+    this.service.i18n = this.i18n;
     this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
     this.route.params.pipe(
       // Set id to undefined to rerender the app-check-ins component
@@ -85,7 +87,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       },
       () => {
         this.isLoading = false;
-        this.snack.open('Connexion failed', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[8].textContent, 'X', { duration: 3000 });
       });
   }
 
@@ -114,7 +116,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   toHtml(text: string) {
     if (!text || !text.length) {
-      return '<i>Not provided</i>';
+      return `<i>${this.i18n.nativeElement.childNodes[2].textContent}</i>`;
     }
     return this.sanitizer.bypassSecurityTrustHtml(('<i>' + text + '</i>').replace(/\n/g, '<br>'));
   }
