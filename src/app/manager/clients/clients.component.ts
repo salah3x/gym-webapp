@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject, of, combineLatest } from 'rxjs';
@@ -14,6 +14,7 @@ import { ClientService } from './client-service.service';
 })
 export class ClientsComponent implements OnInit, OnDestroy {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   searchTerm = new Subject<string>();
   clients: ClientWithId[];
   displayedColumns = ['photo', 'name', 'action', 'state'];
@@ -25,6 +26,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
               private service: ClientService) { }
 
   ngOnInit() {
+    this.service.i18n = this.i18n;
     this.searchTerm.pipe(
       tap(s => s.trim() ? this.isLoading = true : this.isLoading = false),
       debounceTime(1000),
@@ -76,7 +78,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
       this.clients = data;
       this.isLoading = false;
     }, () => {
-      this.snack.open('Connexion failed', 'Close', { duration: 2000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 2000 });
       this.isLoading = false;
     });
   }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ElementRef } from '@angular/core';
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
@@ -11,12 +11,15 @@ import { CheckIn, Payment } from 'src/app/shared/client.model';
 @Injectable()
 export class ClientService {
 
+  // To be set in AppComponent where translated text is available
+  i18n: ElementRef;
+
   constructor(private snack: MatSnackBar,
               private storage: AngularFireStorage,
               private afs: AngularFirestore) { }
 
   performCheckin(id: string, isCheckingIn: boolean) {
-    if (!confirm('Confirm ?')) {
+    if (!confirm(this.i18n.nativeElement.childNodes[7].textContent)) {
       return;
     }
     isCheckingIn = true;
@@ -24,23 +27,23 @@ export class ClientService {
       .where('date', '>=', firestore.Timestamp.fromDate(new Date(new Date().setHours(0, 0, 0, 0))))
       .where('date', '<=', firestore.Timestamp.fromDate(new Date())))
       .valueChanges().pipe(take(1)).subscribe(data => {
-        if (!data.length || confirm('This client has already checked in today.\nCheck in anyway ?')) {
+        if (!data.length || confirm(this.i18n.nativeElement.childNodes[3].textContent)) {
           this.afs.collection<CheckIn>(`clients/${id}/checkins`).add({
             date: firestore.Timestamp.fromDate(new Date()),
           }).then(() => {
-            this.snack.open('Checked in successfully', 'Close', { duration: 3000 });
+            this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
             isCheckingIn = false;
           }).catch(() => {
-            this.snack.open('Check in failed', 'Close', { duration: 3000 });
+            this.snack.open(this.i18n.nativeElement.childNodes[5].textContent, 'X', { duration: 3000 });
             isCheckingIn = false;
           });
         } else {
-          this.snack.open('Check in canceled', 'Close', { duration: 3000 });
+          this.snack.open(this.i18n.nativeElement.childNodes[6].textContent, 'X', { duration: 3000 });
           isCheckingIn = false;
         }
       }, () => {
         isCheckingIn = false;
-        this.snack.open('Check in failed', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[5].textContent, 'X', { duration: 3000 });
       });
   }
 

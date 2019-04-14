@@ -1091,6 +1091,118 @@
         </context-group>
         <target>Clients</target>
       </trans-unit>
+      <trans-unit id="m-c-search" datatype="html">
+        <source>Search by name or CIN</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+        <target>Recherche par nom ou CIN</target>
+      </trans-unit>
+      <trans-unit id="m-c-title1" datatype="html">
+        <source>Type something in the search bar</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+        <target>Tapez quelque chose dans la barre de recherche</target>
+      </trans-unit>
+      <trans-unit id="m-c-title2" datatype="html">
+        <source>Type &apos;:all&apos; for the full list</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+        <target>Typez &apos;:all&apos; pour la liste complète</target>
+      </trans-unit>
+      <trans-unit id="m-c-empty" datatype="html">
+        <source>No clients found</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">8</context>
+        <target>Aucun client trouvé</target>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-checkIn" datatype="html">
+        <source>Check in</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <target>Pointer</target>
+      </trans-unit>
+      <trans-unit id="m-c-profile" datatype="html">
+        <source>View profile</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+        <target>Voir le profil</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg1" datatype="html">
+        <source>Connexion failed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">48</context>
+        </context-group>
+        <target>Connexion échouée</target>
+      </trans-unit>
+      <trans-unit id="m-c-payed" datatype="html">
+        <source>Paid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <target>Payé</target>
+      </trans-unit>
+      <trans-unit id="m-c-notPayed" datatype="html">
+        <source>Unpaid</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+        <target>Non payé</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg2" datatype="html">
+        <source>This client has already checked in today. Check in anyway?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">51</context>
+        </context-group>
+        <target>Ce client a déjà pointé aujourd'hui. Pointer quand même?</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg3" datatype="html">
+        <source>Checked in successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">52</context>
+        </context-group>
+        <target>Pointé avec succès</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg4" datatype="html">
+        <source>Check in failed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+        <target>Pointage a échoué</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg5" datatype="html">
+        <source>Check in is canceled</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+        <target>Pointage est annulé</target>
+      </trans-unit>
+      <trans-unit id="m-c-msg6" datatype="html">
+        <source>Confirm ?</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <target>Confirmez ?</target>
+      </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">
         <source>Users</source>
         <context-group purpose="location">

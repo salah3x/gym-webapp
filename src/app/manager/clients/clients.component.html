@@ -1,11 +1,11 @@
 <mat-form-field class="search-bar" appearance="outline">
-  <mat-label>Search by name or CIN</mat-label>
+  <mat-label i18n="@@m-c-search">Search by name or CIN</mat-label>
   <mat-icon matSuffix>search</mat-icon>
   <input (keyup)="search($event.target.value)" #i autofocus matInput>
 </mat-form-field>
-<p class="title" *ngIf="!i.value.trim()">Type something in the search bar</p>
-<p class="subTitle" *ngIf="!i.value.trim()">Type ':all' for the full list</p>
-<p class="title" *ngIf="clients?.length < 1 && !isLoading && i.value.trim()">No clients found</p>
+<p class="title" *ngIf="!i.value.trim()" i18n="@@m-c-title1">Type something in the search bar</p>
+<p class="subTitle" *ngIf="!i.value.trim()" i18n="@@m-c-title2">Type ':all' for the full list</p>
+<p class="title" *ngIf="clients?.length < 1 && !isLoading && i.value.trim()" i18n="@@m-c-empty">No clients found</p>
 <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
 <table mat-table *ngIf="clients?.length > 0" [dataSource]="clients" class="mat-elevation-z1">
   <ng-container matColumnDef="photo">
@@ -24,10 +24,11 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <button mat-icon-button type="button" [disabled]="isCheckingIn" color="primary"
-        (click)="performCheckin(element.id)" matTooltip="Check in">
+        (click)="performCheckin(element.id)" i18n-matTooltip="@@m-c-checkIn" matTooltip="Check in">
         <mat-icon>transfer_within_a_station</mat-icon>
       </button>&nbsp;|&nbsp;
-      <a mat-icon-button color="primary" [routerLink]="'./' + element.id" matTooltip="View profile">
+      <a mat-icon-button color="primary" [routerLink]="'./' + element.id" i18n-matTooltip="@@m-c-profile"
+        matTooltip="View profile">
         <mat-icon>account_box</mat-icon>
       </a>
     </td>
@@ -35,10 +36,22 @@
   <ng-container matColumnDef="state">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element"
-      [matTooltip]="(element.payed | async) === 'yes'? 'Payed': (element.payed | async) === 'no'? 'Not payed': ''"
+      matTooltipPosition="before"
+      [matTooltip]="(element.payed | async) === 'yes'? i18n.childNodes[1].textContent: (element.payed | async) === 'no'? i18n.childNodes[2].textContent: ''"
       [ngStyle]="{'backgroundColor': (element.payed | async) === 'yes'? '#4CAF50': (element.payed | async) === 'no'? '#F44336': ''}">
     </td>
   </ng-container>
   <tr mat-header-row style="display: none;" *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+<!-- This hidden section is for xi18n command, translated text will be used typescript and template's attribute above -->
+<div class="translation" #i18n>
+  <p i18n="@@m-c-msg1">Connexion failed</p>
+  <p i18n="@@m-c-payed">Paid</p>
+  <p i18n="@@m-c-notPayed">Unpaid</p>
+  <p i18n="@@m-c-msg2">This client has already checked in today. Check in anyway?</p>
+  <p i18n="@@m-c-msg3">Checked in successfully</p>
+  <p i18n="@@m-c-msg4">Check in failed</p>
+  <p i18n="@@m-c-msg5">Check in is canceled</p>
+  <p i18n="@@m-c-msg6">Confirm ?</p>
+</div>
