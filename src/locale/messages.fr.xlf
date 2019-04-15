@@ -48,7 +48,9 @@
         <target>Mot de passe</target>
       </trans-unit>
       <trans-unit id="signInReset" datatype="html">
-        <source>Reset password</source>
+        <source>
+      Reset password
+    </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
           <context context-type="linenumber">22</context>
@@ -159,7 +161,7 @@
         <source>You have successfully disconnected.</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">70</context>
         </context-group>
         <target>Vous vous êtes déconnecté avec succès.</target>
       </trans-unit>
@@ -384,7 +386,7 @@
         <target>Suivant</target>
       </trans-unit>
       <trans-unit id="a-client-photo" datatype="html">
-        <source>Upload a photo</source>
+        <source>Upload photo</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">39</context>
@@ -679,7 +681,7 @@
         <source>Resume upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">164</context>
+          <context context-type="linenumber">165</context>
         </context-group>
         <target>Reprendre le téléchargement</target>
       </trans-unit>
@@ -1439,7 +1441,7 @@
         <source>Insurance : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
         <target>Assurance : </target>
       </trans-unit>
@@ -1463,7 +1465,7 @@
         <source>Pack : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <target>Pack : </target>
       </trans-unit>
@@ -1471,7 +1473,7 @@
         <source><x id="INTERPOLATION" equiv-text="{{(client.pack.pack | async)?.price}}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">19</context>
+          <context context-type="linenumber">25</context>
         </context-group>
         <target><x id="INTERPOLATION" equiv-text="{{(client.pack.pack | async)?.price}}"/> MAD/mois</target>
       </trans-unit>
@@ -1479,7 +1481,7 @@
         <source>Subscription : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">32</context>
         </context-group>
         <target>Abonnement : </target>
       </trans-unit>
@@ -1487,7 +1489,7 @@
         <source>Members : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">29</context>
+          <context context-type="linenumber">35</context>
         </context-group>
         <target>Membres : </target>
       </trans-unit>
@@ -1495,7 +1497,7 @@
         <source>Personal information</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">41</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <target>Informations personnelles</target>
       </trans-unit>
@@ -1503,7 +1505,7 @@
         <source>Edit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">42</context>
+          <context context-type="linenumber">48</context>
         </context-group>
         <target>Modifier</target>
       </trans-unit>
