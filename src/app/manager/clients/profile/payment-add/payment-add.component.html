@@ -1,11 +1,22 @@
-<h1 mat-dialog-title>Make a payment</h1>
+<h1 mat-dialog-title i18n="@@m-c-p-makePayment">Make a payment</h1>
 <div mat-dialog-content>
   <mat-radio-group [(ngModel)]="payment" fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center">
-    <mat-radio-button [value]="true">Subscription fee</mat-radio-button>
-    <mat-radio-button [disabled]="data.insurance" [value]="false">Insurance</mat-radio-button>
+    <mat-radio-button [value]="true" i18n="@@m-c-p-addP-subs">Subscription fee</mat-radio-button>
+    <mat-radio-button [disabled]="data.insurance" [value]="false" i18n="@@a-client-insurance">
+      Insurance
+    </mat-radio-button>
   </mat-radio-group>
 </div>
 <div mat-dialog-actions>
-  <button [disabled]="loading" mat-raised-button color="primary" (click)="addPayment()">Add payment</button>
+  <button [disabled]="loading" mat-raised-button color="primary" (click)="addPayment()"
+    i18n="@@m-c-p-addP-insurance">Add payment</button>
 </div>
 <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
+<!-- This hidden section is for xi18n command, translated text will be used in template's attributes above -->
+<div class="translation" #i18n>
+  <p i18n="@@m-c-p-addP-msg1">Payment Added successfully</p>
+  <p i18n="@@m-c-p-addP-msg2">Payment failed</p>
+  <p i18n="@@m-c-p-addP-msg3">Failed getting pack's price</p>
+  <p i18n="@@m-c-p-addP-msg4">Insurance paid successfully</p>
+  <p i18n="@@m-c-p-addP-msg5">Failed paying insurance</p>
+</div>

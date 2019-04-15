@@ -460,6 +460,10 @@
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">126</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a-client-totalPrice" datatype="html">
         <source>Total : <x id="INTERPOLATION" equiv-text="{{selectedPrice}}"/> MAD</source>
@@ -1074,12 +1078,20 @@
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
           <context context-type="linenumber">52</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg3" datatype="html">
         <source>Checked in successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
           <context context-type="linenumber">53</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">114</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg4" datatype="html">
@@ -1088,12 +1100,20 @@
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
           <context context-type="linenumber">54</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">115</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg5" datatype="html">
         <source>Check in is canceled</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
           <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg6" datatype="html">
@@ -1102,19 +1122,76 @@
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
           <context context-type="linenumber">56</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-makePayment" datatype="html">
+        <source>Make a payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-subs" datatype="html">
+        <source>Subscription fee</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-insurance" datatype="html">
+        <source>Add payment</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-msg1" datatype="html">
+        <source>Payment Added successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-msg2" datatype="html">
+        <source>Payment failed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-msg3" datatype="html">
+        <source>Failed getting pack&apos;s price</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-msg4" datatype="html">
+        <source>Insurance paid successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-addP-msg5" datatype="html">
+        <source>Failed paying insurance</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-notFound" datatype="html">
         <source>Client not found</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
           <context context-type="linenumber">1</context>
-        </context-group>
-      </trans-unit>
-      <trans-unit id="m-c-p-makePayment" datatype="html">
-        <source>Make a payment</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-date" datatype="html">
@@ -1233,7 +1310,7 @@
         <source>Connexion failed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">118</context>
         </context-group>
       </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">

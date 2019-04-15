@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
@@ -13,6 +13,7 @@ import { Pack, Payment, ClientWithId } from 'src/app/shared/client.model';
 })
 export class PaymentAddComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   // True for registration fee, false for insurance
   payment = true;
   loading = false;
@@ -37,15 +38,15 @@ export class PaymentAddComponent implements OnInit {
           note: 'Registration fee'
         }).then(() => {
           this.loading = false;
-          this.snack.open('Payment Added successfully', 'Close', { duration: 3000 });
+          this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
           this.dialogRef.close();
         }).catch(() => {
           this.loading = false;
-          this.snack.open('Payment failed', 'Close', { duration: 3000 });
+          this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
         });
       }, () => {
         this.loading = false;
-        this.snack.open('Failed getting pack information', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[2].textContent, 'X', { duration: 3000 });
       });
     } else {
       this.afs.firestore.batch()
@@ -59,11 +60,11 @@ export class PaymentAddComponent implements OnInit {
         .commit()
         .then(() => {
           this.loading = false;
-          this.snack.open('Insurance payed successfully', 'Close', { duration: 3000 });
+          this.snack.open(this.i18n.nativeElement.childNodes[3].textContent, 'X', { duration: 3000 });
           this.dialogRef.close();
         }).catch(() => {
           this.loading = false;
-          this.snack.open('Failed paying insurance', 'Close', { duration: 3000 });
+          this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
         });
     }
   }
