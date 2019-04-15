@@ -55,7 +55,7 @@
         <p class="pct">{{uploadPct | number:'1.0-0'}}%</p>
         <div>
           <button mat-icon-button type="button" color="accent" 
-            [matTooltip]="isPaused? i18n.childNodes[9].textContent: i18n.childNodes[8].textContent"
+            [matTooltip]="isPaused? i18n.childNodes[10].textContent: i18n.childNodes[9].textContent"
             (click)="isPaused = isPaused? !task.resume(): task.pause()">
             <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
           </button>
