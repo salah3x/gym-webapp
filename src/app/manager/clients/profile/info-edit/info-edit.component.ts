@@ -1,4 +1,4 @@
-import { Component, OnInit, Inject, ViewChild } from '@angular/core';
+import { Component, OnInit, Inject, ViewChild, ElementRef } from '@angular/core';
 import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { NgForm } from '@angular/forms';
@@ -12,6 +12,7 @@ import { ClientWithId, Client } from 'src/app/shared/client.model';
 })
 export class InfoEditComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   loading = false;
   @ViewChild('f') form: NgForm;
 
@@ -49,11 +50,11 @@ export class InfoEditComponent implements OnInit {
     })
       .then(() => {
         this.loading = false;
-        this.snack.open('Information updated successfully', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
         this.dialogRef.close();
       }).catch(() => {
         this.loading = false;
-        this.snack.open('Update failed', 'Close', { duration: 3000 });
+        this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
       });
   }
 }

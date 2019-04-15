@@ -251,12 +251,20 @@
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a-client-error1" datatype="html">
         <source>First name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">10</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-lName" datatype="html">
@@ -265,12 +273,20 @@
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">13</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a-client-error2" datatype="html">
         <source>Last name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">15</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-sexF" datatype="html">
@@ -388,12 +404,20 @@
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">81</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a-client-phone" datatype="html">
         <source>Phone number</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">86</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">22</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-address" datatype="html">
@@ -403,6 +427,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-subInfo" datatype="html">
@@ -486,6 +514,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">138</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-title2" datatype="html">
@@ -1185,6 +1217,34 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
           <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-editInfo-title" datatype="html">
+        <source>Update personal information</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-editInfo-saveBtn" datatype="html">
+        <source>Save</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-editInfo-msg1" datatype="html">
+        <source>Information updated successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-editInfo-msg2" datatype="html">
+        <source>Information update failed</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-notFound" datatype="html">

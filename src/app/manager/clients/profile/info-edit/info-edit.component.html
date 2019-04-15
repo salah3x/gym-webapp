@@ -1,41 +1,47 @@
-<h1 mat-dialog-title>Update personal information</h1>
+<h1 mat-dialog-title i18n="@@m-c-p-editInfo-title">Update personal information</h1>
 <div mat-dialog-content>
   <form #f="ngForm" (ngSubmit)="onSubmit()" fxLayout="column" fxLayoutAlign="space-around stretch">
     <div ngModelGroup="name" fxLayout="column" fxLayoutAlign="space-around stretch">
       <mat-form-field appearance="outline">
-        <mat-label>First name</mat-label>
+        <mat-label i18n="@@a-client-fName">First name</mat-label>
         <input matInput ngModel name="first" required>
-        <mat-error>First name is required</mat-error>
+        <mat-error i18n="@@a-client-error1">First name is required</mat-error>
       </mat-form-field>
       <mat-form-field appearance="outline">
-        <mat-label>Last name</mat-label>
+        <mat-label i18n="@@a-client-lName">Last name</mat-label>
         <input matInput ngModel name="last" required>
-        <mat-error>Last name is required</mat-error>
+        <mat-error i18n="@@a-client-error2">Last name is required</mat-error>
       </mat-form-field>
     </div>
     <mat-form-field appearance="outline">
-      <mat-label>CIN</mat-label>
+      <mat-label i18n="@@a-client-cin">CIN</mat-label>
       <mat-icon matSuffix>credit_card</mat-icon>
       <input matInput ngModel name="cin">
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Phone number</mat-label>
+      <mat-label i18n="@@a-client-phone">Phone number</mat-label>
       <input matInput ngModel name="phone">
       <mat-icon matSuffix>phone_android</mat-icon>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Address
+      <mat-label i18n="@@a-client-address">Address
         <mat-icon matSuffix>location_on</mat-icon>
       </mat-label>
       <textarea matInput ngModel name="address" rows="3"></textarea>
     </mat-form-field>
     <mat-form-field appearance="outline">
-      <mat-label>Note
+      <mat-label i18n="@@a-client-note">Note
         <mat-icon matSuffix>description</mat-icon>
       </mat-label>
       <textarea matInput ngModel name="note" rows="3"></textarea>
     </mat-form-field>
-    <button type="submit" [disabled]="!f.valid || loading" mat-raised-button color="primary">Save</button>
+    <button type="submit" [disabled]="!f.valid || loading" mat-raised-button color="primary"
+      i18n="@@m-c-p-editInfo-saveBtn">Save</button>
     <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
   </form>
+</div>
+<!-- This hidden section is for xi18n command, translated text will be used in typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@m-c-p-editInfo-msg1">Information updated successfully</p>
+  <p i18n="@@m-c-p-editInfo-msg2">Information update failed</p>
 </div>
