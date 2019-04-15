@@ -1125,6 +1125,10 @@
           <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
         <target>Mois précédent</target>
       </trans-unit>
       <trans-unit id="a-c-next" datatype="html">
@@ -1132,6 +1136,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
           <context context-type="linenumber">12</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
+          <context context-type="linenumber">6</context>
         </context-group>
         <target>Mois prochain</target>
       </trans-unit>
@@ -1529,7 +1537,7 @@
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
           <context context-type="linenumber">65</context>
         </context-group>
-        <target>Sessions d'entrainement</target>
+        <target>Séances d'entrainement</target>
       </trans-unit>
       <trans-unit id="m-c-p-notProvided" datatype="html">
         <source>Not provided</source>
@@ -1546,6 +1554,14 @@
           <context context-type="linenumber">118</context>
         </context-group>
         <target>Connexion échouée</target>
+      </trans-unit>
+      <trans-unit id="m-c-p-checkins-msg1" datatype="html">
+        <source>Failed getting training sessions data</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+        <target>Échec d'obtention des données des séances d'entraînement</target>
       </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">
         <source>Users</source>

@@ -15,6 +15,7 @@ import { MatSnackBar } from '@angular/material';
 })
 export class CheckInsComponent implements OnInit {
 
+  @ViewChild('i18n') public i18n: ElementRef;
   @Input() id: string;
   cal = new CalHeatMap();
   isFirstTime = true;
@@ -61,6 +62,11 @@ export class CheckInsComponent implements OnInit {
         start: this.curentStartDate,
         data: d,
         domainLabelFormat: (date: Date) => date.toLocaleDateString(this.locale, { month: 'short', year: 'numeric'}),
+        subDomainDateFormat: (date: Date) => date.toLocaleDateString(this.locale,
+          { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' }),
+        subDomainTitleFormat: {
+          filled: '{count} {name} - {date}'
+        },
         legend: [1, 2, 3, 4],
         legendColors: ['#B9A0FB', '#1B0063'],
         displayLegend: false,
@@ -71,7 +77,7 @@ export class CheckInsComponent implements OnInit {
       this.isLoading = false;
     }, () => {
       this.isLoading = false;
-      this.snack.open('Failed getting data', 'close', { duration: 4000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 4000 });
     });
     // Emmit the first event
     this.startDate.next(this.curentStartDate);

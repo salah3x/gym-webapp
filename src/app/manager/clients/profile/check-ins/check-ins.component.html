@@ -1,8 +1,14 @@
-<button mat-icon-button color="primary" [disabled]="isLoading" (click)="onPrevious()" matTooltip="Previoud month">
+<button mat-icon-button color="primary" [disabled]="isLoading" (click)="onPrevious()"
+  i18n-matTooltip="@@a-c-previous" matTooltip="Previous month">
   <mat-icon>arrow_back</mat-icon>
 </button>
-<button class="right-btn" mat-icon-button color="primary" [disabled]="isLoading" (click)="onNext()" matTooltip="Next month">
+<button class="right-btn" mat-icon-button color="primary" [disabled]="isLoading" (click)="onNext()"
+i18n-matTooltip="@@a-c-next" matTooltip="Next month">
   <mat-icon>arrow_forward</mat-icon>
 </button>
-<div class="container" id="cal-heatmap" #c>
+<mat-progress-spinner *ngIf="isLoading" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+<div class="container" id="cal-heatmap" #c></div>
+<!-- This hidden section is for xi18n command, translated text will be used in typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@m-c-p-checkins-msg1">Failed getting training sessions data</p>
 </div>

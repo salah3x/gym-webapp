@@ -12,3 +12,8 @@ p {
     text-align: center;
     padding: 10px;
 }
+
+mat-progress-spinner {
+    margin-left: calc(50% - 25px);
+    margin-bottom: 20px;
+}
