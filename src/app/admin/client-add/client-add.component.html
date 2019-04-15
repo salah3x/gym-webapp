@@ -52,11 +52,11 @@
       </div>
       <div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
         <mat-progress-bar class="bar" mode="determinate" [value]="uploadPct"></mat-progress-bar>
-        <p class="pct" *ngIf="isUploading">{{uploadPct | number:'1.0-0'}}%</p>
+        <p class="pct">{{uploadPct | number:'1.0-0'}}%</p>
         <div>
-          <button mat-icon-button type="button" color="accent"
+          <button mat-icon-button type="button" color="accent" 
             [matTooltip]="isPaused? i18n.childNodes[9].textContent: i18n.childNodes[8].textContent"
-            (click)="isPaused = isPaused? !task.resume(): task.pause() ">
+            (click)="isPaused = isPaused? !task.resume(): task.pause()">
             <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
           </button>
           <button *ngIf="!isPaused" mat-icon-button type="button" color="warn" matTooltip="Cancel upload"
@@ -160,6 +160,7 @@
   <p i18n="@@a-client-msg6">Photo upload failed</p>
   <p i18n="@@a-client-msg7">Photo deleted successfully</p>
   <p i18n="@@a-client-msg8">Discard changes ?</p>
+  <p i18n="@@a-client-msg9">Failed deleting photo</p>
   <p i18n="@@a-client-uploadPause">Pause upload</p>
   <p i18n="@@a-client-uploadResume">Resume upload</p>
 </div>

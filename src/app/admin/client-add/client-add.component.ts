@@ -1,13 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { MatSnackBar, MatStepper, MatSelectChange, MatSlideToggle, MatSelect } from '@angular/material';
+import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
-import { finalize, map, take } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 import { Client, Pack, PackWithId, SubscriptionWithId, Subscription, Payment } from 'src/app/shared/client.model';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-client-add',
@@ -19,7 +19,7 @@ export class ClientAddComponent implements OnInit {
   @ViewChild('i18n') public i18n: ElementRef;
   @ViewChild('f') form: NgForm;
   @ViewChild('stepper') stepper: MatStepper;
-  photoUrl: string;
+  photoUrl = '';
   curentDate = new Date();
   downloadUrl: string;
   isUploading = false;
@@ -56,8 +56,8 @@ export class ClientAddComponent implements OnInit {
     let client: Client = JSON.parse(JSON.stringify(f.value));
     client = {
       ...client,
-      ... JSON.parse(JSON.stringify(f.value.id)),
-      ... JSON.parse(JSON.stringify(f.value.subsInfo)),
+      ...JSON.parse(JSON.stringify(f.value.id)),
+      ...JSON.parse(JSON.stringify(f.value.subsInfo)),
       registrationDate: firestore.Timestamp.fromDate(f.value.id.registrationDate)
     };
     delete (client as any).id;
@@ -74,8 +74,8 @@ export class ClientAddComponent implements OnInit {
       client.pack.idSubscription = this.afs.createId();
       subscription = {
         name: client.name.first_lowercase.replace(/\s+/g, '-')
-        + '-' + client.name.last_lowercase.replace(/\s+/g, '-')
-        + '-' + client.pack.idSubscription.slice(0, 4),
+          + '-' + client.name.last_lowercase.replace(/\s+/g, '-')
+          + '-' + client.pack.idSubscription.slice(0, 4),
         subscriberIds: [clientId]
       };
     } else {
@@ -88,7 +88,7 @@ export class ClientAddComponent implements OnInit {
       idClient: clientId,
       idSubscription: client.pack.idSubscription,
       price: this.selectedPrice,
-      date:  client.registrationDate,
+      date: client.registrationDate,
       note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
         (f.value.subsInfo.pack.idSubscription === 'new' && client.insurance ? ' + ' : '') +
         (client.insurance ? 'Insurance fee' : ''),
@@ -96,7 +96,7 @@ export class ClientAddComponent implements OnInit {
     const batch = this.afs.firestore.batch()
       .set(this.afs.doc<Client>(`clients/${clientId}`).ref, client)
       .set(this.afs.doc<Subscription>(`packs/${client.pack.idPack}/subscriptions/${client.pack.idSubscription}`).ref,
-        subscription, {merge: true});
+        subscription, { merge: true });
     if (payment.price) {
       batch.set(this.afs.doc<Payment>(`payments/${this.afs.createId()}`).ref, payment);
     }
@@ -117,16 +117,14 @@ export class ClientAddComponent implements OnInit {
     }
     this.isUploading = true;
     const filePath = 'images/' + Date.now().valueOf() + file.name;
-    this.fileRef = this.storage.ref(filePath);
     this.task = this.storage.upload(filePath, file);
     this.task.percentageChanges().subscribe(pct => this.uploadPct = pct);
-    this.task.snapshotChanges().pipe(
-      finalize(() => this.fileRef.getDownloadURL().subscribe(url => this.downloadUrl = url))
-    ).subscribe();
     this.task.then(t => {
-      this.photoUrl = t.ref.fullPath;
-      this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
-      this.isUploading = false;
+        this.photoUrl = t.ref.fullPath;
+        this.fileRef = this.storage.ref(this.photoUrl);
+        this.fileRef.getDownloadURL().subscribe(url => this.downloadUrl = url);
+        this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
+        this.isUploading = false;
     }).catch(() => {
       this.snack.open(this.i18n.nativeElement.childNodes[5].textContent, 'X', { duration: 3000 });
       this.isUploading = false;
@@ -135,13 +133,11 @@ export class ClientAddComponent implements OnInit {
   }
 
   deletePhoto() {
-    if (this.photoUrl) {
-      this.fileRef.delete().subscribe(() => {
-        this.snack.open(this.i18n.nativeElement.childNodes[6].textContent, 'X', { duration: 3000 });
-        this.photoUrl = '';
-        this.downloadUrl = '';
-      });
-    }
+    this.fileRef.delete().subscribe(() => {
+      this.snack.open(this.i18n.nativeElement.childNodes[6].textContent, 'X', { duration: 3000 });
+      this.photoUrl = '';
+      this.downloadUrl = '';
+    }, () => this.snack.open(this.i18n.nativeElement.childNodes[8].textContent, 'X', { duration: 3000 }));
   }
 
   cancelUpload() {

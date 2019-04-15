@@ -659,11 +659,19 @@
         </context-group>
         <target>Annuler les modifications ?</target>
       </trans-unit>
+      <trans-unit id="a-client-msg9" datatype="html">
+        <source>Failed deleting photo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+        <target>Échec de la suppression de la photo</target>
+      </trans-unit>
       <trans-unit id="a-client-uploadPause" datatype="html">
         <source>Pause upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">164</context>
         </context-group>
         <target>Mettre en pause le téléchargement</target>
       </trans-unit>

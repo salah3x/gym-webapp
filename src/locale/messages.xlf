@@ -590,18 +590,25 @@
           <context context-type="linenumber">162</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="a-client-msg9" datatype="html">
+        <source>Failed deleting photo</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
+          <context context-type="linenumber">163</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="a-client-uploadPause" datatype="html">
         <source>Pause upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">163</context>
+          <context context-type="linenumber">164</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-client-uploadResume" datatype="html">
         <source>Resume upload</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">164</context>
+          <context context-type="linenumber">165</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-newBtn" datatype="html">
@@ -1382,7 +1389,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-checkins-msg1" datatype="html">
-        <source>Failed getting data</source>
+        <source>Failed getting training sessions data</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
           <context context-type="linenumber">13</context>
