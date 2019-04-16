@@ -1,20 +1,21 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar, MatStepper, MatSelectChange, MatSlideToggle, MatSelect } from '@angular/material';
 import { AngularFireStorage, AngularFireStorageReference, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
-import { map } from 'rxjs/operators';
+import { map, takeUntil } from 'rxjs/operators';
 
 import { Client, Pack, PackWithId, SubscriptionWithId, Subscription, Payment } from 'src/app/shared/client.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-client-add',
   templateUrl: './client-add.component.html',
   styleUrls: ['./client-add.component.css']
 })
-export class ClientAddComponent implements OnInit {
+export class ClientAddComponent implements OnInit, OnDestroy {
 
   @ViewChild('i18n') public i18n: ElementRef;
   @ViewChild('f') form: NgForm;
@@ -33,6 +34,7 @@ export class ClientAddComponent implements OnInit {
   @ViewChild('i') insurance: MatSlideToggle;
   @ViewChild('s') subSelect: MatSelect;
   @ViewChild('p') packSelect: MatSelect;
+  private ngUnsubscribe = new Subject();
 
   constructor(private storage: AngularFireStorage,
               private snack: MatSnackBar,
@@ -45,7 +47,8 @@ export class ClientAddComponent implements OnInit {
         const data = a.payload.doc.data() as Pack;
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
-      }))
+      })),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(
       data => this.packs = data,
       () => this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 })
@@ -84,15 +87,6 @@ export class ClientAddComponent implements OnInit {
           clientId]
       };
     }
-    const payment: Payment = {
-      idClient: clientId,
-      idSubscription: client.pack.idSubscription,
-      price: this.selectedPrice,
-      date: client.registrationDate,
-      note: (f.value.subsInfo.pack.idSubscription === 'new' ? 'Registration fee' : '') +
-        (f.value.subsInfo.pack.idSubscription === 'new' && client.insurance ? ' + ' : '') +
-        (client.insurance ? 'Insurance fee' : ''),
-    };
     const batch = this.afs.firestore.batch()
       .set(this.afs.doc<Client>(`clients/${clientId}`).ref, client)
       .set(this.afs.doc<Subscription>(`packs/${client.pack.idPack}/subscriptions/${client.pack.idSubscription}`).ref,
@@ -122,7 +116,7 @@ export class ClientAddComponent implements OnInit {
         this.router.navigate(['manager', 'clients', clientId]);
       }).catch(() => this.snack.open(this.i18n.nativeElement.childNodes[2].textContent,
         this.i18n.nativeElement.childNodes[3].textContent, { duration: 4000 })
-          .onAction().subscribe(() => this.onSubmit(f)));
+          .onAction().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => this.onSubmit(f)));
   }
 
   uploadPhoto(event: Event) {
@@ -133,11 +127,11 @@ export class ClientAddComponent implements OnInit {
     this.isUploading = true;
     const filePath = 'images/' + Date.now().valueOf() + file.name;
     this.task = this.storage.upload(filePath, file);
-    this.task.percentageChanges().subscribe(pct => this.uploadPct = pct);
+    this.task.percentageChanges().pipe(takeUntil(this.ngUnsubscribe)).subscribe(pct => this.uploadPct = pct);
     this.task.then(t => {
         this.photoUrl = t.ref.fullPath;
         this.fileRef = this.storage.ref(this.photoUrl);
-        this.fileRef.getDownloadURL().subscribe(url => this.downloadUrl = url);
+        this.fileRef.getDownloadURL().pipe(takeUntil(this.ngUnsubscribe)).subscribe(url => this.downloadUrl = url);
         this.snack.open(this.i18n.nativeElement.childNodes[4].textContent, 'X', { duration: 3000 });
         this.isUploading = false;
     }).catch(() => {
@@ -148,7 +142,7 @@ export class ClientAddComponent implements OnInit {
   }
 
   deletePhoto() {
-    this.fileRef.delete().subscribe(() => {
+    this.fileRef.delete().pipe(takeUntil(this.ngUnsubscribe)).subscribe(() => {
       this.snack.open(this.i18n.nativeElement.childNodes[6].textContent, 'X', { duration: 3000 });
       this.photoUrl = '';
       this.downloadUrl = '';
@@ -169,7 +163,8 @@ export class ClientAddComponent implements OnInit {
           const data = a.payload.doc.data() as Subscription;
           const id = a.payload.doc.id;
           return { id, ...data } as SubscriptionWithId;
-        }))
+        })),
+        takeUntil(this.ngUnsubscribe)
       ).subscribe(data => this.subscriptions = data);
       this.selectedPrice = this.packs.filter(p => p.id === event.value)[0].price;
     } else {
@@ -198,9 +193,14 @@ export class ClientAddComponent implements OnInit {
       return false;
     }
     if (this.downloadUrl) {
-      this.fileRef.delete().subscribe();
+      this.fileRef.delete().pipe(takeUntil(this.ngUnsubscribe)).subscribe();
     }
     return true;
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 
   // @HostListener('window:beforeunload', ['$event'])

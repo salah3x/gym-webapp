@@ -1,17 +1,18 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { mergeMap, take } from 'rxjs/operators';
+import { mergeMap, take, takeUntil } from 'rxjs/operators';
 import { MatSnackBar, MatSlideToggle } from '@angular/material';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.css']
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent implements OnInit, OnDestroy {
 
   constructor(private http: HttpClient,
               private auth: AngularFireAuth,
@@ -24,6 +25,7 @@ export class UsersComponent implements OnInit {
   baseUrl = environment.production ? '/api/superadmin/' :
     // 'http://localhost:5000/gym-webapp/us-central1/superadmin/api/superadmin/';
     'https://us-central1-gym-webapp.cloudfunctions.net/superadmin/api/superadmin/';
+  private ngUnsubscribe = new Subject();
 
   ngOnInit() {
     this.getUsers();
@@ -33,7 +35,8 @@ export class UsersComponent implements OnInit {
     this.users = [];
     this.auth.idToken.pipe(
       take(1),
-      mergeMap(t => this.http.post<User[]>(this.baseUrl + 'users', { token: t }))
+      mergeMap(t => this.http.post<User[]>(this.baseUrl + 'users', { token: t })),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(
       data => {
         data.forEach(u => {
@@ -58,7 +61,8 @@ export class UsersComponent implements OnInit {
     newClaims[claim] = checked;
     this.auth.idToken.pipe(
       take(1),
-      mergeMap(t => this.http.post(this.baseUrl + 'updateClaims', { token: t, email: ele.email, claims: newClaims }))
+      mergeMap(t => this.http.post(this.baseUrl + 'updateClaims', { token: t, email: ele.email, claims: newClaims })),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(
       () => this.isWorking = false,
       error => {
@@ -68,5 +72,10 @@ export class UsersComponent implements OnInit {
         this.isWorking = false;
       }
     );
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

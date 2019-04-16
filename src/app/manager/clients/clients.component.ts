@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef } from '@angular/co
 import { MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject, of, combineLatest } from 'rxjs';
-import { switchMap, map, debounceTime, tap } from 'rxjs/operators';
+import { switchMap, map, debounceTime, tap, takeUntil } from 'rxjs/operators';
 
 import { ClientWithId, Client } from 'src/app/shared/client.model';
 import { ClientService } from './client-service.service';
@@ -20,6 +20,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   displayedColumns = ['photo', 'name', 'action', 'state'];
   isLoading = false;
   isCheckingIn = false;
+  private ngUnsubscribe = new Subject();
 
   constructor(private afs: AngularFirestore,
               private snack: MatSnackBar,
@@ -73,7 +74,8 @@ export class ClientsComponent implements OnInit, OnDestroy {
           (c as any).payed = this.service.hasPayed(c.pack.idSubscription);
         });
         return data;
-      })
+      }),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(data => {
       this.clients = data;
       this.isLoading = false;
@@ -94,6 +96,7 @@ export class ClientsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.searchTerm.unsubscribe();
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

@@ -4,8 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { Observable, combineLatest } from 'rxjs';
-import { map, tap, switchMap } from 'rxjs/operators';
+import { Observable, combineLatest, Subject } from 'rxjs';
+import { map, tap, switchMap, takeUntil } from 'rxjs/operators';
 
 import { Client, ClientWithId, Pack, Subscription, Payment } from 'src/app/shared/client.model';
 import { PaymentAddComponent } from './payment-add/payment-add.component';
@@ -26,6 +26,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   isAdmin = false;
   payments: Observable<Payment[]>;
   displayedColumns = ['date', 'price', 'note', 'by'];
+  private ngUnsubscribe = new Subject();
 
   constructor(private route: ActivatedRoute,
               private afs: AngularFirestore,
@@ -38,7 +39,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.service.i18n = this.i18n;
-    this.auth.idTokenResult.subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
+    this.auth.idTokenResult
+      .pipe(takeUntil(this.ngUnsubscribe))
+      .subscribe(r => r ? r.claims ? this.isAdmin = r.claims.admin : false : false);
     this.route.params.pipe(
       // Set id to undefined to rerender the app-check-ins component
       tap(() => this.client && (this.client.id = undefined)),
@@ -82,7 +85,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ),
           map(ps => ps.sort((a, b) => b.date.toDate().getTime() - a.date.toDate().getTime()))
         );
-      })
+      }),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(
       c => {
         this.isLoading = false;
@@ -127,5 +131,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.titleService.setTitle(this.titleService.getTitle().split(' | ')[0]);
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

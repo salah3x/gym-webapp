@@ -1,11 +1,11 @@
-import { Component, OnInit, Inject, LOCALE_ID, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, Inject, LOCALE_ID, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { ChartOptions, ChartDataSets } from 'chart.js';
 import { Label } from 'ng2-charts';
 import { Subject, combineLatest } from 'rxjs';
-import { debounceTime, switchMap, map, tap } from 'rxjs/operators';
+import { debounceTime, switchMap, map, tap, takeUntil } from 'rxjs/operators';
 
 import { ChargeAddComponent } from './charge-add/charge-add.component';
 import { Payment, Charge } from 'src/app/shared/client.model';
@@ -16,7 +16,7 @@ import { ListViewComponent } from './list-view/list-view.component';
   templateUrl: './charges-payments.component.html',
   styleUrls: ['./charges-payments.component.css']
 })
-export class ChargesPaymentsComponent implements OnInit {
+export class ChargesPaymentsComponent implements OnInit, OnDestroy {
 
   @ViewChild('i18n') public i18n: ElementRef;
   monthToShow = 6;
@@ -43,6 +43,7 @@ export class ChargesPaymentsComponent implements OnInit {
   };
   barChartLabels: Label[] = [];
   barChartData: ChartDataSets[];
+  private ngUnsubscribe = new Subject();
 
   constructor(private dialog: MatDialog,
               private afs: AngularFirestore,
@@ -81,7 +82,8 @@ export class ChargesPaymentsComponent implements OnInit {
             return arr;
           })
         )
-      ))
+      )),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(data => {
       this.barChartData[0].data = data[0];
       this.barChartData[1].data = data[1];
@@ -142,5 +144,10 @@ export class ChargesPaymentsComponent implements OnInit {
 
   getMonth(date: Date): string {
     return date.toLocaleString(this.locale, { month: 'short', year: 'numeric' });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

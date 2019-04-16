@@ -1,8 +1,8 @@
-import { Component, OnInit, Input, ViewChild, ElementRef, Inject, LOCALE_ID } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, ElementRef, Inject, LOCALE_ID, OnDestroy } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Subject } from 'rxjs';
-import { switchMap, debounceTime } from 'rxjs/operators';
+import { switchMap, debounceTime, takeUntil } from 'rxjs/operators';
 import 'cal-heatmap';
 
 import { CheckIn } from 'src/app/shared/client.model';
@@ -13,7 +13,7 @@ import { MatSnackBar } from '@angular/material';
   templateUrl: './check-ins.component.html',
   styleUrls: ['./check-ins.component.css']
 })
-export class CheckInsComponent implements OnInit {
+export class CheckInsComponent implements OnInit, OnDestroy {
 
   @ViewChild('i18n') public i18n: ElementRef;
   @Input() id: string;
@@ -23,6 +23,7 @@ export class CheckInsComponent implements OnInit {
   startDate = new Subject<Date>();
   isLoading = false;
   @ViewChild('c') calendar: ElementRef;
+  private ngUnsubscribe = new Subject();
 
   constructor(private afs: AngularFirestore,
               private snack: MatSnackBar,
@@ -43,7 +44,8 @@ export class CheckInsComponent implements OnInit {
         return this.afs.collection<CheckIn>(`clients/${this.id}/checkins`, ref =>
           ref.where('date', '>=', startTimestamp).where('date', '<=', endTimestamp)
         ).valueChanges();
-      })
+      }),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(checkins => {
       const d = {};
       checkins.forEach(c => d[c.date.seconds] = 1);
@@ -95,5 +97,10 @@ export class CheckInsComponent implements OnInit {
     this.cal.previous();
     this.startDate.next(this.curentStartDate);
     this.calendar.nativeElement.scrollLeft = 0;
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

@@ -1,9 +1,9 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { map, take } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { map, take, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
 
 import { Pack, Subscription, PackWithId } from 'src/app/shared/client.model';
 import { PackAddComponent } from './pack-add/pack-add.component';
@@ -13,12 +13,13 @@ import { PackAddComponent } from './pack-add/pack-add.component';
   templateUrl: './packs.component.html',
   styleUrls: ['./packs.component.css']
 })
-export class PacksComponent implements OnInit {
+export class PacksComponent implements OnInit, OnDestroy {
 
   @ViewChild('i18n') public i18n: ElementRef;
   packs: PackWithId[];
   subscriptions: Observable<Subscription[]>;
   displayedColumns: string[] = ['name', 'subscriberIds'];
+  private ngUnsubscribe = new Subject();
 
   constructor(private afs: AngularFirestore,
               private dialog: MatDialog,
@@ -31,7 +32,8 @@ export class PacksComponent implements OnInit {
         const data = a.payload.doc.data() as Pack;
         const id = a.payload.doc.id;
         return { id, ...data } as PackWithId;
-      }))
+      })),
+      takeUntil(this.ngUnsubscribe)
     ).subscribe(
       data => this.packs = data,
       () => this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 }));
@@ -69,5 +71,10 @@ export class PacksComponent implements OnInit {
       return `<i>${this.i18n.nativeElement.childNodes[5].textContent}</i>`;
     }
     return this.sanitizer.bypassSecurityTrustHtml(text.replace(/\n/g, '<br>'));
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

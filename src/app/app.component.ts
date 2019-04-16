@@ -1,22 +1,25 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { Router } from '@angular/router';
 import {AngularFireAuth} from '@angular/fire/auth';
 import { MatDialog, MatSnackBar, MatSidenav } from '@angular/material';
 import { SigninComponent } from './signin/signin.component';
 import { SidenavService } from './sidenav.service';
 import { AuthGuardService } from './shared/auth-guard.service';
+import { takeUntil } from 'rxjs/operators';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, OnDestroy {
 
   isAuthenticated: boolean;
   claims: any;
   @ViewChild('sidenav') public sideNav: MatSidenav;
   @ViewChild('i18n') public i18n: ElementRef;
+  private ngUnsubscribe = new Subject();
 
   constructor(public router: Router,
               public auth: AngularFireAuth,
@@ -27,8 +30,8 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.guard.i18n = this.i18n;
-    this.auth.authState.subscribe(value => this.isAuthenticated = value != null);
-    this.auth.idTokenResult.subscribe(r => {
+    this.auth.authState.pipe(takeUntil(this.ngUnsubscribe)).subscribe(value => this.isAuthenticated = value != null);
+    this.auth.idTokenResult.pipe(takeUntil(this.ngUnsubscribe)).subscribe(r => {
       r ? this.claims = r.claims : this.claims = [];
     });
     this.sidenavService.setSideNav(this.sideNav);
@@ -47,5 +50,10 @@ export class AppComponent implements OnInit {
 
   hasClaim(claim: string) {
     return this.claims[claim];
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }
