@@ -97,8 +97,23 @@ export class ClientAddComponent implements OnInit {
       .set(this.afs.doc<Client>(`clients/${clientId}`).ref, client)
       .set(this.afs.doc<Subscription>(`packs/${client.pack.idPack}/subscriptions/${client.pack.idSubscription}`).ref,
         subscription, { merge: true });
-    if (payment.price) {
-      batch.set(this.afs.doc<Payment>(`payments/${this.afs.createId()}`).ref, payment);
+    if (f.value.subsInfo.pack.idSubscription === 'new') {
+      batch.set(this.afs.doc<Payment>(`payments/${this.afs.createId()}`).ref, {
+        idClient: clientId,
+        idSubscription: client.pack.idSubscription,
+        price: this.selectedPrice - (client.insurance ? 100 : 0),
+        date: client.registrationDate,
+        note: 'subscription'
+      });
+    }
+    if (client.insurance) {
+      batch.set(this.afs.doc<Payment>(`payments/${this.afs.createId()}`).ref, {
+        idClient: clientId,
+        idSubscription: client.pack.idSubscription,
+        price: 100,
+        date: client.registrationDate,
+        note: 'insurance'
+      });
     }
     batch.commit()
       .then(() => {

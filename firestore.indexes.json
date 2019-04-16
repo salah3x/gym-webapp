@@ -5,40 +5,16 @@
       "queryScope": "COLLECTION",
       "fields": [
         {
-          "fieldPath": "idClient",
-          "order": "ASCENDING"
-        },
-        {
-          "fieldPath": "date",
-          "order": "DESCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "payments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
           "fieldPath": "idSubscription",
           "order": "ASCENDING"
         },
         {
-          "fieldPath": "date",
-          "order": "ASCENDING"
-        }
-      ]
-    },
-    {
-      "collectionGroup": "payments",
-      "queryScope": "COLLECTION",
-      "fields": [
-        {
-          "fieldPath": "idSubscription",
+          "fieldPath": "note",
           "order": "ASCENDING"
         },
         {
           "fieldPath": "date",
-          "order": "DESCENDING"
+          "order": "ASCENDING"
         }
       ]
     }

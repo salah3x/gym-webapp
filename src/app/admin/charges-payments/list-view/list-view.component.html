@@ -28,13 +28,18 @@
     <ng-container matColumnDef="note">
       <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDescription"> Description </th>
       <td mat-cell *matCellDef="let element">
-        {{element.note}}
+        <ng-container *ngIf="element.note === 'subscription'" i18n="@@a-cList-pDescription-s">
+          Subscription fee
+        </ng-container>
+        <ng-container *ngIf="element.note === 'insurance'" i18n="@@a-cList-pDescription-i">
+          Insurance fee
+        </ng-container>
       </td>
     </ng-container>
     <ng-container matColumnDef="client">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let element" i18n="@@a-cList-pPayedBy">
-          Payed by <a matTooltip="View profile" i18n-matTooltip="@@m-c-profile" (click)="dialogRef.close()"
+        Payed by <a matTooltip="View profile" i18n-matTooltip="@@m-c-profile" (click)="dialogRef.close()"
           [routerLink]="['/manager', 'clients', element.idClient]">{{element.idClient}}</a>
       </td>
     </ng-container>

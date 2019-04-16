@@ -35,7 +35,7 @@ export class PaymentAddComponent implements OnInit {
           idSubscription: this.data.pack.idSubscription,
           price: p.price,
           date: firestore.Timestamp.fromDate(new Date()),
-          note: 'Registration fee'
+          note: 'subscription'
         }).then(() => {
           this.loading = false;
           this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
@@ -55,7 +55,7 @@ export class PaymentAddComponent implements OnInit {
           idSubscription: this.data.pack.idSubscription,
           price: 100,
           date: firestore.Timestamp.fromDate(new Date()),
-          note: 'Insurance  fee'
+          note: 'insurance'
         }).update(this.afs.doc(`clients/${this.data.id}`).ref, { insurance: true })
         .commit()
         .then(() => {

@@ -64,18 +64,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
       // payments are either made by the client or by someone else in the same subscription
       tap(c => {
         this.payments = combineLatest(
-          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', c.id)
-            .orderBy('date', 'desc')).valueChanges(),
-          this.afs.collection<Payment>('payments', ref => ref.where('idSubscription', '==', c.pack.idSubscription)
-          .orderBy('date', 'desc')).valueChanges()
-          .pipe(map(ps => ps.filter(p => p.note.toLowerCase().search('registration') !== -1)))
+          this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', c.id)).snapshotChanges(),
+          this.afs.collection<Payment>('payments', ref => ref
+            .where('idSubscription', '==', c.pack.idSubscription)
+            .where('note', '==', 'subscription')).snapshotChanges()
         ).pipe(
           map(list => {
             const [first, second] = list;
             return first.concat(second);
           }),
-          map(array => Array.from(new Set(array.map(item => item.date.seconds)))
-            .map(seconds => array.find(item => item.date.seconds === seconds))
+          map(array => Array.from(new Set(array.map(item => item.payload.doc.id)))
+            .map(id => array.find(item => item.payload.doc.id === id))
+          ),
+          map(actions => actions
+            .map(a => a.payload.doc.data())
           )
         );
       })
