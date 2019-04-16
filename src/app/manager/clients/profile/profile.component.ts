@@ -62,6 +62,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       }),
       // Get all payments of this client (for the past year)
       // payments are either made by the client or by someone else in the same subscription
+      // Order the list by date
       tap(c => {
         this.payments = combineLatest(
           this.afs.collection<Payment>('payments', ref => ref.where('idClient', '==', c.id)).snapshotChanges(),
@@ -78,7 +79,8 @@ export class ProfileComponent implements OnInit, OnDestroy {
           ),
           map(actions => actions
             .map(a => a.payload.doc.data())
-          )
+          ),
+          map(ps => ps.sort((a, b) => b.date.toDate().getTime() - a.date.toDate().getTime()))
         );
       })
     ).subscribe(
