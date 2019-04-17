@@ -1,6 +1,8 @@
-# Gym Manager [![Build Status](https://travis-ci.org/salah3x/gym-webapp.svg?branch=master)](https://travis-ci.org/salah3x/gym-webapp)
+# Gym Manager ![GitHub release](https://img.shields.io/github/release/salah3x/gym-webapp.svg?color=%23FF5252) [![Build Status](https://travis-ci.org/salah3x/gym-webapp.svg?branch=master)](https://travis-ci.org/salah3x/gym-webapp) ![David](https://img.shields.io/david/salah3x/gym-webapp.svg) ![GitHub](https://img.shields.io/github/license/salah3x/gym-webapp.svg?color=%232196F3)
 
-This is a webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
+
+
+ Gym Manager is webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
 
 ## Modules/Features
 
@@ -44,14 +46,6 @@ The superadmin is only responsible for managing users and roles (access control)
 ## Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/gym-webapp` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
 ## Deployment
 
