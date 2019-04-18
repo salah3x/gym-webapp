@@ -1,6 +1,17 @@
 {
-  "name": "functions",
-  "version": "0.3.0",
+  "name": "gym-webapp-backend",
+  "version": "0.3.1",
+  "description": "A backend cloud-functions for gym-webapp",
+  "author": {
+    "name": "Salah E. Loukili",
+    "email": "salah.loukili@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salah3x/gym-webapp/tree/master/functions"
+  },
+  "homepage": "http://gym-webapp.firebaseapp.com/api",
   "scripts": {
     "lint": "tslint --project tsconfig.json",
     "build": "tsc",

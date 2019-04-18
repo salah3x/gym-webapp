@@ -1,6 +1,17 @@
 {
   "name": "gym-webapp",
-  "version": "0.3.0",
+  "version": "0.3.1",
+  "description": "A webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.",
+  "author": {
+    "name": "Salah E. Loukili",
+    "email": "salah.loukili@gmail.com"
+  },
+  "license": "GPL-3.0",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/salah3x/gym-webapp"
+  },
+  "homepage": "http://gym-webapp.firebaseapp.com",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
