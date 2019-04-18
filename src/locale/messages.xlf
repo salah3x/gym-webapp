@@ -1421,6 +1421,20 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="m-c-p-checkins-session" datatype="html">
+        <source>session</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-checkins-sessions" datatype="html">
+        <source>sessions</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/check-ins/check-ins.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="s-menuItem1" datatype="html">
         <source>Users</source>
         <context-group purpose="location">

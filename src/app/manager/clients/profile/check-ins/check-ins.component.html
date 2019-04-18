@@ -6,9 +6,11 @@
 i18n-matTooltip="@@a-c-next" matTooltip="Next month">
   <mat-icon>arrow_forward</mat-icon>
 </button>
-<mat-progress-spinner *ngIf="isLoading" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
+<mat-progress-spinner *ngIf="isLoading" [diameter]="25" mode="indeterminate"></mat-progress-spinner>
 <div class="container" id="cal-heatmap" #c></div>
 <!-- This hidden section is for xi18n command, translated text will be used in typescript -->
 <div class="translation" #i18n>
   <p i18n="@@m-c-p-checkins-msg1">Failed getting training sessions data</p>
+  <p i18n="@@m-c-p-checkins-session">session</p>
+  <p i18n="@@m-c-p-checkins-sessions">sessions</p>
 </div>

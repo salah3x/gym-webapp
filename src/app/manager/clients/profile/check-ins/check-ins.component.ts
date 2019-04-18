@@ -72,7 +72,7 @@ export class CheckInsComponent implements OnInit, OnDestroy {
         legend: [1, 2, 3, 4],
         legendColors: ['#B9A0FB', '#1B0063'],
         displayLegend: false,
-        itemName: 'session',
+        itemName: [this.i18n.nativeElement.childNodes[1].textContent, this.i18n.nativeElement.childNodes[2].textContent],
         animationDuration: 300,
         onComplete: () => setTimeout(() => this.calendar.nativeElement.scrollLeft = 1500, 100)
       });
