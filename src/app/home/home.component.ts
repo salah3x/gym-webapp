@@ -7,11 +7,12 @@ import { Component, OnInit, OnDestroy, Renderer2, ElementRef } from '@angular/co
 })
 export class HomeComponent implements OnInit, OnDestroy {
 
+  next = 2;
   constructor(private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit() {
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
-      .style.backgroundImage = 'url("/assets/empty-gym.jpg")';
+      .style.backgroundImage = 'url("/assets/background1.jpg';
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
       .style.backgroundPosition = 'center';
     (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
@@ -20,6 +21,18 @@ export class HomeComponent implements OnInit, OnDestroy {
       .style.background = '#00000090';
     (this.renderer.selectRootElement('.footer', true) as HTMLElement)
       .style.visibility = 'hidden';
+    this.changeBackground();
+  }
+
+  changeBackground() {
+    setTimeout(() => {
+      if (this.next === 6) {
+        this.next = 1;
+      }
+      (this.renderer.selectRootElement('mat-sidenav-content', true) as HTMLElement)
+      .style.backgroundImage = `url("/assets/background${this.next++}.jpg")`;
+      this.changeBackground();
+    }, 10000);
   }
 
   ngOnDestroy() {
