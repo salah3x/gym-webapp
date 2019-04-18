@@ -30,3 +30,9 @@ th.mat-header-cell {
     right: 25px;
     bottom: 65px;
 }
+
+mat-progress-spinner {
+    margin-left: calc(50% - 25px);
+    margin-bottom: 20px;
+    margin-top: 40px;
+}

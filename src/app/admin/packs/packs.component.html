@@ -2,6 +2,7 @@
   i18n-matTooltip="@@a-p-newBtn" matTooltip="Add a new pack">
   <mat-icon>add</mat-icon>
 </button>
+<mat-progress-spinner *ngIf="isLoading" [diameter]="40" mode="indeterminate"></mat-progress-spinner>
 <p class="header" *ngIf="packs && !packs.length" i18n="@@a-p-empty">No packs have been added</p>
 <p class="header" *ngIf="packs && packs.length" i18n="@@a-p-list">List of packs</p>
 <mat-accordion *ngIf="packs">

@@ -18,6 +18,7 @@ export class PacksComponent implements OnInit, OnDestroy {
   @ViewChild('i18n') public i18n: ElementRef;
   packs: PackWithId[];
   subscriptions: Observable<Subscription[]>;
+  isLoading = true;
   displayedColumns: string[] = ['name', 'subscriberIds'];
   private ngUnsubscribe = new Subject();
 
@@ -35,8 +36,14 @@ export class PacksComponent implements OnInit, OnDestroy {
       })),
       takeUntil(this.ngUnsubscribe)
     ).subscribe(
-      data => this.packs = data,
-      () => this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 }));
+      data => {
+        this.packs = data;
+        this.isLoading = false;
+      },
+      () => {
+        this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
+        this.isLoading = false;
+      });
   }
 
   openNewPackDialog() {
