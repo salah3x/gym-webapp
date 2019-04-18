@@ -25,6 +25,15 @@ export class ChargesPaymentsComponent implements OnInit, OnDestroy {
   startDate$ = new Subject<{ start: Date, end: Date }>();
   barChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: 'MAD',
+          fontFamily: 'Roboto'
+        }
+      }]
+    },
     legend: {
       onHover(e) {
          (e.target as any).style.cursor = 'pointer';
