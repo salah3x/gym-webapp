@@ -28,8 +28,6 @@ Managers can:
 
 The superadmin is only responsible for managing users and roles (access control).
 
-***
-
 ## Development server (angular cli)
 * First clone the repo: `git clone git@github.com:salah3x/gym-webapp.git`
 * Install dependencies for the web app (assuming `node`, `npm` and `ng` are already installed): `cd gym-webapp && npm install`
