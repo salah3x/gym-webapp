@@ -1,8 +1,8 @@
-# Gym Manager ![GitHub release](https://img.shields.io/github/release/salah3x/gym-webapp.svg?color=%23FF5252) [![Build Status](https://travis-ci.org/salah3x/gym-webapp.svg?branch=master)](https://travis-ci.org/salah3x/gym-webapp) ![David](https://img.shields.io/david/salah3x/gym-webapp.svg) ![GitHub](https://img.shields.io/github/license/salah3x/gym-webapp.svg?color=%232196F3)
+# Gym Manager ![GitHub release](https://img.shields.io/github/release/salah3x/gym-webapp.svg?color=%23f441be) [![Build Status](https://travis-ci.org/salah3x/gym-webapp.svg?branch=master)](https://travis-ci.org/salah3x/gym-webapp) ![David](https://img.shields.io/david/salah3x/gym-webapp.svg) ![GitHub](https://img.shields.io/github/license/salah3x/gym-webapp.svg?color=%232196F3)
 
 
 
- Gym Manager is webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
+ Gym Manager is a web app for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.
 
 ## Modules/Features
 
@@ -57,7 +57,7 @@ Run `ng build` to build the project. The build artifacts will be stored in the `
 
 ## Internationalization
 
-The webapp has support for i18n, it already supports English and French.
+The web app has support for i18n, it already supports English and French.
 
 By default the build command generates the english version of the app, run `npm run start:fr` for a dev server or `npm run build:fr-prod` to build the french version for production.
 
