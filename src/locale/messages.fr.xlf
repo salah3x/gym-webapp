@@ -6,11 +6,11 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
@@ -49,11 +49,11 @@
       </trans-unit>
       <trans-unit id="signInReset" datatype="html">
         <source>
-      Reset password
-    </source>
+        Reset password
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <target>Réinitialiser le mot de passe</target>
       </trans-unit>
@@ -689,7 +689,7 @@
         <source>Add a new pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
@@ -701,7 +701,7 @@
         <source>Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">5</context>
         </context-group>
         <target>Nom</target>
       </trans-unit>
@@ -709,7 +709,7 @@
         <source>Name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">7</context>
         </context-group>
         <target>Nom est obligatoire</target>
       </trans-unit>
@@ -717,7 +717,7 @@
         <source>Price</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
         <target>Prix</target>
       </trans-unit>
@@ -725,7 +725,7 @@
         <source>Price is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <target>Prix est obligatoire</target>
       </trans-unit>
@@ -733,17 +733,17 @@
         <source>MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13</context>
         </context-group>
         <target>MAD/mois</target>
       </trans-unit>
       <trans-unit id="a-pAdd-description" datatype="html">
         <source>Description
-        <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
-      </source>
+            <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">17</context>
         </context-group>
         <target>Description
         <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
@@ -753,7 +753,7 @@
         <source>Save pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">24</context>
         </context-group>
         <target>Enregistrer le pack</target>
       </trans-unit>
@@ -761,7 +761,7 @@
         <source>Pack saved successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <target>Pack enregistré avec succès</target>
       </trans-unit>
@@ -769,7 +769,7 @@
         <source>Failed saving pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
         <target>Échec d'enregistrement du pack</target>
       </trans-unit>
@@ -777,7 +777,7 @@
         <source>No packs have been added</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
         <target>Aucun pack n'a été ajouté</target>
       </trans-unit>
@@ -785,7 +785,7 @@
         <source>List of packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
         <target>Liste des packs</target>
       </trans-unit>
@@ -793,7 +793,7 @@
         <source>Price : <x id="INTERPOLATION" equiv-text="{{p.price}}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
         <target>Prix : <x id="INTERPOLATION" equiv-text="{{p.price}}"/> MAD/mois</target>
       </trans-unit>
@@ -801,7 +801,7 @@
         <source>Subscriptions&apos; list (<x id="INTERPOLATION" equiv-text="{{(subscriptions | async)?.length}}"/>)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
         <target>Liste des abonnements (<x id="INTERPOLATION" equiv-text="{{(subscriptions | async)?.length}}"/>)</target>
       </trans-unit>
@@ -809,7 +809,7 @@
         <source> Name </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <target>Nom</target>
       </trans-unit>
@@ -817,7 +817,7 @@
         <source> Members </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <target>Membres</target>
       </trans-unit>
@@ -825,7 +825,7 @@
         <source>Delete pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <target>Supprimer le pack</target>
       </trans-unit>
@@ -833,7 +833,7 @@
         <source>Failed loading packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <target>Echec du chargement des packs</target>
       </trans-unit>
@@ -841,7 +841,7 @@
         <source>Cannot delete essential packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <target>Impossible de supprimer les packs essentiels</target>
       </trans-unit>
@@ -849,7 +849,7 @@
         <source>Pack deleted successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <target>Pack supprimé avec succès</target>
       </trans-unit>
@@ -857,7 +857,7 @@
         <source>Deletion failed, pack has active subscriptions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <target>La suppression a échoué, le pack a des abonnements actifs</target>
       </trans-unit>
@@ -865,7 +865,7 @@
         <source>Are you sure ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
         <target>Êtes-vous sûr ?</target>
       </trans-unit>
@@ -873,7 +873,7 @@
         <source>No description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">60</context>
         </context-group>
         <target>Aucune description</target>
       </trans-unit>
@@ -881,7 +881,7 @@
         <source>Add a new charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
@@ -961,7 +961,7 @@
         <source>Save charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <target>Enregistrer la charge</target>
       </trans-unit>
@@ -969,7 +969,7 @@
         <source>Charge saved successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">41</context>
         </context-group>
         <target>Charger enregistré avec succès</target>
       </trans-unit>
@@ -977,7 +977,7 @@
         <source>Failed saving charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">42</context>
         </context-group>
         <target>Échec de l'enregistrement de la charge</target>
       </trans-unit>
@@ -1373,7 +1373,7 @@
         <source>Add payment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
         <target>Ajouter un paiement</target>
       </trans-unit>

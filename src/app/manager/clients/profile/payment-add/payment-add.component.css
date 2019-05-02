@@ -14,3 +14,7 @@ mat-progress-spinner {
     margin-top: 20px;
     margin-left: calc(50% - 15px);
 }
+
+.actions {
+    margin: 30px 0px 20px 0px;
+}

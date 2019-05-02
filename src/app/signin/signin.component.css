@@ -2,10 +2,14 @@ mat-form-field {
   width: 100%;
 }
 
-.mat-dialog-actions {
-  width: 100%;
+.actions {
+  margin: 10px 0px 10px 0px;
 }
 
-button {
-  margin-bottom: 10px;
+mat-progress-spinner {
+  align-self: center;
+}
+
+.mat-dialog-title {
+  text-align: center;
 }

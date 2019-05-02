@@ -1,8 +1,11 @@
-.header {
+.mat-dialog-title {
     text-align: center;
 }
 
 mat-spinner {
-    margin-top: 10px;
-    margin-left: calc(50% - 15px);
+    align-self: center;
+}
+
+.actions {
+    margin-bottom: 20px;
 }

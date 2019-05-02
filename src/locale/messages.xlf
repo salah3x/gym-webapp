@@ -6,11 +6,11 @@
         <source>Login</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
@@ -45,11 +45,11 @@
       </trans-unit>
       <trans-unit id="signInReset" datatype="html">
         <source>
-      Reset password
-    </source>
+        Reset password
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/signin/signin.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="signInMsg1" datatype="html">
@@ -615,7 +615,7 @@
         <source>Add a new pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
@@ -626,163 +626,163 @@
         <source>Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-error1" datatype="html">
         <source>Name is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-price" datatype="html">
         <source>Price</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-error2" datatype="html">
         <source>Price is required</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">13</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-priceUnit" datatype="html">
         <source>MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">14</context>
+          <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-description" datatype="html">
         <source>Description
-        <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
-      </source>
+            <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-saveBtn" datatype="html">
         <source>Save pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">24</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-msg1" datatype="html">
         <source>Pack saved successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-msg2" datatype="html">
         <source>Failed saving pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">34</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-empty" datatype="html">
         <source>No packs have been added</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">5</context>
+          <context context-type="linenumber">6</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-list" datatype="html">
         <source>List of packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-price" datatype="html">
         <source>Price : <x id="INTERPOLATION" equiv-text="{{p.price}}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">11</context>
+          <context context-type="linenumber">12</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subList" datatype="html">
         <source>Subscriptions&apos; list (<x id="INTERPOLATION" equiv-text="{{(subscriptions | async)?.length}}"/>)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">22</context>
+          <context context-type="linenumber">23</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subName" datatype="html">
         <source> Name </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">26</context>
+          <context context-type="linenumber">27</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subMembers" datatype="html">
         <source> Members </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-deleteBtn" datatype="html">
         <source>Delete pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg1" datatype="html">
         <source>Failed loading packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg2" datatype="html">
         <source>Cannot delete essential packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg3" datatype="html">
         <source>Pack deleted successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg4" datatype="html">
         <source>Deletion failed, pack has active subscriptions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">57</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg5" datatype="html">
         <source>Are you sure ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">58</context>
+          <context context-type="linenumber">59</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg6" datatype="html">
         <source>No description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-c-addBtn" datatype="html">
         <source>Add a new charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">1</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charges-payments.component.html</context>
@@ -852,21 +852,21 @@
         <source>Save charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cAdd-msg1" datatype="html">
         <source>Charge saved successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">39</context>
+          <context context-type="linenumber">41</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cAdd-msg2" datatype="html">
         <source>Failed saving charge</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/charge-add/charge-add.component.html</context>
-          <context context-type="linenumber">40</context>
+          <context context-type="linenumber">42</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-closeBtn" datatype="html">
@@ -1222,7 +1222,7 @@
         <source>Add payment</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/payment-add/payment-add.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">11</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-addP-msg1" datatype="html">

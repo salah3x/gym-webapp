@@ -6,12 +6,12 @@
       Insurance
     </mat-radio-button>
   </mat-radio-group>
+  <div class="actions">
+    <mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
+    <button *ngIf="!loading" mat-raised-button color="primary" (click)="addPayment()" i18n="@@m-c-p-addP-insurance">
+      Add payment</button>
+  </div>
 </div>
-<div mat-dialog-actions>
-  <button [disabled]="loading" mat-raised-button color="primary" (click)="addPayment()"
-    i18n="@@m-c-p-addP-insurance">Add payment</button>
-</div>
-<mat-progress-spinner *ngIf="loading" [diameter]="30" mode="indeterminate"></mat-progress-spinner>
 <!-- This hidden section is for xi18n command, translated text will be used in typescript -->
 <div class="translation" #i18n>
   <p i18n="@@m-c-p-addP-msg1">Payment Added successfully</p>
