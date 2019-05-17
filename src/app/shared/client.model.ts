@@ -1,64 +1,68 @@
 import { firestore } from 'firebase/app';
 
 export interface Client {
-    name: {
-        first: string;
-        first_lowercase: string; // for quering in firestore
-        last: string;
-        last_lowercase: string; // for quering in firestore
-    };
-    registrationDate: firestore.Timestamp;
-    sex: string;
-    photo?: string;
-    cin?: string;
-    phone?: string;
-    address?: string;
-    note?: string;
-    insurance: boolean;
-    pack: {
-        idPack: string;
-        idSubscription: string;
-    };
+  name: {
+    first: string;
+    first_lowercase: string; // for quering in firestore
+    last: string;
+    last_lowercase: string; // for quering in firestore
+  };
+  registrationDate: firestore.Timestamp;
+  sex: string;
+  photo?: string;
+  cin?: string;
+  phone?: string;
+  address?: string;
+  note?: string;
+  insurance: boolean;
+  pack: {
+    idPack: string;
+    idSubscription: string;
+  };
 }
 
 export interface ClientWithId extends Client {
-    id: string;
+  id: string;
 }
 
 export interface Pack {
-    name: string;
-    price: number;
-    description?: string;
+  name: string;
+  price: number;
+  description?: string;
 }
 
 export interface PackWithId extends Pack {
-    id: string;
+  id: string;
 }
 
 export interface Subscription {
-    name?: string;
-    subscriberIds: string[];
+  name?: string;
+  subscriberIds: string[];
 }
 
 export interface SubscriptionWithId extends Subscription {
-    id: string;
+  id: string;
 }
 
 export interface Payment {
-    date: firestore.Timestamp;
-    price: number;
-    idSubscription: string;
-    idClient: string;
-    note?: string;
+  date: firestore.Timestamp;
+  price: number;
+  idSubscription: string;
+  idClient: string;
+  note?: string;
 }
 
 export interface CheckIn {
-    date: firestore.Timestamp;
+  date: firestore.Timestamp;
 }
 
 export interface Charge {
-    name: string;
-    cost: number;
-    date: firestore.Timestamp;
-    description: string;
+  name: string;
+  cost: number;
+  date: firestore.Timestamp;
+  description: string;
+}
+
+export interface ChargeWitId extends Charge {
+  id: string;
 }

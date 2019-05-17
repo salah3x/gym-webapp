@@ -18,6 +18,7 @@
     "start:fr": "ng serve --configuration=fr",
     "build": "ng build",
     "build:fr": "ng build --prod --i18n-locale=fr --i18n-format=xlf --i18n-file=src/locale/messages.fr.xlf --output-path=dist/gym-webapp/fr --baseHref=/ --i18n-missing-translation=error",
+    "extract": "ng xi18n --output-path locale",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
