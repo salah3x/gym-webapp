@@ -1,8 +1,17 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { Pack } from 'src/app/shared/client.model';
+import {
+  Component,
+  OnInit,
+  ViewChild,
+  ElementRef,
+  Inject
+} from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
+
+import { Pack } from 'src/app/shared/client.model';
 
 @Component({
   selector: 'app-pack-add',
@@ -10,28 +19,56 @@ import { MatDialogRef, MatSnackBar } from '@angular/material';
   styleUrls: ['./pack-add.component.css']
 })
 export class PackAddComponent implements OnInit {
-
+  editMode: boolean;
   isLoading = false;
+  @ViewChild('f') form: NgForm;
   @ViewChild('i18n') public i18n: ElementRef;
+  private ngUnsubscribe = new Subject();
 
-  constructor(private afs: AngularFirestore,
-              private dialogRef: MatDialogRef<PackAddComponent>,
-              private snack: MatSnackBar) { }
+  constructor(
+    private afs: AngularFirestore,
+    private dialogRef: MatDialogRef<PackAddComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: { id: string },
+    private snack: MatSnackBar
+  ) {}
 
   ngOnInit() {
+    this.editMode = this.data && !!this.data.id;
+    if (this.editMode) {
+      this.afs
+        .doc(`packs/${this.data.id}`)
+        .valueChanges()
+        .pipe(takeUntil(this.ngUnsubscribe))
+        .subscribe(p => this.form.setValue(p));
+    }
   }
 
   onSubmit(f: NgForm) {
     this.isLoading = true;
     const pack: Pack = f.value;
-    this.afs.collection<Pack>('packs').add(pack)
-    .then(() => {
-      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', { duration: 3000 });
+    let p: Promise<any>;
+    if (this.editMode) {
+      p = this.afs.doc<Pack>(`packs/${this.data.id}`).update(pack);
+    } else {
+      p = this.afs.collection<Pack>('packs').add(pack);
+    }
+
+    p.then(() => {
+      this.snack.open(this.i18n.nativeElement.childNodes[0].textContent, 'X', {
+        duration: 3000
+      });
       this.isLoading = false;
       this.dialogRef.close();
     }).catch(() => {
-      this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', { duration: 3000 });
+      this.snack.open(this.i18n.nativeElement.childNodes[1].textContent, 'X', {
+        duration: 3000
+      });
       this.isLoading = false;
     });
+  }
+
+  ngOnDestroy() {
+    this.ngUnsubscribe.next();
+    this.ngUnsubscribe.complete();
   }
 }

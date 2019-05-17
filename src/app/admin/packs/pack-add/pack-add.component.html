@@ -1,34 +1,56 @@
-<p mat-dialog-title i18n="@@a-p-newBtn">Add a new pack</p>
+<p mat-dialog-title>
+  <ng-container *ngIf="!editMode" i18n="@@a-p-newBtn">
+    Add a new pack
+  </ng-container>
+  <ng-container *ngIf="editMode" i18n="@@a-p-editBtn"> Edit pack </ng-container>
+</p>
 <div mat-dialog-content>
-    <form #f="ngForm" (ngSubmit)="onSubmit(f)" fxLayout="column" fxLayoutAlign="space-around stretch">
-        <mat-form-field appearance="outline">
-          <mat-label i18n="@@a-pAdd-name">Name</mat-label>
-          <input matInput ngModel name="name" required>
-          <mat-error i18n="@@a-pAdd-error1">Name is required</mat-error>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label i18n="@@a-pAdd-price">Price</mat-label>
-          <input type="number" matInput ngModel name="price" required>
-          <mat-error i18n="@@a-pAdd-error2">Price is required</mat-error>
-          <mat-hint align="end" i18n="@@a-pAdd-priceUnit">MAD/month</mat-hint>
-          <mat-icon matSuffix>attach_money</mat-icon>
-        </mat-form-field>
-        <mat-form-field appearance="outline">
-          <mat-label i18n="@@a-pAdd-description">Description
-            <mat-icon matSuffix>description</mat-icon>
-          </mat-label>
-          <textarea matInput ngModel name="description" rows="3"></textarea>
-        </mat-form-field>
-        <div fxLayout="column" fxLayoutAlign="space-between stretch" class="actions">
-          <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
-          <button type="submit" mat-raised-button color="primary" i18n-matTooltip="@@a-pAdd-saveBtn" matTooltip="Save pack"
-            [disabled]="!f.valid" *ngIf="!isLoading">
-            <mat-icon>save_alt</mat-icon>
-          </button>
-        </div>
-      </form>
+  <form
+    #f="ngForm"
+    (ngSubmit)="onSubmit(f)"
+    fxLayout="column"
+    fxLayoutAlign="space-around stretch"
+  >
+    <mat-form-field appearance="outline">
+      <mat-label i18n="@@a-pAdd-name">Name</mat-label>
+      <input matInput ngModel name="name" required />
+      <mat-error i18n="@@a-pAdd-error1">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label i18n="@@a-pAdd-price">Price</mat-label>
+      <input type="number" matInput ngModel name="price" required />
+      <mat-error i18n="@@a-pAdd-error2">Price is required</mat-error>
+      <mat-hint align="end" i18n="@@a-pAdd-priceUnit">MAD/month</mat-hint>
+      <mat-icon matSuffix>attach_money</mat-icon>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label i18n="@@a-pAdd-description"
+        >Description
+        <mat-icon matSuffix>description</mat-icon>
+      </mat-label>
+      <textarea matInput ngModel name="description" rows="3"></textarea>
+    </mat-form-field>
+    <div
+      fxLayout="column"
+      fxLayoutAlign="space-between stretch"
+      class="actions"
+    >
+      <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
+      <button
+        type="submit"
+        mat-raised-button
+        color="primary"
+        i18n-matTooltip="@@a-pAdd-saveBtn"
+        matTooltip="Save pack"
+        [disabled]="!f.valid"
+        *ngIf="!isLoading"
+      >
+        <mat-icon>save_alt</mat-icon>
+      </button>
+    </div>
+  </form>
 </div>
-<!-- This hidden section is for xi18n command, translated text will be used typescript -->
+<!-- This hidden section is for xi18n command, translated text will be used in typescript -->
 <div class="translation" #i18n>
   <p i18n="@@a-pAdd-msg1">Pack saved successfully</p>
   <p i18n="@@a-pAdd-msg2">Failed saving pack</p>
