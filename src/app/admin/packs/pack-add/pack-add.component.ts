@@ -8,8 +8,7 @@ import {
 import { NgForm } from '@angular/forms';
 import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
-import { Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { take } from 'rxjs/operators';
 
 import { Pack } from 'src/app/shared/client.model';
 
@@ -23,7 +22,6 @@ export class PackAddComponent implements OnInit {
   isLoading = false;
   @ViewChild('f') form: NgForm;
   @ViewChild('i18n') public i18n: ElementRef;
-  private ngUnsubscribe = new Subject();
 
   constructor(
     private afs: AngularFirestore,
@@ -38,7 +36,7 @@ export class PackAddComponent implements OnInit {
       this.afs
         .doc(`packs/${this.data.id}`)
         .valueChanges()
-        .pipe(takeUntil(this.ngUnsubscribe))
+        .pipe(take(1))
         .subscribe(p => this.form.setValue(p));
     }
   }
@@ -65,10 +63,5 @@ export class PackAddComponent implements OnInit {
       });
       this.isLoading = false;
     });
-  }
-
-  ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
   }
 }

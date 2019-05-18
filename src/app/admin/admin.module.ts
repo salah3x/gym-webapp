@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
+import { HttpClientModule } from '@angular/common/http';
 import { AngularFireStorageModule } from '@angular/fire/storage';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import {
+  AngularFirestoreModule,
+  FirestoreSettingsToken
+} from '@angular/fire/firestore';
 import { ChartsModule } from 'ng2-charts';
 
 import { AdminRoutingModule } from './admin-routing.module';
@@ -29,16 +33,13 @@ import { ListViewComponent } from './charges-payments/list-view/list-view.compon
     AdminRoutingModule,
     AngularFireStorageModule,
     AngularFirestoreModule,
+    HttpClientModule,
     ChartsModule
   ],
   providers: [
     CanDeactivateClient,
     { provide: FirestoreSettingsToken, useValue: {} }
   ],
-  entryComponents: [
-    PackAddComponent,
-    ChargeAddComponent,
-    ListViewComponent
-  ]
+  entryComponents: [PackAddComponent, ChargeAddComponent, ListViewComponent]
 })
-export class AdminModule { }
+export class AdminModule {}

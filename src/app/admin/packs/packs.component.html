@@ -10,6 +10,7 @@
   <mat-icon>add</mat-icon>
 </button>
 <mat-progress-spinner
+  class="spinner"
   *ngIf="isLoading"
   [diameter]="40"
   mode="indeterminate"
@@ -34,11 +35,34 @@
       </mat-panel-description>
     </mat-expansion-panel-header>
     <div fxLayout.lt-sm="column" fxLayoutAlign="space-between center">
+      <button
+        [disabled]="
+          p.id === 'Rlt5JOspNeWlfFIJVWc0' || p.id === 'ZYQoxr3bHe8bGD3WZfCF'
+        "
+        mat-icon-button
+        type="button"
+        color="warn"
+        (click)="deletePack(p.id)"
+        i18n-matTooltip="@@a-p-deleteBtn"
+        matTooltip="Delete pack"
+      >
+        <mat-icon>delete</mat-icon>
+      </button>
+      <button
+        mat-icon-button
+        type="button"
+        color="primary"
+        (click)="editPack(p.id)"
+        i18n-matTooltip="@@a-p-editBtn"
+        matTooltip="Edit pack"
+      >
+        <mat-icon>edit</mat-icon>
+      </button>
       <p [innerHTML]="toHtml(p.description)" fxFlex="30"></p>
       <table
         mat-table
         [dataSource]="subscriptions | async"
-        class="mat-elevation-z1"
+        class="mat-elevation-z4"
         fxFlex="60"
       >
         <ng-container matColumnDef="title">
@@ -65,41 +89,38 @@
           </th>
           <td mat-cell *matCellDef="let element">
             <span *ngFor="let id of element.subscriberIds; index as i">
-              <a [routerLink]="['/manager', 'clients', id]">{{ id }}</a>
+              <a [matTooltip]="id" [routerLink]="['/manager', 'clients', id]"
+                >{{ id | slice: 0:8 }}..</a
+              >
               {{ i == element.subscriberIds.length - 1 ? '' : ' | ' }}
             </span>
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="delete">
+          <th mat-header-cell *matHeaderCellDef></th>
+          <td mat-cell *matCellDef="let element">
+            <button
+              mat-icon-button
+              type="button"
+              color="warn"
+              *ngIf="!deleting"
+              (click)="deleteSubscription(p.id, element.id)"
+              i18n-matTooltip="@@a-p-subDelete"
+              matTooltip="Delete subscription"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+            <mat-progress-spinner
+              *ngIf="deleting"
+              [diameter]="20"
+              mode="indeterminate"
+            ></mat-progress-spinner>
           </td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
       </table>
-
-      <button
-        mat-icon-button
-        type="button"
-        color="primary"
-        fxFlex="5"
-        (click)="editPack(p.id)"
-        i18n-matTooltip="@@a-p-editBtn"
-        matTooltip="Edit pack"
-      >
-        <mat-icon>edit</mat-icon>
-      </button>
-      <button
-        [disabled]="
-          p.id === 'Rlt5JOspNeWlfFIJVWc0' || p.id === 'ZYQoxr3bHe8bGD3WZfCF'
-        "
-        mat-icon-button
-        type="button"
-        color="warn"
-        fxFlex="5"
-        (click)="deletePack(p.id)"
-        i18n-matTooltip="@@a-p-deleteBtn"
-        matTooltip="Delete pack"
-      >
-        <mat-icon>delete</mat-icon>
-      </button>
     </div>
   </mat-expansion-panel>
 </mat-accordion>
@@ -111,4 +132,10 @@
   <p i18n="@@a-p-msg4">Deletion failed, pack has active subscriptions</p>
   <p i18n="@@a-p-msg5">Are you sure ?</p>
   <p i18n="@@a-p-msg6">No description</p>
+  <p i18n="@@a-p-msg7">
+    This will also delete all the members of this subscription and their data.
+    Continue?
+  </p>
+  <p i18n="@@a-p-msg8">Subscription deleted</p>
+  <p i18n="@@a-p-msg9">Failed to delete subscription</p>
 </div>

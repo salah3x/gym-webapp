@@ -686,7 +686,9 @@
         <target>Reprendre le téléchargement</target>
       </trans-unit>
       <trans-unit id="a-p-newBtn" datatype="html">
-        <source>Add a new pack</source>
+        <source>
+    Add a new pack
+  </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
           <context context-type="linenumber">2</context>
@@ -698,14 +700,14 @@
         <target>Ajouter un nouveau pack</target>
       </trans-unit>
       <trans-unit id="a-p-editBtn" datatype="html">
-        <source> Edit the pack </source>
+        <source> Edit pack </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
           <context context-type="linenumber">5</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <target>Modifier le pack</target>
       </trans-unit>
@@ -755,7 +757,7 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/pack-add/pack-add.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">28</context>
         </context-group>
         <target>Description
         <x id="START_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;mat-icon&gt;"/>description<x id="CLOSE_TAG_MAT-ICON" ctype="x-mat-icon" equiv-text="&lt;/mat-icon&gt;"/>
@@ -786,66 +788,80 @@
         <target>Échec d'enregistrement du pack</target>
       </trans-unit>
       <trans-unit id="a-p-empty" datatype="html">
-        <source>No packs have been added</source>
+        <source>
+  No packs have been added
+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
         <target>Aucun pack n'a été ajouté</target>
       </trans-unit>
       <trans-unit id="a-p-list" datatype="html">
-        <source>List of packs</source>
+        <source>
+  List of packs
+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
         <target>Liste des packs</target>
       </trans-unit>
       <trans-unit id="a-p-price" datatype="html">
-        <source>Price : <x id="INTERPOLATION" equiv-text="{{p.price}}"/> MAD/month</source>
+        <source>Price : <x id="INTERPOLATION" equiv-text="{{ p.price }}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
         <target>Prix : <x id="INTERPOLATION" equiv-text="{{p.price}}"/> MAD/mois</target>
-      </trans-unit>
-      <trans-unit id="a-p-subList" datatype="html">
-        <source>Subscriptions&apos; list (<x id="INTERPOLATION" equiv-text="{{(subscriptions | async)?.length}}"/>)</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">47</context>
-        </context-group>
-        <target>Liste des abonnements (<x id="INTERPOLATION" equiv-text="{{(subscriptions | async)?.length}}"/>)</target>
-      </trans-unit>
-      <trans-unit id="a-p-subName" datatype="html">
-        <source> Name </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">52</context>
-        </context-group>
-        <target>Nom</target>
-      </trans-unit>
-      <trans-unit id="a-p-subMembers" datatype="html">
-        <source> Members </source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">63</context>
-        </context-group>
-        <target>Membres</target>
       </trans-unit>
       <trans-unit id="a-p-deleteBtn" datatype="html">
         <source>Delete pack</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">47</context>
         </context-group>
         <target>Supprimer le pack</target>
+      </trans-unit>
+      <trans-unit id="a-p-subList" datatype="html">
+        <source>Subscriptions&apos; list (<x id="INTERPOLATION" equiv-text="{{ (subscriptions | async)?.length }}"/>)</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+        <target>Liste des abonnements (<x id="INTERPOLATION" equiv-text="{{ (subscriptions | async)?.length }}"/>)</target>
+      </trans-unit>
+      <trans-unit id="a-p-subName" datatype="html">
+        <source>Name</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+        <target>Nom</target>
+      </trans-unit>
+      <trans-unit id="a-p-subMembers" datatype="html">
+        <source>
+            Members
+          </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+        <target>Membres</target>
+      </trans-unit>
+      <trans-unit id="a-p-subDelete" datatype="html">
+        <source>Delete subscription</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">109</context>
+        </context-group>
+        <target>Supprimer abonnement</target>
       </trans-unit>
       <trans-unit id="a-p-msg1" datatype="html">
         <source>Failed loading packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">129</context>
         </context-group>
         <target>Echec du chargement des packs</target>
       </trans-unit>
@@ -853,7 +869,7 @@
         <source>Cannot delete essential packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">130</context>
         </context-group>
         <target>Impossible de supprimer les packs essentiels</target>
       </trans-unit>
@@ -861,7 +877,7 @@
         <source>Pack deleted successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">131</context>
         </context-group>
         <target>Pack supprimé avec succès</target>
       </trans-unit>
@@ -869,7 +885,7 @@
         <source>Deletion failed, pack has active subscriptions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">132</context>
         </context-group>
         <target>La suppression a échoué, le pack a des abonnements actifs</target>
       </trans-unit>
@@ -877,7 +893,7 @@
         <source>Are you sure ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">133</context>
         </context-group>
         <target>Êtes-vous sûr ?</target>
       </trans-unit>
@@ -885,9 +901,36 @@
         <source>No description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">134</context>
         </context-group>
         <target>Aucune description</target>
+      </trans-unit>
+      <trans-unit id="a-p-msg7" datatype="html">
+        <source>
+    This will also delete all the members of this subscription and their data.
+    Continue?
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+        <target>Cela supprimera également tous les membres de cet abonnement et leurs données. Continuer?</target>
+      </trans-unit>
+      <trans-unit id="a-p-msg8" datatype="html">
+        <source>Subscription deleted</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+        <target>Abonnement supprimé</target>
+      </trans-unit>
+      <trans-unit id="a-p-msg9" datatype="html">
+        <source>Failed to delete subscription</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">140</context>
+        </context-group>
+        <target>Échec de la suppression de l'abonnement</target>
       </trans-unit>
       <trans-unit id="a-c-addBtn" datatype="html">
         <source>Add a new charge</source>
@@ -1153,7 +1196,9 @@
         <target>Coût (MAD)</target>
       </trans-unit>
       <trans-unit id="a-cList-cDescription" datatype="html">
-        <source> Description </source>
+        <source>
+        Description
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
           <context context-type="linenumber">130</context>

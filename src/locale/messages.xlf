@@ -632,7 +632,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">85</context>
+          <context context-type="linenumber">57</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-pAdd-name" datatype="html">
@@ -706,7 +706,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">17</context>
+          <context context-type="linenumber">18</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-list" datatype="html">
@@ -715,28 +715,35 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-price" datatype="html">
         <source>Price : <x id="INTERPOLATION" equiv-text="{{ p.price }}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-p-deleteBtn" datatype="html">
+        <source>Delete pack</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">47</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subList" datatype="html">
         <source>Subscriptions&apos; list (<x id="INTERPOLATION" equiv-text="{{ (subscriptions | async)?.length }}"/>)</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subName" datatype="html">
         <source>Name</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">76</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-subMembers" datatype="html">
@@ -745,56 +752,80 @@
           </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">63</context>
+          <context context-type="linenumber">87</context>
         </context-group>
       </trans-unit>
-      <trans-unit id="a-p-deleteBtn" datatype="html">
-        <source>Delete pack</source>
+      <trans-unit id="a-p-subDelete" datatype="html">
+        <source>Delete subscription</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">109</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg1" datatype="html">
         <source>Failed loading packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">108</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg2" datatype="html">
         <source>Cannot delete essential packs</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">109</context>
+          <context context-type="linenumber">130</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg3" datatype="html">
         <source>Pack deleted successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">110</context>
+          <context context-type="linenumber">131</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg4" datatype="html">
         <source>Deletion failed, pack has active subscriptions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">132</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg5" datatype="html">
         <source>Are you sure ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">112</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-p-msg6" datatype="html">
         <source>No description</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
-          <context context-type="linenumber">113</context>
+          <context context-type="linenumber">134</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-p-msg7" datatype="html">
+        <source>
+    This will also delete all the members of this subscription and their data.
+    Continue?
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">135</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-p-msg8" datatype="html">
+        <source>Subscription deleted</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="a-p-msg9" datatype="html">
+        <source>Failed to delete subscription</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/admin/packs/packs.component.html</context>
+          <context context-type="linenumber">140</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-c-addBtn" datatype="html">
