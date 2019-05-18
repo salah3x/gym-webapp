@@ -1,63 +1,159 @@
-<p class="title" *ngIf="!client && !isLoading" i18n="@@m-c-p-notFound">Client not found</p>
-<div class="container" *ngIf="client" fxLayout.lt-sm="column" fxLayoutAlign="space-between center" fxLayoutGap="10px">
+<p class="title" *ngIf="!client && !isLoading" i18n="@@m-c-p-notFound">
+  Client not found
+</p>
+<div
+  class="container"
+  *ngIf="client"
+  fxLayout.lt-sm="column"
+  fxLayoutAlign="space-between center"
+  fxLayoutGap="10px"
+>
   <img class="mat-elevation-z2" *ngIf="client.url | async as url" [src]="url" />
   <div fxLayout="column">
-    <button class="action" *ngIf="isAdmin" mat-raised-button color="primary" (click)="openPaymentDialog()"
-      i18n-matTooltip="@@m-c-p-makePayment" matTooltip="Make a payment">
+    <button
+      class="action"
+      *ngIf="isAdmin"
+      mat-raised-button
+      [disabled]="isDeleting"
+      color="primary"
+      (click)="openPaymentDialog()"
+      i18n-matTooltip="@@m-c-p-makePayment"
+      matTooltip="Make a payment"
+    >
       <mat-icon>monetization_on</mat-icon>
     </button>
-    <button class="action" mat-raised-button [disabled]="isCheckingIn" color="default"
-      (click)="performCheckin(client.id)" i18n-matTooltip="@@m-c-checkIn" matTooltip="Check in">
+    <button
+      class="action"
+      mat-raised-button
+      [disabled]="isCheckingIn || isDeleting"
+      color="default"
+      (click)="performCheckin(client.id)"
+      i18n-matTooltip="@@m-c-checkIn"
+      matTooltip="Check in"
+    >
       <mat-icon>transfer_within_a_station</mat-icon>
     </button>
+    <button
+      class="action"
+      mat-raised-button
+      [disabled]="isDeleting"
+      color="warn"
+      (click)="deleteClient(client.id)"
+      i18n-matTooltip="@@m-c-delete"
+      matTooltip="Delete client"
+    >
+      <mat-icon>delete</mat-icon>
+    </button>
+    <mat-progress-spinner
+      *ngIf="isDeleting"
+      [diameter]="20"
+      mode="indeterminate"
+    ></mat-progress-spinner>
   </div>
   <div class="mat-elevation-z1 id" fxFlex="60">
-    <p class="title">{{client.name.first + ' ' + client.name.last}}</p>
-    <p><b i18n="@@m-c-p-date">Registration date : </b><i>{{client.registrationDate.toDate() | date:'longDate'}}</i></p>
+    <p class="title">{{ client.name.first + ' ' + client.name.last }}</p>
+    <p>
+      <b i18n="@@m-c-p-date">Registration date : </b
+      ><i>{{ client.registrationDate.toDate() | date: 'longDate' }}</i>
+    </p>
     <p>
       <b i18n="@@m-c-p-insurance">Insurance : </b>
       <i>
-        <ng-container *ngIf="client.insurance" i18n="@@m-c-p-insurance-yes">Yes</ng-container>
-        <ng-container *ngIf="!client.insurance" i18n="@@m-c-p-insurance-no">No</ng-container>
+        <ng-container *ngIf="client.insurance" i18n="@@m-c-p-insurance-yes"
+          >Yes</ng-container
+        >
+        <ng-container *ngIf="!client.insurance" i18n="@@m-c-p-insurance-no"
+          >No</ng-container
+        >
       </i>
     </p>
-    <p><b i18n="@@m-c-p-pack">Pack : </b><i>{{(client.pack.pack | async)?.name}}
-        (<b i18n="@@m-c-p-price">{{(client.pack.pack | async)?.price}} MAD/month</b>)</i>
-      <mat-icon *ngIf="client.payed | async as payed"
-        [matTooltip]="payed === 'yes'? i18n.childNodes[0].textContent: payed === 'no'? i18n.childNodes[1].textContent: ''"
-        [ngStyle]="{'color': payed === 'yes'? '#4CAF50': payed === 'no'? '#F44336': ''}">
-        {{payed === 'yes'? 'done': payed === 'no'? 'close': ''}}
+    <p>
+      <b i18n="@@m-c-p-pack">Pack : </b
+      ><i
+        >{{ (client.pack.pack | async)?.name }} (<b i18n="@@m-c-p-price"
+          >{{ (client.pack.pack | async)?.price }} MAD/month</b
+        >)</i
+      >
+      <mat-icon
+        *ngIf="client.payed | async as payed"
+        [matTooltip]="
+          payed === 'yes'
+            ? i18n.childNodes[0].textContent
+            : payed === 'no'
+            ? i18n.childNodes[1].textContent
+            : ''
+        "
+        [ngStyle]="{
+          color: payed === 'yes' ? '#4CAF50' : payed === 'no' ? '#F44336' : ''
+        }"
+      >
+        {{ payed === 'yes' ? 'done' : payed === 'no' ? 'close' : '' }}
       </mat-icon>
     </p>
-    <p><b i18n="@@m-c-p-sub">Subscription : </b><i>{{(client.pack.subscription | async)?.name}}</i></p>
-    <ng-container *ngIf="client.pack.subscription | async | removeItem:client.id as sub">
+    <p>
+      <b i18n="@@m-c-p-sub">Subscription : </b
+      ><i>{{ (client.pack.subscription | async)?.name }}</i>
+    </p>
+    <ng-container
+      *ngIf="client.pack.subscription | async | removeItem: client.id as sub"
+    >
       <div *ngIf="sub.subscriberIds.length > 0" class="mat-elevation-z0">
-        <p><b i18n="@@m-c-p-subMembers">Members : </b>[
+        <p>
+          <b i18n="@@m-c-p-subMembers">Members : </b>[
           <span *ngFor="let id of sub.subscriberIds; index as i">
-            <a [routerLink]="['/manager', 'clients', id]">{{id}}</a>
-            {{ i ==  sub.subscriberIds.length -1 ? '': ' | '}}
+            <a [routerLink]="['/manager', 'clients', id]">{{ id }}</a>
+            {{ i == sub.subscriberIds.length - 1 ? '' : ' | ' }}
           </span>
-          ]</p>
+          ]
+        </p>
       </div>
     </ng-container>
   </div>
 </div>
 <div *ngIf="client" class="mat-elevation-z1 info">
   <p class="title">
-    <ng-container i18n="@@m-c-p-personalInfo">Personal information</ng-container>
-    <button i18n-matTooltip="@@m-c-p-editInfo" matTooltip="Edit" *ngIf="isAdmin" color="primary" mat-icon-button
-      (click)="openEditDialog()">
+    <ng-container i18n="@@m-c-p-personalInfo"
+      >Personal information</ng-container
+    >
+    <button
+      i18n-matTooltip="@@m-c-p-editInfo"
+      matTooltip="Edit"
+      [disabled]="isDeleting"
+      *ngIf="isAdmin"
+      color="primary"
+      mat-icon-button
+      (click)="openEditDialog()"
+    >
       <mat-icon>edit</mat-icon>
     </button>
   </p>
-  <div fxLayout.lt-sm="column" fxLayoutAlign="space-evenly center" fxLayoutGap="10px" class="info2">
+  <div
+    fxLayout.lt-sm="column"
+    fxLayoutAlign="space-evenly center"
+    fxLayoutGap="10px"
+    class="info2"
+  >
     <div>
-      <p><b i18n="@@m-c-p-cin">CIN : </b><i>{{client.cin?.toUpperCase() || i18n.childNodes[2].textContent}}</i></p>
-      <p><b i18n="@@m-c-p-phone">Phone : </b><i>{{client.phone || i18n.childNodes[2].textContent}}</i></p>
+      <p>
+        <b i18n="@@m-c-p-cin">CIN : </b
+        ><i>{{
+          client.cin?.toUpperCase() || i18n.childNodes[2].textContent
+        }}</i>
+      </p>
+      <p>
+        <b i18n="@@m-c-p-phone">Phone : </b
+        ><i>{{ client.phone || i18n.childNodes[2].textContent }}</i>
+      </p>
     </div>
     <div>
-      <p><b i18n="@@m-c-p-adress">Address : </b><span [innerHTML]="toHtml(client.address)"></span></p>
-      <p><b i18n="@@m-c-p-note">Note : </b><span [innerHTML]="toHtml(client.note)"></span></p>
+      <p>
+        <b i18n="@@m-c-p-adress">Address : </b
+        ><span [innerHTML]="toHtml(client.address)"></span>
+      </p>
+      <p>
+        <b i18n="@@m-c-p-note">Note : </b
+        ><span [innerHTML]="toHtml(client.note)"></span>
+      </p>
     </div>
   </div>
 </div>
@@ -65,34 +161,57 @@
   <p i18n="@@m-c-p-session">Training sessions</p>
   <app-check-ins [id]="client.id"></app-check-ins>
 </div>
-<table *ngIf="client" mat-table [dataSource]="payments | async" class="mat-elevation-z1">
+<table
+  *ngIf="client"
+  mat-table
+  [dataSource]="payments | async"
+  class="mat-elevation-z1"
+>
   <ng-container matColumnDef="title">
     <td mat-header-cell *matHeaderCellDef colspan="4">
       <p>
-        <ng-container *ngIf="(payments | async)?.length" i18n="@@a-cList-ps">Payments history</ng-container>
-        <ng-container *ngIf="!(payments | async)?.length" i18n="@@a-cList-noPs">No payments found</ng-container>
+        <ng-container *ngIf="(payments | async)?.length" i18n="@@a-cList-ps"
+          >Payments history</ng-container
+        >
+        <ng-container *ngIf="!(payments | async)?.length" i18n="@@a-cList-noPs"
+          >No payments found</ng-container
+        >
       </p>
     </td>
   </ng-container>
   <ng-container matColumnDef="date">
-    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDate"> Date </th>
+    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDate">Date</th>
     <td mat-cell *matCellDef="let element">
-      {{(element.date.toDate() | date:'mediumDate') + ' ' + (element.date.toDate() | date:'HH:mm')}}
+      {{
+        (element.date.toDate() | date: 'mediumDate') +
+          ' ' +
+          (element.date.toDate() | date: 'HH:mm')
+      }}
     </td>
   </ng-container>
   <ng-container matColumnDef="price">
-    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pPrice"> Price (MAD) </th>
+    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pPrice">
+      Price (MAD)
+    </th>
     <td mat-cell *matCellDef="let element">
-      <b>{{element.price}}</b>
+      <b>{{ element.price }}</b>
     </td>
   </ng-container>
   <ng-container matColumnDef="note">
-    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDescription"> Description </th>
+    <th mat-header-cell *matHeaderCellDef i18n="@@a-cList-pDescription">
+      Description
+    </th>
     <td mat-cell *matCellDef="let element">
-      <ng-container *ngIf="element.note === 'subscription'" i18n="@@a-cList-pDescription-s">
+      <ng-container
+        *ngIf="element.note === 'subscription'"
+        i18n="@@a-cList-pDescription-s"
+      >
         Subscription fee
       </ng-container>
-      <ng-container *ngIf="element.note === 'insurance'" i18n="@@a-cList-pDescription-i">
+      <ng-container
+        *ngIf="element.note === 'insurance'"
+        i18n="@@a-cList-pDescription-i"
+      >
         Insurance fee
       </ng-container>
     </td>
@@ -101,24 +220,37 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
       <i *ngIf="element.idClient !== client.id" i18n="@@a-cList-pPayedBy">
-        Payed by <a matTooltip="View profile" i18n-matTooltip="@@m-c-profile"
-          [routerLink]="['/manager', 'clients', element.idClient]">{{element.idClient}}</a>
+        Payed by
+        <a
+          matTooltip="View profile"
+          i18n-matTooltip="@@m-c-profile"
+          [routerLink]="['/manager', 'clients', element.idClient]"
+          >{{ element.idClient }}</a
+        >
       </i>
     </td>
   </ng-container>
   <tr mat-header-row *matHeaderRowDef="['title']" class="title"></tr>
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
 </table>
+
 <!-- This hidden section is for xi18n command, translated text will be used in typescript and template's attributes above -->
 <div class="translation" #i18n>
   <p i18n="@@m-c-payed">Paid</p>
   <p i18n="@@m-c-notPayed">Unpaid</p>
   <p i18n="@@m-c-p-notProvided">Not provided</p>
-  <p i18n="@@m-c-msg2">This client has already checked in today. Check in anyway?</p>
+  <p i18n="@@m-c-msg2">
+    This client has already checked in today. Check in anyway?
+  </p>
   <p i18n="@@m-c-msg3">Checked in successfully</p>
   <p i18n="@@m-c-msg4">Check in failed</p>
   <p i18n="@@m-c-msg5">Check in is canceled</p>
   <p i18n="@@m-c-msg6">Confirm ?</p>
   <p i18n="@@m-c-p-msg1">Connexion failed</p>
+  <p i18n="@@m-c-p-msg2">
+    This will delete the client and all its data. Continue?
+  </p>
+  <p i18n="@@m-c-p-msg3">Client deleted successfully</p>
+  <p i18n="@@m-c-p-msg4">Failed to delete client</p>
 </div>

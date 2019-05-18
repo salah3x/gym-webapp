@@ -1,67 +1,71 @@
 .container {
-    width: 90%;
-    margin-top: 20px;
-    margin-left: 5%;
+  width: 90%;
+  margin-top: 20px;
+  margin-left: 5%;
 }
 
 img {
-    border: 1px solid grey;
-    max-width: 200px;
-    min-width: 150px;
-    width: 30%;
+  border: 1px solid grey;
+  max-width: 200px;
+  min-width: 150px;
+  width: 30%;
 }
 
 .id {
-    padding: 10px;
-    text-align: center;
-    background-color: white;
+  padding: 10px;
+  text-align: center;
+  background-color: white;
 }
 
 .title {
-    text-align: center;
-    font-size: 24px;
+  text-align: center;
+  font-size: 24px;
 }
 
 .info {
-    text-align: center;
-    width: 90%;
-    padding: 10px 0px 10px 0px;
-    margin-top: 10px;
-    margin-left: 5%;
-    background-color: white;
+  text-align: center;
+  width: 90%;
+  padding: 10px 0px 10px 0px;
+  margin-top: 10px;
+  margin-left: 5%;
+  background-color: white;
 }
 
 .info2 {
-    padding: 10px;
+  padding: 10px;
 }
 
 .action {
-    margin: 10px 0px 10px 0px;
-    width: 150px;
+  margin: 10px 0px 10px 0px;
+  width: 150px;
 }
 
 .checkins {
-    margin-top: 10px;
-    margin-left: 5%;
-    width: 90%;
-    background-color: white;
+  margin-top: 10px;
+  margin-left: 5%;
+  width: 90%;
+  background-color: white;
 }
 
 .checkins p {
-    margin: 0px;
-    padding-top: 20px;
-    text-align: center;
-    font-size: 24px;
+  margin: 0px;
+  padding-top: 20px;
+  text-align: center;
+  font-size: 24px;
 }
 
 table {
-    text-align: center;
-    margin-left: 5%;
-    width: 90%;
-    margin-bottom: 30px;
-    margin-top: 10px;
+  text-align: center;
+  margin-left: 5%;
+  width: 90%;
+  margin-bottom: 30px;
+  margin-top: 10px;
 }
 
 th.mat-header-cell {
-    text-align: center;
+  text-align: center;
+}
+
+mat-progress-spinner {
+  align-self: center;
 }

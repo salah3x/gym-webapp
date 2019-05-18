@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
-import { AngularFirestoreModule, FirestoreSettingsToken } from '@angular/fire/firestore';
+import { HttpClientModule } from '@angular/common/http';
+import {
+  AngularFirestoreModule,
+  FirestoreSettingsToken
+} from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 
 import { ManagerRoutingModule } from './manager-routing.module';
@@ -27,12 +31,10 @@ import { InfoEditComponent } from './clients/profile/info-edit/info-edit.compone
     SharedModule,
     ManagerRoutingModule,
     AngularFireStorageModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    HttpClientModule
   ],
-  providers: [
-    ClientService,
-    { provide: FirestoreSettingsToken, useValue: {} }
-  ],
+  providers: [ClientService, { provide: FirestoreSettingsToken, useValue: {} }],
   entryComponents: [PaymentAddComponent, InfoEditComponent]
 })
-export class ManagerModule { }
+export class ManagerModule {}

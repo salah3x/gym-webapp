@@ -1531,12 +1531,22 @@
         <target>La mise à jour des informations a échoué</target>
       </trans-unit>
       <trans-unit id="m-c-p-notFound" datatype="html">
-        <source>Client not found</source>
+        <source>
+  Client not found
+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
           <context context-type="linenumber">1</context>
         </context-group>
         <target>Client non trouvé</target>
+      </trans-unit>
+      <trans-unit id="m-c-delete" datatype="html">
+        <source>Delete client</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+        <target>Supprimer client</target>
       </trans-unit>
       <trans-unit id="m-c-p-date" datatype="html">
         <source>Registration date : </source>
@@ -1673,6 +1683,32 @@
           <context context-type="linenumber">123</context>
         </context-group>
         <target>Connexion échouée</target>
+      </trans-unit>
+       <trans-unit id="m-c-p-msg2" datatype="html">
+        <source>
+    This will delete the client and all its data. Continue?
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">249</context>
+        </context-group>
+        <target>Cela supprimera le client et toutes ses données. Continuer?</target>
+      </trans-unit>
+      <trans-unit id="m-c-p-msg3" datatype="html">
+        <source>Client deleted successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+        <target>Client supprimé avec succès</target>
+      </trans-unit>
+      <trans-unit id="m-c-p-msg4" datatype="html">
+        <source>Failed to delete client</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">253</context>
+        </context-group>
+        <target>Échec de la suppression du client</target>
       </trans-unit>
       <trans-unit id="m-c-p-checkins-msg1" datatype="html">
         <source>Failed getting training sessions data</source>

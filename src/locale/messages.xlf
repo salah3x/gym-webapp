@@ -934,7 +934,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">72</context>
+          <context context-type="linenumber">174</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-noPs" datatype="html">
@@ -945,7 +945,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">73</context>
+          <context context-type="linenumber">177</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pDate" datatype="html">
@@ -956,7 +956,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">78</context>
+          <context context-type="linenumber">183</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pPrice" datatype="html">
@@ -969,7 +969,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">84</context>
+          <context context-type="linenumber">193</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pDescription" datatype="html">
@@ -982,7 +982,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">201</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pDescription-s" datatype="html">
@@ -995,7 +995,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">92</context>
+          <context context-type="linenumber">208</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pDescription-i" datatype="html">
@@ -1008,7 +1008,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">95</context>
+          <context context-type="linenumber">214</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-pPayedBy" datatype="html">
@@ -1022,7 +1022,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">103</context>
+          <context context-type="linenumber">222</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-profile" datatype="html">
@@ -1037,7 +1037,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">104</context>
+          <context context-type="linenumber">225</context>
         </context-group>
       </trans-unit>
       <trans-unit id="a-cList-cs" datatype="html">
@@ -1186,7 +1186,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">10</context>
+          <context context-type="linenumber">32</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg1" datatype="html">
@@ -1204,7 +1204,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">240</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-notPayed" datatype="html">
@@ -1215,7 +1215,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">116</context>
+          <context context-type="linenumber">241</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg2" datatype="html">
@@ -1226,7 +1226,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">118</context>
+          <context context-type="linenumber">243</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg3" datatype="html">
@@ -1237,7 +1237,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">246</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg4" datatype="html">
@@ -1248,7 +1248,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">120</context>
+          <context context-type="linenumber">247</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg5" datatype="html">
@@ -1259,7 +1259,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">121</context>
+          <context context-type="linenumber">248</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-msg6" datatype="html">
@@ -1270,7 +1270,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">122</context>
+          <context context-type="linenumber">249</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-makePayment" datatype="html">
@@ -1281,7 +1281,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">6</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-addP-subs" datatype="html">
@@ -1363,129 +1363,161 @@
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-notFound" datatype="html">
-        <source>Client not found</source>
+        <source>
+  Client not found
+</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-delete" datatype="html">
+        <source>Delete client</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">43</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-date" datatype="html">
         <source>Registration date : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">16</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-insurance" datatype="html">
         <source>Insurance : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">18</context>
+          <context context-type="linenumber">60</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-insurance-yes" datatype="html">
         <source>Yes</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">63</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-insurance-no" datatype="html">
         <source>No</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">21</context>
+          <context context-type="linenumber">66</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-pack" datatype="html">
         <source>Pack : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">24</context>
+          <context context-type="linenumber">71</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-price" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{(client.pack.pack | async)?.price}}"/> MAD/month</source>
+        <source><x id="INTERPOLATION" equiv-text="{{ (client.pack.pack | async)?.price }}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">74</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-sub" datatype="html">
         <source>Subscription : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">32</context>
+          <context context-type="linenumber">94</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-subMembers" datatype="html">
         <source>Members : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">102</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-personalInfo" datatype="html">
         <source>Personal information</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">47</context>
+          <context context-type="linenumber">116</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-editInfo" datatype="html">
         <source>Edit</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">48</context>
+          <context context-type="linenumber">120</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-cin" datatype="html">
         <source>CIN : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">138</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-phone" datatype="html">
         <source>Phone : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">144</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-adress" datatype="html">
         <source>Address : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">59</context>
+          <context context-type="linenumber">150</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-note" datatype="html">
         <source>Note : </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">60</context>
+          <context context-type="linenumber">154</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-session" datatype="html">
         <source>Training sessions</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">65</context>
+          <context context-type="linenumber">161</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-notProvided" datatype="html">
         <source>Not provided</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">117</context>
+          <context context-type="linenumber">242</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-msg1" datatype="html">
         <source>Connexion failed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">250</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-msg2" datatype="html">
+        <source>
+    This will delete the client and all its data. Continue?
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">251</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-msg3" datatype="html">
+        <source>Client deleted successfully</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">254</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-p-msg4" datatype="html">
+        <source>Failed to delete client</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
+          <context context-type="linenumber">255</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-checkins-msg1" datatype="html">
