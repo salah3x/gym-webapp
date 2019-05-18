@@ -1,38 +1,39 @@
 mat-vertical-stepper {
-    width: 80%;
-    margin-left: 10%;
-    margin-bottom: 20px;
+  width: 80%;
+  margin-left: 10%;
+  margin-bottom: 20px;
 }
 
 .mat-radio-button {
-    margin-bottom: 20px;
+  margin-bottom: 20px;
 }
 
 .header {
-    text-align: center;
-    font-size: 24px;
+  text-align: center;
+  font-size: 24px;
 }
 
 .btn {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 .upload {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .bar {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .pct {
-    text-align: center;
+  text-align: center;
 }
 
 img {
-    width: 40%;
+  max-width: 50%;
+  max-height: 150px;
 }
 
 mat-slide-toggle {
-    margin-left: calc(50% - 60px);
+  margin-left: calc(50% - 60px);
 }

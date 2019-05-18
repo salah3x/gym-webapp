@@ -44,7 +44,7 @@
           (click)="file.click()" i18n-matTooltip="@@a-client-photo" matTooltip="Upload photo" fxFlex="30">
           <mat-icon>{{photoUrl? 'cloud_done': 'cloud_upload'}}</mat-icon>
         </button>
-        <img *ngIf="downloadUrl" [src]="downloadUrl" fxFlex="50" />
+        <img *ngIf="downloadUrl" [src]="downloadUrl" />
         <button *ngIf="photoUrl" mat-icon-button color="warn" i18n-matTooltip="@@a-client-deleteBtn"
           matTooltip="Delete photo" type="button" (click)="deletePhoto()">
           <mat-icon>delete</mat-icon>
