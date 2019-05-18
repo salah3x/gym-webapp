@@ -4,6 +4,10 @@
 
 export const environment = {
   production: false,
+  superadminApi:
+    'https://us-central1-gym-webapp.cloudfunctions.net/superadmin/api/superadmin/',
+  adminApi:
+    'https://us-central1-gym-webapp.cloudfunctions.net/admin/api/admin/',
   firebase: {
     apiKey: 'AIzaSyCg-szSoxtGNZR1NGdGr02jDzhYGP1COZ4',
     authDomain: 'gym-webapp.firebaseapp.com',

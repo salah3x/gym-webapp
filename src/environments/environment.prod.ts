@@ -1,5 +1,7 @@
 export const environment = {
   production: true,
+  superadminApi: '/api/superadmin/',
+  adminApi: '/api/admin/',
   firebase: {
     apiKey: 'AIzaSyCg-szSoxtGNZR1NGdGr02jDzhYGP1COZ4',
     authDomain: 'gym-webapp.firebaseapp.com',
