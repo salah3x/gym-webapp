@@ -100,4 +100,81 @@ route.post(
       );
   }
 );
+/**
+ * POST: /api/admin/deleteClient
+ * Delete the client and its associated data:
+ * - The photo from cloud storage
+ * - The 'checkins' subcollection
+ * - The client id from the subscription document (or the hole document if there is only one subscriber)
+ * Expects the body to contain:
+ * - id: string (The client id)
+ */
+route.post('/deleteClient', (req: express.Request, res: express.Response) => {
+  const id: string = req.body.id;
+  if (!id) {
+    res.status(400).send({
+      error: 'Bad Request',
+      message: "Client's id not provided"
+    });
+    return;
+  }
+  const db = admin.firestore();
+  return db
+    .runTransaction(async t => {
+      const clientDoc = await t.get(db.doc(`clients/${id}`));
+      const clientData = clientDoc.data();
+      if (!clientData) {
+        return Promise.reject('Client not found');
+      }
+      const subscriptionDoc = await t.get(
+        db.doc(
+          `packs/${clientData.pack.idPack}/subscriptions/${
+            clientData.pack.idSubscription
+          }`
+        )
+      );
+      const subscriptionData = subscriptionDoc.data();
+      if (
+        !subscriptionData ||
+        !subscriptionData.subscriberIds ||
+        !subscriptionData.subscriberIds.length
+      ) {
+        return Promise.reject(
+          "Subscription not found or doesn't contain any subscribers"
+        );
+      }
+      const checkins = await t.get(db.collection(`clients/${id}/checkins`));
+      if (clientData.photo) {
+        try {
+          await admin
+            .storage()
+            .bucket()
+            .file(clientData.photo)
+            .delete();
+        } catch (error) {
+          return Promise.reject('Failed to delete photo');
+        }
+      }
+      if (subscriptionData.subscriberIds.length === 1) {
+        t.delete(subscriptionDoc.ref);
+      } else {
+        t.update(subscriptionDoc.ref, {
+          subscriberIds: subscriptionData.subscriberIds.filter(
+            (i: string) => i !== id
+          )
+        });
+      }
+      checkins.forEach(c => t.delete(c.ref));
+      t.delete(clientDoc.ref);
+      return Promise.resolve();
+    })
+    .then(() => res.status(200).send({ message: 'Client deleted' }))
+    .catch(err =>
+      res.status(500).send({
+        error: 'Internal Error',
+        message: 'Failed to delete client',
+        details: err
+      })
+    );
+});
 app.use('/api/admin', route);
