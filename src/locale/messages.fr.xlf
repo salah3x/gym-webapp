@@ -1317,6 +1317,22 @@
         </context-group>
         <target>Typez &apos;:all&apos; pour la liste complète</target>
       </trans-unit>
+      <trans-unit id="m-c-title3" datatype="html">
+        <source>Type &apos;:f&apos; for the list of females</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+        <target>Typez &apos;:f&apos; pour la liste des femmes</target>
+      </trans-unit>
+      <trans-unit id="m-c-title4" datatype="html">
+        <source>Type &apos;:m&apos; for the list of males</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+        <target>Typez &apos;:m&apos; pour la liste des hommes</target>
+      </trans-unit>
       <trans-unit id="m-c-empty" datatype="html">
         <source>No clients found</source>
         <context-group purpose="location">

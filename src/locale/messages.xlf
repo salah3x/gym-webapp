@@ -14,7 +14,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">46</context>
+          <context context-type="linenumber">56</context>
         </context-group>
       </trans-unit>
       <trans-unit id="signInError1" datatype="html">
@@ -131,14 +131,14 @@
         <source>Main menu</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">34</context>
+          <context context-type="linenumber">44</context>
         </context-group>
       </trans-unit>
       <trans-unit id="appLogout" datatype="html">
         <source>Logout</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/app.component.html</context>
-          <context context-type="linenumber">45</context>
+          <context context-type="linenumber">55</context>
         </context-group>
       </trans-unit>
       <trans-unit id="appMsg1" datatype="html">
@@ -1033,7 +1033,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">31</context>
+          <context context-type="linenumber">33</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1171,18 +1171,32 @@
           <context context-type="linenumber">7</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="m-c-title3" datatype="html">
+        <source>Type &apos;:f&apos; for the list of females</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="m-c-title4" datatype="html">
+        <source>Type &apos;:m&apos; for the list of males</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="m-c-empty" datatype="html">
         <source>No clients found</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">8</context>
+          <context context-type="linenumber">10</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-checkIn" datatype="html">
         <source>Check in</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">27</context>
+          <context context-type="linenumber">29</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1193,14 +1207,14 @@
         <source>Connexion failed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">49</context>
+          <context context-type="linenumber">51</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-payed" datatype="html">
         <source>Paid</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">50</context>
+          <context context-type="linenumber">52</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1211,7 +1225,7 @@
         <source>Unpaid</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">51</context>
+          <context context-type="linenumber">53</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1222,7 +1236,7 @@
         <source>This client has already checked in today. Check in anyway?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">52</context>
+          <context context-type="linenumber">54</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1233,7 +1247,7 @@
         <source>Checked in successfully</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">53</context>
+          <context context-type="linenumber">55</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1244,7 +1258,7 @@
         <source>Check in failed</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">54</context>
+          <context context-type="linenumber">56</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1255,7 +1269,7 @@
         <source>Check in is canceled</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">55</context>
+          <context context-type="linenumber">57</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1266,7 +1280,7 @@
         <source>Confirm ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/clients.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">58</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
@@ -1414,7 +1428,7 @@
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-price" datatype="html">
-        <source><x id="INTERPOLATION" equiv-text="{{ (client.pack.pack | async)?.price }}"/> MAD/month</source>
+        <source><x id="INTERPOLATION" equiv-text="{{ (client.pack[&apos;pack&apos;] | async)?.price }}"/> MAD/month</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/profile.component.html</context>
           <context context-type="linenumber">92</context>

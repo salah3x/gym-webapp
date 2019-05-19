@@ -5,6 +5,8 @@
 </mat-form-field>
 <p class="title" *ngIf="!i.value.trim()" i18n="@@m-c-title1">Type something in the search bar</p>
 <p class="subTitle" *ngIf="!i.value.trim()" i18n="@@m-c-title2">Type ':all' for the full list</p>
+<p class="subTitle" *ngIf="!i.value.trim()" i18n="@@m-c-title3">Type ':f' for the list of females</p>
+<p class="subTitle" *ngIf="!i.value.trim()" i18n="@@m-c-title4">Type ':m' for the list of males</p>
 <p class="title" *ngIf="clients?.length < 1 && !isLoading && i.value.trim()" i18n="@@m-c-empty">No clients found</p>
 <mat-spinner [diameter]="30" *ngIf="isLoading"></mat-spinner>
 <table mat-table *ngIf="clients?.length > 0" [dataSource]="clients" class="mat-elevation-z1">
