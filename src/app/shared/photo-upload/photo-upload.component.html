@@ -1,0 +1,81 @@
+<div
+  class="upload"
+  fxLayout.lt-md="column"
+  fxLayoutAlign="space-evenly center"
+  fxLayoutGap="5px"
+>
+  <input
+    hidden
+    type="file"
+    #file
+    accept="image/*"
+    (change)="uploadPhoto($event)"
+  />
+  <button
+    type="button"
+    [disabled]="photoUrl || isUploading"
+    mat-raised-button
+    color="primary"
+    (click)="file.click()"
+    i18n-matTooltip="@@s-upload-photo"
+    matTooltip="Upload photo"
+    fxFlex="30"
+  >
+    <mat-icon>{{ photoUrl ? 'cloud_done' : 'cloud_upload' }}</mat-icon>
+  </button>
+  <img *ngIf="downloadUrl" [src]="downloadUrl" />
+  <button
+    *ngIf="photoUrl"
+    mat-icon-button
+    color="warn"
+    i18n-matTooltip="@@s-upload-deleteBtn"
+    matTooltip="Delete photo"
+    type="button"
+    (click)="deletePhoto()"
+  >
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+<div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
+  <mat-progress-bar
+    class="bar"
+    mode="determinate"
+    [value]="uploadPct"
+  ></mat-progress-bar>
+  <p class="pct">{{ uploadPct | number: '1.0-0' }}%</p>
+  <div>
+    <button
+      mat-icon-button
+      type="button"
+      color="accent"
+      [matTooltip]="
+        isPaused
+          ? i18n.childNodes[5].textContent
+          : i18n.childNodes[4].textContent
+      "
+      (click)="isPaused = isPaused ? !task.resume() : task.pause()"
+    >
+      <mat-icon>{{ isPaused ? 'play_arrow' : 'pause' }}</mat-icon>
+    </button>
+    <button
+      *ngIf="!isPaused"
+      mat-icon-button
+      type="button"
+      color="warn"
+      matTooltip="Cancel upload"
+      i18n-matTooltip="@@s-upload-cancelBtn"
+      (click)="cancelUpload()"
+    >
+      <mat-icon>close</mat-icon>
+    </button>
+  </div>
+</div>
+<!-- This hidden section is for xi18n command, translated text will be used in typescript -->
+<div class="translation" #i18n>
+  <p i18n="@@s-upload-msg1">Upload finished successfully</p>
+  <p i18n="@@s-upload-msg2">Photo upload failed</p>
+  <p i18n="@@s-upload-msg3">Photo deleted successfully</p>
+  <p i18n="@@s-upload-msg4">Failed deleting photo</p>
+  <p i18n="@@s-upload-uploadPause">Pause upload</p>
+  <p i18n="@@s-upload-uploadResume">Resume upload</p>
+</div>

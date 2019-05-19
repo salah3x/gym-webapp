@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
-import { AngularFireStorageModule } from '@angular/fire/storage';
 import {
   AngularFirestoreModule,
   FirestoreSettingsToken
@@ -31,7 +30,6 @@ import { ListViewComponent } from './charges-payments/list-view/list-view.compon
   imports: [
     SharedModule,
     AdminRoutingModule,
-    AngularFireStorageModule,
     AngularFirestoreModule,
     HttpClientModule,
     ChartsModule

@@ -2,6 +2,78 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+    <trans-unit id="s-upload-photo" datatype="html">
+      <source>Upload photo</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">21</context>
+      </context-group>
+      <target>Télécharger une photo</target>
+    </trans-unit>
+    <trans-unit id="s-upload-deleteBtn" datatype="html">
+      <source>Delete photo</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">32</context>
+      </context-group>
+      <target>Supprimer la photo</target>
+    </trans-unit>
+    <trans-unit id="s-upload-cancelBtn" datatype="html">
+      <source>Cancel upload</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">65</context>
+      </context-group>
+      <target>Annuler le téléchargement</target>
+    </trans-unit>
+    <trans-unit id="s-upload-msg1" datatype="html">
+      <source>Upload finished successfully</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">75</context>
+      </context-group>
+      <target>Le téléchargement s'est terminé avec succès</target>
+    </trans-unit>
+    <trans-unit id="s-upload-msg2" datatype="html">
+      <source>Photo upload failed</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">76</context>
+      </context-group>
+      <target>Échec du téléchargement de la photo</target>
+    </trans-unit>
+    <trans-unit id="s-upload-msg3" datatype="html">
+      <source>Photo deleted successfully</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">77</context>
+      </context-group>
+      <target>Photo supprimée avec succès</target>
+    </trans-unit>
+    <trans-unit id="s-upload-msg4" datatype="html">
+      <source>Failed deleting photo</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">78</context>
+      </context-group>
+      <target>Échec de la suppression de la photo</target>
+    </trans-unit>
+    <trans-unit id="s-upload-uploadPause" datatype="html">
+      <source>Pause upload</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">79</context>
+      </context-group>
+      <target>Mettre en pause le téléchargement</target>
+    </trans-unit>
+    <trans-unit id="s-upload-uploadResume" datatype="html">
+      <source>Resume upload</source>
+      <context-group purpose="location">
+        <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
+        <context context-type="linenumber">80</context>
+      </context-group>
+      <target>Reprendre le téléchargement</target>
+    </trans-unit>
     <trans-unit id="appLogin" datatype="html">
         <source>Login</source>
         <context-group purpose="location">
@@ -266,7 +338,9 @@
         <target>Enregistrer un nouveau client</target>
       </trans-unit>
       <trans-unit id="a-client-idInfo" datatype="html">
-        <source>Identification information</source>
+        <source>
+        Identification information
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">5</context>
@@ -322,7 +396,9 @@
         <target>Nom de famille est obligatoire</target>
       </trans-unit>
       <trans-unit id="a-client-sexF" datatype="html">
-        <source>Female</source>
+        <source>
+            Female
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">21</context>
@@ -330,7 +406,9 @@
         <target>Femme</target>
       </trans-unit>
       <trans-unit id="a-client-sexM" datatype="html">
-        <source>Male</source>
+        <source>
+            Male
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">22</context>
@@ -346,7 +424,9 @@
         <target>Date d'inscription</target>
       </trans-unit>
       <trans-unit id="a-client-error3" datatype="html">
-        <source>Registration date is required</source>
+        <source>
+            Registration date is required
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">29</context>
@@ -366,7 +446,9 @@
         <target>dd/mm/yyyy</target>
       </trans-unit>
       <trans-unit id="a-client-next" datatype="html">
-        <source>Next</source>
+        <source>
+          Next
+        </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">34</context>
@@ -386,7 +468,9 @@
         <target>Suivant</target>
       </trans-unit>
       <trans-unit id="a-client-photo" datatype="html">
-        <source>Upload photo</source>
+        <source>
+        Upload photo
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">39</context>
@@ -397,24 +481,10 @@
         </context-group>
         <target>Choisir une photo</target>
       </trans-unit>
-      <trans-unit id="a-client-deleteBtn" datatype="html">
-        <source>Delete photo</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">49</context>
-        </context-group>
-        <target>Supprimer la photo</target>
-      </trans-unit>
-      <trans-unit id="a-client-cancelBtn" datatype="html">
-        <source>Cancel upload</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">62</context>
-        </context-group>
-        <target>Annuler le téléchargement</target>
-      </trans-unit>
       <trans-unit id="a-client-previous" datatype="html">
-        <source>Previous</source>
+        <source>
+          Previous
+        </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">70</context>
@@ -434,7 +504,9 @@
         <target>Précédent</target>
       </trans-unit>
       <trans-unit id="a-client-info" datatype="html">
-        <source>Additional information</source>
+        <source>
+        Additional information
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">77</context>
@@ -482,7 +554,9 @@
           </target>
       </trans-unit>
       <trans-unit id="a-client-subInfo" datatype="html">
-        <source>Subscription pack</source>
+        <source>
+        Subscription pack
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">105</context>
@@ -514,7 +588,9 @@
         <target>Pack est obligatoire</target>
       </trans-unit>
       <trans-unit id="a-client-subNew" datatype="html">
-        <source>*New subscription*</source>
+        <source>
+              *New subscription*
+            </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">118</context>
@@ -530,7 +606,9 @@
         <target>Abonnement</target>
       </trans-unit>
       <trans-unit id="a-client-error5" datatype="html">
-        <source>Subscription is required</source>
+        <source>
+            Subscription is required
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">123</context>
@@ -538,7 +616,9 @@
         <target>L'abonnement est obligatoire</target>
       </trans-unit>
       <trans-unit id="a-client-insurance" datatype="html">
-        <source>Insurance</source>
+        <source>
+        Insurance
+      </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">126</context>
@@ -550,12 +630,12 @@
         <target>Assurance</target>
       </trans-unit>
       <trans-unit id="a-client-totalPrice" datatype="html">
-        <source>Total : <x id="INTERPOLATION" equiv-text="{{selectedPrice}}"/> MAD</source>
+        <source>Total : <x id="INTERPOLATION" equiv-text="{{ selectedPrice }}"/> MAD</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">127</context>
         </context-group>
-        <target>Total : <x id="INTERPOLATION" equiv-text="{{selectedPrice}}"/> MAD</target>
+        <target>Total : <x id="INTERPOLATION" equiv-text="{{ selectedPrice }}"/> MAD</target>
       </trans-unit>
       <trans-unit id="a-client-submit" datatype="html">
         <source>Submit</source>
@@ -590,7 +670,9 @@
         <target>Enregistrez ce nouveau client?</target>
       </trans-unit>
       <trans-unit id="a-client-register" datatype="html">
-        <source>Register</source>
+        <source>
+            Register
+          </source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">147</context>
@@ -630,60 +712,12 @@
         <target>Réessayez</target>
       </trans-unit>
       <trans-unit id="a-client-msg5" datatype="html">
-        <source>Upload finished successfully</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">159</context>
-        </context-group>
-        <target>Le téléchargement s'est terminé avec succès</target>
-      </trans-unit>
-      <trans-unit id="a-client-msg6" datatype="html">
-        <source>Photo upload failed</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">160</context>
-        </context-group>
-        <target>Échec du téléchargement de la photo</target>
-      </trans-unit>
-      <trans-unit id="a-client-msg7" datatype="html">
-        <source>Photo deleted successfully</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">161</context>
-        </context-group>
-        <target>Photo supprimée avec succès</target>
-      </trans-unit>
-      <trans-unit id="a-client-msg8" datatype="html">
         <source>Discard changes ?</source>
         <context-group purpose="location">
           <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
           <context context-type="linenumber">162</context>
         </context-group>
         <target>Annuler les modifications ?</target>
-      </trans-unit>
-      <trans-unit id="a-client-msg9" datatype="html">
-        <source>Failed deleting photo</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">163</context>
-        </context-group>
-        <target>Échec de la suppression de la photo</target>
-      </trans-unit>
-      <trans-unit id="a-client-uploadPause" datatype="html">
-        <source>Pause upload</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">164</context>
-        </context-group>
-        <target>Mettre en pause le téléchargement</target>
-      </trans-unit>
-      <trans-unit id="a-client-uploadResume" datatype="html">
-        <source>Resume upload</source>
-        <context-group purpose="location">
-          <context context-type="sourcefile">app/admin/client-add/client-add.component.html</context>
-          <context context-type="linenumber">165</context>
-        </context-group>
-        <target>Reprendre le téléchargement</target>
       </trans-unit>
       <trans-unit id="a-p-newBtn" datatype="html">
         <source>

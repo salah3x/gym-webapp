@@ -1,0 +1,16 @@
+img {
+  max-width: 50%;
+  max-height: 150px;
+}
+
+.bar {
+  margin-top: 10px;
+}
+
+.pct {
+  text-align: center;
+}
+
+.upload {
+  margin-top: 10px;
+}

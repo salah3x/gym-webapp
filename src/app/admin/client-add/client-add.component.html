@@ -1,133 +1,232 @@
 <p class="header" i18n="@@a-client-title">Register a new client</p>
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <mat-vertical-stepper #stepper linear class="mat-elevation-z1">
-    <mat-step ngModelGroup="id" [stepControl]="f.controls['id']">
-      <ng-template matStepLabel i18n="@@a-client-idInfo">Identification information</ng-template>
-      <div ngModelGroup="name" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+    <mat-step ngModelGroup="id" [stepControl]="f.controls['id']" optional>
+      <ng-template matStepLabel i18n="@@a-client-idInfo">
+        Identification information
+      </ng-template>
+      <div
+        ngModelGroup="name"
+        fxLayout.lt-sm="column"
+        fxLayoutAlign="space-around center"
+      >
         <mat-form-field appearance="outline" fxFlex="45">
           <mat-label i18n="@@a-client-fName">First name</mat-label>
-          <input matInput ngModel name="first" required>
+          <input matInput ngModel name="first" required />
           <mat-error i18n="@@a-client-error1">First name is required</mat-error>
         </mat-form-field>
         <mat-form-field appearance="outline" fxFlex="45">
           <mat-label i18n="@@a-client-lName">Last name</mat-label>
-          <input matInput ngModel name="last" required>
+          <input matInput ngModel name="last" required />
           <mat-error i18n="@@a-client-error2">Last name is required</mat-error>
         </mat-form-field>
       </div>
       <div fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
-        <mat-radio-group [ngModel]="'f'" name="sex" required fxFlex="45" fxLayout.lt-sm="column"
-          fxLayoutAlign="space-evenly center">
-          <mat-radio-button value="f" i18n="@@a-client-sexF">Female</mat-radio-button>
-          <mat-radio-button value="m" i18n="@@a-client-sexM">Male</mat-radio-button>
+        <mat-radio-group
+          [ngModel]="'f'"
+          name="sex"
+          required
+          fxFlex="45"
+          fxLayout.lt-sm="column"
+          fxLayoutAlign="space-evenly center"
+        >
+          <mat-radio-button value="f" i18n="@@a-client-sexF">
+            Female
+          </mat-radio-button>
+          <mat-radio-button value="m" i18n="@@a-client-sexM">
+            Male
+          </mat-radio-button>
         </mat-radio-group>
         <mat-form-field appearance="outline" fxFlex="45">
           <mat-label i18n="@@a-client-date">Registration date</mat-label>
-          <input matInput [matDatepicker]="picker" [ngModel]="curentDate" name="registrationDate" required>
-          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <input
+            matInput
+            [matDatepicker]="picker"
+            [ngModel]="curentDate"
+            name="registrationDate"
+            required
+          />
+          <mat-datepicker-toggle
+            matSuffix
+            [for]="picker"
+          ></mat-datepicker-toggle>
           <mat-datepicker touchUi #picker disabled="false"></mat-datepicker>
-          <mat-error i18n="@@a-client-error3">Registration date is required</mat-error>
+          <mat-error i18n="@@a-client-error3">
+            Registration date is required
+          </mat-error>
           <mat-hint align="end" i18n="@@a-cAdd-dateHint">mm/dd/yyyy</mat-hint>
         </mat-form-field>
       </div>
       <div>
-        <button type="button" mat-raised-button matStepperNext i18n="@@a-client-next">Next</button>
+        <button
+          type="button"
+          mat-raised-button
+          matStepperNext
+          i18n="@@a-client-next"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
     <mat-step [stepControl]="f.controls['photo']" optional>
-      <ng-template matStepLabel i18n="@@a-client-photo">Upload photo</ng-template>
-      <div class="upload" fxLayout.lt-md="column" fxLayoutAlign="space-evenly center" fxLayoutGap="5px">
-        <input hidden type="file" #file accept="image/*" (change)="uploadPhoto($event)" />
-        <input hidden matInput name="photo" [ngModel]="photoUrl" required />
-        <button type="button" [disabled]="photoUrl || isUploading" mat-raised-button color="primary"
-          (click)="file.click()" i18n-matTooltip="@@a-client-photo" matTooltip="Upload photo" fxFlex="30">
-          <mat-icon>{{photoUrl? 'cloud_done': 'cloud_upload'}}</mat-icon>
-        </button>
-        <img *ngIf="downloadUrl" [src]="downloadUrl" />
-        <button *ngIf="photoUrl" mat-icon-button color="warn" i18n-matTooltip="@@a-client-deleteBtn"
-          matTooltip="Delete photo" type="button" (click)="deletePhoto()">
-          <mat-icon>delete</mat-icon>
-        </button>
-      </div>
-      <div *ngIf="isUploading" fxLayout="column" fxLayoutAlign="space-around center">
-        <mat-progress-bar class="bar" mode="determinate" [value]="uploadPct"></mat-progress-bar>
-        <p class="pct">{{uploadPct | number:'1.0-0'}}%</p>
-        <div>
-          <button mat-icon-button type="button" color="accent" 
-            [matTooltip]="isPaused? i18n.childNodes[10].textContent: i18n.childNodes[9].textContent"
-            (click)="isPaused = isPaused? !task.resume(): task.pause()">
-            <mat-icon>{{isPaused? 'play_arrow': 'pause'}}</mat-icon>
-          </button>
-          <button *ngIf="!isPaused" mat-icon-button type="button" color="warn" matTooltip="Cancel upload"
-            i18n-matTooltip="@@a-client-cancelBtn" (click)="cancelUpload()">
-            <mat-icon>close</mat-icon>
-          </button>
-        </div>
-      </div>
+      <ng-template matStepLabel i18n="@@a-client-photo">
+        Upload photo
+      </ng-template>
+      <app-photo-upload
+        [deleteOnClose]="deletePhotoOnClose"
+        (start)="isUploading = true"
+        (end)="endUpload($event)"
+      ></app-photo-upload>
+      <input hidden matInput name="photo" [ngModel]="photoUrl" required />
       <div class="upload">
-        <button type="button" mat-raised-button matStepperPrevious [disabled]="isUploading"
-          i18n="@@a-client-previous">Previous</button>
-        <button type="button" class="btn" mat-raised-button matStepperNext [disabled]="isUploading"
-          i18n="@@a-client-next">Next</button>
+        <button
+          type="button"
+          mat-raised-button
+          matStepperPrevious
+          [disabled]="isUploading"
+          i18n="@@a-client-previous"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          class="btn"
+          mat-raised-button
+          matStepperNext
+          [disabled]="isUploading"
+          i18n="@@a-client-next"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
     <mat-step optional>
-      <ng-template matStepLabel i18n="@@a-client-info">Additional information</ng-template>
+      <ng-template matStepLabel i18n="@@a-client-info">
+        Additional information
+      </ng-template>
       <div fxLayout="column" fxLayoutAlign="space-between">
         <div fxLayout.lt-md="column" fxLayoutAlign="space-around center">
           <mat-form-field appearance="outline" fxFlex="45">
             <mat-label i18n="@@a-client-cin">CIN</mat-label>
             <mat-icon matSuffix>credit_card</mat-icon>
-            <input matInput ngModel name="cin">
+            <input matInput ngModel name="cin" />
           </mat-form-field>
           <mat-form-field appearance="outline" fxFlex="45">
             <mat-label i18n="@@a-client-phone">Phone number</mat-label>
-            <input matInput ngModel name="phone">
+            <input matInput ngModel name="phone" />
             <mat-icon matSuffix>phone_android</mat-icon>
           </mat-form-field>
         </div>
         <mat-form-field appearance="outline">
-          <mat-label i18n="@@a-client-address">Address
+          <mat-label i18n="@@a-client-address"
+            >Address
             <mat-icon matSuffix>location_on</mat-icon>
           </mat-label>
           <textarea matInput ngModel name="address" rows="3"></textarea>
         </mat-form-field>
       </div>
       <div class="upload">
-        <button type="button" mat-raised-button matStepperPrevious i18n="@@a-client-previous">Previous</button>
-        <button type="button" class="btn" mat-raised-button matStepperNext i18n="@@a-client-next">Next</button>
+        <button
+          type="button"
+          mat-raised-button
+          matStepperPrevious
+          i18n="@@a-client-previous"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          class="btn"
+          mat-raised-button
+          matStepperNext
+          i18n="@@a-client-next"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
     <mat-step ngModelGroup="subsInfo" [stepControl]="f.controls['subsInfo']">
-      <ng-template matStepLabel i18n="@@a-client-subInfo">Subscription pack</ng-template>
-      <div ngModelGroup="pack" fxLayout.lt-sm="column" fxLayoutAlign="space-around center">
+      <ng-template matStepLabel i18n="@@a-client-subInfo">
+        Subscription pack
+      </ng-template>
+      <div
+        ngModelGroup="pack"
+        fxLayout.lt-sm="column"
+        fxLayoutAlign="space-around center"
+      >
         <mat-form-field>
-          <mat-select (selectionChange)="onSelectPack($event)" #p ngModel name="idPack" required>
+          <mat-select
+            (selectionChange)="onSelectPack($event)"
+            #p
+            ngModel
+            name="idPack"
+            required
+          >
             <mat-option i18n="@@a-client-subNone">-- None --</mat-option>
-            <mat-option *ngFor="let p of packs" [value]="p.id">{{p.name}}</mat-option>
+            <mat-option *ngFor="let p of packs" [value]="p.id">{{
+              p.name
+            }}</mat-option>
           </mat-select>
           <mat-label i18n="@@a-client-pack">Pack</mat-label>
           <mat-error i18n="@@a-client-error4">Pack is required</mat-error>
         </mat-form-field>
         <mat-form-field>
-          <mat-select [ngModel]="'new'" name="idSubscription" #s (selectionChange)="onSelectSubscription($event.value)"
-            required>
-            <mat-option value="new" i18n="@@a-client-subNew">*New subscription*</mat-option>
-            <mat-option *ngIf="subscriptions" disabled>----------------------------</mat-option>
-            <mat-option *ngFor="let s of subscriptions" [value]="s.id">{{s.name}}</mat-option>
+          <mat-select
+            [ngModel]="'new'"
+            name="idSubscription"
+            #s
+            (selectionChange)="onSelectSubscription($event.value)"
+            required
+          >
+            <mat-option value="new" i18n="@@a-client-subNew">
+              *New subscription*
+            </mat-option>
+            <mat-option *ngIf="subscriptions" disabled>
+              ----------------------------
+            </mat-option>
+            <mat-option *ngFor="let s of subscriptions" [value]="s.id">{{
+              s.name
+            }}</mat-option>
           </mat-select>
           <mat-label i18n="@@a-client-sub">Subscription</mat-label>
-          <mat-error i18n="@@a-client-error5">Subscription is required</mat-error>
+          <mat-error i18n="@@a-client-error5">
+            Subscription is required
+          </mat-error>
         </mat-form-field>
       </div>
-      <mat-slide-toggle ngModel name="insurance" (change)="onSelectInsurance()" #i i18n="@@a-client-insurance">Insurance</mat-slide-toggle>
-      <p class="pct"><b i18n="@@a-client-totalPrice">Total : {{selectedPrice}} MAD</b></p>
+      <mat-slide-toggle
+        ngModel
+        name="insurance"
+        (change)="onSelectInsurance()"
+        #i
+        i18n="@@a-client-insurance"
+      >
+        Insurance
+      </mat-slide-toggle>
+      <p class="pct">
+        <b i18n="@@a-client-totalPrice">Total : {{ selectedPrice }} MAD</b>
+      </p>
       <div class="upload">
-        <button type="button" mat-raised-button matStepperPrevious i18n="@@a-client-previous">Previous</button>
-        <button type="button" class="btn" mat-raised-button matStepperNext i18n="@@a-client-next">Next</button>
+        <button
+          type="button"
+          mat-raised-button
+          matStepperPrevious
+          i18n="@@a-client-previous"
+        >
+          Previous
+        </button>
+        <button
+          type="button"
+          class="btn"
+          mat-raised-button
+          matStepperNext
+          i18n="@@a-client-next"
+        >
+          Next
+        </button>
       </div>
     </mat-step>
 
@@ -135,16 +234,33 @@
       <ng-template matStepLabel i18n="@@a-client-submit">Submit</ng-template>
       <div fxLayout="column" fxLayoutAlign="space-around stretch">
         <mat-form-field appearance="outline">
-          <mat-label i18n="@@a-client-note">Note
+          <mat-label i18n="@@a-client-note"
+            >Note
             <mat-icon matSuffix>description</mat-icon>
           </mat-label>
           <textarea matInput ngModel name="note" rows="3"></textarea>
         </mat-form-field>
         <h3 i18n="@@a-client-title2">Register this new client ?</h3>
         <div class="upload">
-          <button type="button" mat-raised-button matStepperPrevious i18n="@@a-client-previous">Previous</button>
-          <button type="submit" [disabled]="f.submitted" class="btn" color="primary" mat-raised-button
-            matStepperNext i18n="@@a-client-register">Register</button>
+          <button
+            type="button"
+            mat-raised-button
+            matStepperPrevious
+            i18n="@@a-client-previous"
+          >
+            Previous
+          </button>
+          <button
+            type="submit"
+            [disabled]="f.submitted"
+            class="btn"
+            color="primary"
+            mat-raised-button
+            matStepperNext
+            i18n="@@a-client-register"
+          >
+            Register
+          </button>
         </div>
       </div>
     </mat-step>
@@ -156,11 +272,5 @@
   <p i18n="@@a-client-msg2">Client added successfully</p>
   <p i18n="@@a-client-msg3">Failed registering client</p>
   <p i18n="@@a-client-msg4">Retry</p>
-  <p i18n="@@a-client-msg5">Upload finished successfully</p>
-  <p i18n="@@a-client-msg6">Photo upload failed</p>
-  <p i18n="@@a-client-msg7">Photo deleted successfully</p>
-  <p i18n="@@a-client-msg8">Discard changes ?</p>
-  <p i18n="@@a-client-msg9">Failed deleting photo</p>
-  <p i18n="@@a-client-uploadPause">Pause upload</p>
-  <p i18n="@@a-client-uploadResume">Resume upload</p>
+  <p i18n="@@a-client-msg5">Discard changes ?</p>
 </div>

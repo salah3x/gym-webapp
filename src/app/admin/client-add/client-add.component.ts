@@ -14,11 +14,6 @@ import {
   MatSlideToggle,
   MatSelect
 } from '@angular/material';
-import {
-  AngularFireStorage,
-  AngularFireStorageReference,
-  AngularFireUploadTask
-} from '@angular/fire/storage';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { map, takeUntil } from 'rxjs/operators';
@@ -42,14 +37,12 @@ export class ClientAddComponent implements OnInit, OnDestroy {
   @ViewChild('i18n') public i18n: ElementRef;
   @ViewChild('f') form: NgForm;
   @ViewChild('stepper') stepper: MatStepper;
-  photoUrl = '';
   curentDate = new Date();
-  downloadUrl: string;
+
+  photoUrl = '';
   isUploading = false;
-  uploadPct = 0;
-  isPaused = false;
-  fileRef: AngularFireStorageReference;
-  task: AngularFireUploadTask;
+  deletePhotoOnClose = true;
+
   packs: PackWithId[];
   subscriptions: SubscriptionWithId[];
   selectedPrice = 0;
@@ -59,7 +52,6 @@ export class ClientAddComponent implements OnInit, OnDestroy {
   private ngUnsubscribe = new Subject();
 
   constructor(
-    private storage: AngularFireStorage,
     private snack: MatSnackBar,
     private afs: AngularFirestore,
     private router: Router
@@ -170,7 +162,8 @@ export class ClientAddComponent implements OnInit, OnDestroy {
           { duration: 3000 }
         );
         this.form.resetForm();
-        this.downloadUrl = '';
+        this.deletePhotoOnClose = false;
+        this.photoUrl = '';
         this.router.navigate(['manager', 'clients', clientId]);
       })
       .catch(() =>
@@ -186,72 +179,9 @@ export class ClientAddComponent implements OnInit, OnDestroy {
       );
   }
 
-  uploadPhoto(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    if (!file) {
-      return;
-    }
-    this.isUploading = true;
-    const filePath = 'images/' + Date.now().valueOf() + file.name;
-    this.task = this.storage.upload(filePath, file);
-    this.task
-      .percentageChanges()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(pct => (this.uploadPct = pct));
-    this.task
-      .then(t => {
-        this.photoUrl = t.ref.fullPath;
-        this.fileRef = this.storage.ref(this.photoUrl);
-        this.fileRef
-          .getDownloadURL()
-          .pipe(takeUntil(this.ngUnsubscribe))
-          .subscribe(url => (this.downloadUrl = url));
-        this.snack.open(
-          this.i18n.nativeElement.childNodes[4].textContent,
-          'X',
-          { duration: 3000 }
-        );
-        this.isUploading = false;
-      })
-      .catch(() => {
-        this.snack.open(
-          this.i18n.nativeElement.childNodes[5].textContent,
-          'X',
-          { duration: 3000 }
-        );
-        this.isUploading = false;
-      });
-    (event.target as HTMLInputElement).value = '';
-  }
-
-  deletePhoto() {
-    this.fileRef
-      .delete()
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe(
-        () => {
-          this.snack.open(
-            this.i18n.nativeElement.childNodes[6].textContent,
-            'X',
-            { duration: 3000 }
-          );
-          this.photoUrl = '';
-          this.downloadUrl = '';
-        },
-        () =>
-          this.snack.open(
-            this.i18n.nativeElement.childNodes[8].textContent,
-            'X',
-            { duration: 3000 }
-          )
-      );
-  }
-
-  cancelUpload() {
-    if (this.task.cancel()) {
-      this.isPaused = false;
-      this.photoUrl = '';
-    }
+  endUpload(url: string) {
+    this.photoUrl = url;
+    this.isUploading = false;
   }
 
   onSelectPack(event: MatSelectChange) {
@@ -297,20 +227,10 @@ export class ClientAddComponent implements OnInit, OnDestroy {
   }
 
   canDeactivate(): boolean {
-    if (
-      this.form.dirty &&
-      !confirm(this.i18n.nativeElement.childNodes[7].textContent)
-    ) {
-      return false;
-    }
-    if (this.downloadUrl) {
-      console.log('delete photo');
-      this.fileRef
-        .delete()
-        .pipe(takeUntil(this.ngUnsubscribe))
-        .subscribe();
-    }
-    return true;
+    return (
+      !(this.form.dirty || this.photoUrl) ||
+      confirm(this.i18n.nativeElement.childNodes[4].textContent)
+    );
   }
 
   ngOnDestroy() {

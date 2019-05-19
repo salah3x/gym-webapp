@@ -21,19 +21,6 @@ mat-vertical-stepper {
   margin-top: 10px;
 }
 
-.bar {
-  margin-top: 10px;
-}
-
-.pct {
-  text-align: center;
-}
-
-img {
-  max-width: 50%;
-  max-height: 150px;
-}
-
 mat-slide-toggle {
   margin-left: calc(50% - 60px);
 }
