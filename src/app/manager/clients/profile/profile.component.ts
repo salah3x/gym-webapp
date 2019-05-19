@@ -26,6 +26,7 @@ import { PaymentAddComponent } from './payment-add/payment-add.component';
 import { ClientService } from '../client-service.service';
 import { InfoEditComponent } from './info-edit/info-edit.component';
 import { environment } from 'src/environments/environment';
+import { PhotoComponent } from './photo/photo.component';
 
 @Component({
   selector: 'app-profile',
@@ -178,6 +179,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   deleteClient(id: string) {
+    if (!this.isAdmin) {
+      return;
+    }
     if (confirm(this.i18n.nativeElement.childNodes[9].textContent)) {
       this.isDeleting = true;
       this.auth.idToken
@@ -213,6 +217,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   deletePhoto() {
+    if (!this.isAdmin) {
+      return;
+    }
     if (confirm(this.i18n.nativeElement.childNodes[12].textContent + '?')) {
       this.storege
         .ref(this.client.photo)
@@ -224,7 +231,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
     }
   }
 
-  uploadPhoto() {}
+  uploadPhoto() {
+    if (!this.isAdmin) {
+      return;
+    }
+    this.dialog.open(PhotoComponent, {
+      width: '70%',
+      disableClose: true,
+      data: { id: this.client.id }
+    });
+  }
 
   toHtml(text: string) {
     if (!text || !text.length) {

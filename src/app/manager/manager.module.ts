@@ -16,6 +16,7 @@ import { PaymentAddComponent } from './clients/profile/payment-add/payment-add.c
 import { CheckInsComponent } from './clients/profile/check-ins/check-ins.component';
 import { ClientService } from './clients/client-service.service';
 import { InfoEditComponent } from './clients/profile/info-edit/info-edit.component';
+import { PhotoComponent } from './clients/profile/photo/photo.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { InfoEditComponent } from './clients/profile/info-edit/info-edit.compone
     RemoveItemPipe,
     PaymentAddComponent,
     CheckInsComponent,
-    InfoEditComponent
+    InfoEditComponent,
+    PhotoComponent
   ],
   imports: [
     SharedModule,
@@ -35,6 +37,6 @@ import { InfoEditComponent } from './clients/profile/info-edit/info-edit.compone
     HttpClientModule
   ],
   providers: [ClientService, { provide: FirestoreSettingsToken, useValue: {} }],
-  entryComponents: [PaymentAddComponent, InfoEditComponent]
+  entryComponents: [PaymentAddComponent, InfoEditComponent, PhotoComponent]
 })
 export class ManagerModule {}

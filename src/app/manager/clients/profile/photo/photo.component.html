@@ -1,0 +1,32 @@
+<h1 mat-dialog-title i18n="@@s-upload-photo">Upload photo</h1>
+<div mat-dialog-content>
+  <app-photo-upload
+    [deleteOnClose]="deletePhotoOnClose"
+    (start)="loading = true"
+    (end)="onEnd($event)"
+  ></app-photo-upload>
+</div>
+<div
+  mat-dialog-actions
+  fxLayout
+  fxLayout.lt-sm="column"
+  fxLayoutAlign="space-around center"
+>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="!photoUrl || loading"
+    (click)="save()"
+    i18n="@@m-c-p-editInfo-saveBtn"
+  >
+    Save
+  </button>
+  <button
+    mat-raised-button
+    mat-dialog-close
+    [disabled]="loading"
+    i18n="@@a-cList-closeBtn"
+  >
+    Close
+  </button>
+</div>

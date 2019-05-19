@@ -8,6 +8,10 @@
           <context context-type="sourcefile">app/shared/photo-upload/photo-upload.component.html</context>
           <context context-type="linenumber">21</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/photo/photo.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="s-upload-deleteBtn" datatype="html">
         <source>Delete photo</source>
@@ -954,6 +958,10 @@
           <context context-type="sourcefile">app/admin/charges-payments/list-view/list-view.component.html</context>
           <context context-type="linenumber">8</context>
         </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/photo/photo.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
       </trans-unit>
       <trans-unit id="a-cList-ps" datatype="html">
         <source>Payments history</source>
@@ -1389,6 +1397,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">app/manager/clients/profile/info-edit/info-edit.component.html</context>
           <context context-type="linenumber">39</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">app/manager/clients/profile/photo/photo.component.html</context>
+          <context context-type="linenumber">21</context>
         </context-group>
       </trans-unit>
       <trans-unit id="m-c-p-editInfo-msg1" datatype="html">
