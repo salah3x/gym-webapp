@@ -151,9 +151,7 @@ route.post('/deleteClient', (req: express.Request, res: express.Response) => {
             .bucket()
             .file(clientData.photo)
             .delete();
-        } catch (error) {
-          return Promise.reject('Failed to delete photo');
-        }
+        } catch (error) {}
       }
       if (subscriptionData.subscriberIds.length === 1) {
         t.delete(subscriptionDoc.ref);
