@@ -2,15 +2,15 @@ mat-sidenav {
     max-width: 250px;
     width: 85%;
 }
-  
+
 mat-sidenav-content {
     height: 100vh;
 }
-  
+
 .active {
     background-color: rgb(0, 0, 0, 0.05);
 }
-  
+
 .fill-remaining-space {
     flex: 1 1 auto;
 }
@@ -53,4 +53,9 @@ mat-sidenav-content {
 
 .footer a img {
     width: 25px;
+}
+
+.mat-menu-item .mat-icon {
+  padding-left: 20px;
+  margin-right: 0px;
 }
