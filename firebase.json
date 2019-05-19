@@ -16,6 +16,10 @@
         "function": "superadmin"
       },
       {
+        "source": "/api/admin/**",
+        "function": "admin"
+      },
+      {
         "source": "**",
         "destination": "/index.html"
       }
