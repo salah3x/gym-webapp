@@ -41,6 +41,10 @@ mat-sidenav-content {
 
 .footer {
     height: 40px;
+    position: fixed;
+    bottom: 0px;
+    max-width: 250px;
+    width: 85%;
 }
 
 .footer p {

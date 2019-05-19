@@ -19,8 +19,6 @@ export class HomeComponent implements OnInit, OnDestroy {
       .style.backgroundSize = 'cover';
     (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
       .style.background = '#00000090';
-    (this.renderer.selectRootElement('.footer', true) as HTMLElement)
-      .style.visibility = 'hidden';
     this.changeBackground();
   }
 
@@ -40,7 +38,5 @@ export class HomeComponent implements OnInit, OnDestroy {
       .style.backgroundImage = '';
     (this.renderer.selectRootElement('.toolbar', true) as HTMLElement)
       .style.background = '#3f51b5';
-    (this.renderer.selectRootElement('.footer', true) as HTMLElement)
-    .style.visibility = 'visible';
   }
 }
