@@ -10,6 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { AngularFirestore } from '@angular/fire/firestore';
+import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Observable, combineLatest, Subject } from 'rxjs';
 import { map, tap, switchMap, takeUntil, mergeMap, take } from 'rxjs/operators';
@@ -45,6 +46,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private route: ActivatedRoute,
     private afs: AngularFirestore,
+    private storege: AngularFireStorage,
     private sanitizer: DomSanitizer,
     private auth: AngularFireAuth,
     private snack: MatSnackBar,
@@ -170,6 +172,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
       data: { ...this.client }
     });
   }
+
   performCheckin(id: string) {
     this.service.performCheckin(id, this.isCheckingIn);
   }
@@ -208,6 +211,20 @@ export class ProfileComponent implements OnInit, OnDestroy {
         );
     }
   }
+
+  deletePhoto() {
+    if (confirm(this.i18n.nativeElement.childNodes[12].textContent + '?')) {
+      this.storege
+        .ref(this.client.photo)
+        .delete()
+        .toPromise()
+        .then(() =>
+          this.afs.doc(`clients/${this.client.id}`).update({ photo: '' })
+        );
+    }
+  }
+
+  uploadPhoto() {}
 
   toHtml(text: string) {
     if (!text || !text.length) {

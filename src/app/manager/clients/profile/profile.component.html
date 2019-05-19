@@ -8,7 +8,7 @@
   fxLayoutAlign="space-between center"
   fxLayoutGap="10px"
 >
-  <img class="mat-elevation-z2" *ngIf="client.url | async as url" [src]="url" />
+  <img class="mat-elevation-z2" *ngIf="client['url'] | async as url" [src]="url" />
   <div fxLayout="column">
     <button
       class="action"
@@ -36,6 +36,24 @@
     <button
       class="action"
       mat-raised-button
+      *ngIf="isAdmin"
+      [disabled]="isDeleting"
+      [color]="client.photo ? 'accent' : 'default'"
+      (click)="client.photo ? deletePhoto() : uploadPhoto()"
+      [matTooltip]="
+        client.photo
+          ? i18n.childNodes[12].textContent
+          : i18n.childNodes[13].textContent
+      "
+    >
+      <mat-icon>{{
+        client.photo ? 'insert_photo' : 'add_photo_alternate'
+      }}</mat-icon>
+    </button>
+    <button
+      class="action"
+      mat-raised-button
+      *ngIf="isAdmin"
       [disabled]="isDeleting"
       color="warn"
       (click)="deleteClient(client.id)"
@@ -70,12 +88,12 @@
     <p>
       <b i18n="@@m-c-p-pack">Pack : </b
       ><i
-        >{{ (client.pack.pack | async)?.name }} (<b i18n="@@m-c-p-price"
-          >{{ (client.pack.pack | async)?.price }} MAD/month</b
+        >{{ (client.pack['pack'] | async)?.name }} (<b i18n="@@m-c-p-price"
+          >{{ (client.pack['pack'] | async)?.price }} MAD/month</b
         >)</i
       >
       <mat-icon
-        *ngIf="client.payed | async as payed"
+        *ngIf="client['payed'] | async as payed"
         [matTooltip]="
           payed === 'yes'
             ? i18n.childNodes[0].textContent
@@ -92,10 +110,10 @@
     </p>
     <p>
       <b i18n="@@m-c-p-sub">Subscription : </b
-      ><i>{{ (client.pack.subscription | async)?.name }}</i>
+      ><i>{{ (client.pack['subscription'] | async)?.name }}</i>
     </p>
     <ng-container
-      *ngIf="client.pack.subscription | async | removeItem: client.id as sub"
+      *ngIf="client.pack['subscription'] | async | removeItem: client.id as sub"
     >
       <div *ngIf="sub.subscriberIds.length > 0" class="mat-elevation-z0">
         <p>
@@ -253,4 +271,6 @@
   </p>
   <p i18n="@@m-c-p-msg3">Client deleted successfully</p>
   <p i18n="@@m-c-p-msg4">Failed to delete client</p>
+  <p i18n="@@m-c-p-deletePhoto">Delete photo</p>
+  <p i18n="@@m-c-p-uploadPhoto">Upload photo</p>
 </div>
