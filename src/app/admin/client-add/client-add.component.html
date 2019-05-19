@@ -1,7 +1,7 @@
 <p class="header" i18n="@@a-client-title">Register a new client</p>
 <form #f="ngForm" (ngSubmit)="onSubmit(f)">
   <mat-vertical-stepper #stepper linear class="mat-elevation-z1">
-    <mat-step ngModelGroup="id" [stepControl]="f.controls['id']" optional>
+    <mat-step ngModelGroup="id" [stepControl]="f.controls['id']">
       <ng-template matStepLabel i18n="@@a-client-idInfo">
         Identification information
       </ng-template>
