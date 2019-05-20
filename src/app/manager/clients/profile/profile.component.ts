@@ -135,13 +135,15 @@ export class ProfileComponent implements OnInit, OnDestroy {
         c => {
           this.isLoading = false;
           this.client = c;
-          this.titleService.setTitle(
-            this.titleService.getTitle() +
-              ' | ' +
-              c.name.first +
-              ' ' +
-              c.name.last
-          );
+          if (!this.titleService.getTitle().includes('|')) {
+            this.titleService.setTitle(
+              this.titleService.getTitle() +
+                ' | ' +
+                c.name.first +
+                ' ' +
+                c.name.last
+            );
+          }
         },
         () => {
           this.isLoading = false;
