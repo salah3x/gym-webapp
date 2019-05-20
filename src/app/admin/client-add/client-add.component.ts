@@ -3,7 +3,8 @@ import {
   OnInit,
   ViewChild,
   ElementRef,
-  OnDestroy
+  OnDestroy,
+  ChangeDetectorRef
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
@@ -54,7 +55,8 @@ export class ClientAddComponent implements OnInit, OnDestroy {
   constructor(
     private snack: MatSnackBar,
     private afs: AngularFirestore,
-    private router: Router
+    private router: Router,
+    private ref: ChangeDetectorRef
   ) {}
 
   ngOnInit() {
@@ -163,6 +165,7 @@ export class ClientAddComponent implements OnInit, OnDestroy {
         );
         this.form.resetForm();
         this.deletePhotoOnClose = false;
+        this.ref.detectChanges();
         this.photoUrl = '';
         this.router.navigate(['manager', 'clients', clientId]);
       })
