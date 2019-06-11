@@ -11,7 +11,7 @@ import {
 import { Observable, of } from 'rxjs';
 import { map, take, mergeMap } from 'rxjs/operators';
 import { AngularFireAuth } from '@angular/fire/auth';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'

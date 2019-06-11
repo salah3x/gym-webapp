@@ -6,7 +6,8 @@ import {
   Inject
 } from '@angular/core';
 import { NgForm } from '@angular/forms';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { take } from 'rxjs/operators';
 
@@ -20,8 +21,8 @@ import { Pack } from 'src/app/shared/client.model';
 export class PackAddComponent implements OnInit {
   editMode: boolean;
   isLoading = false;
-  @ViewChild('f') form: NgForm;
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('f', { static: true }) form: NgForm;
+  @ViewChild('i18n', { static: false }) public i18n: ElementRef;
 
   constructor(
     private afs: AngularFirestore,

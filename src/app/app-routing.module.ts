@@ -7,19 +7,19 @@ const routes: Routes = [
   { path: '', component: HomeComponent, pathMatch: 'full'},
   {
     path: 'superadmin',
-    loadChildren: './super-admin/super-admin.module#SuperAdminModule',
+    loadChildren: () => import('./super-admin/super-admin.module').then(m => m.SuperAdminModule),
     canLoad: [AuthGuardService],
     canActivate: [AuthGuardService]
   },
   {
     path: 'manager',
-    loadChildren: './manager/manager.module#ManagerModule',
+    loadChildren: () => import('./manager/manager.module').then(m => m.ManagerModule),
     canLoad: [AuthGuardService],
     canActivate: [AuthGuardService]
   },
   {
     path: 'admin',
-    loadChildren: './admin/admin.module#AdminModule',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
     canLoad: [AuthGuardService],
     canActivate: [AuthGuardService]
   },

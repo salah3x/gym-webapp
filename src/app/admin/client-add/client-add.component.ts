@@ -8,13 +8,10 @@ import {
 } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
-import {
-  MatSnackBar,
-  MatStepper,
-  MatSelectChange,
-  MatSlideToggle,
-  MatSelect
-} from '@angular/material';
+import { MatSelectChange, MatSelect } from '@angular/material/select';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatStepper } from '@angular/material/stepper';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { map, takeUntil } from 'rxjs/operators';
@@ -35,9 +32,8 @@ import { Subject } from 'rxjs';
   styleUrls: ['./client-add.component.css']
 })
 export class ClientAddComponent implements OnInit, OnDestroy {
-  @ViewChild('i18n') public i18n: ElementRef;
-  @ViewChild('f') form: NgForm;
-  @ViewChild('stepper') stepper: MatStepper;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
+  @ViewChild('f', { static: false }) form: NgForm;
   curentDate = new Date();
 
   photoUrl = '';
@@ -47,9 +43,9 @@ export class ClientAddComponent implements OnInit, OnDestroy {
   packs: PackWithId[];
   subscriptions: SubscriptionWithId[];
   selectedPrice = 0;
-  @ViewChild('i') insurance: MatSlideToggle;
-  @ViewChild('s') subSelect: MatSelect;
-  @ViewChild('p') packSelect: MatSelect;
+  @ViewChild('i', { static: false }) insurance: MatSlideToggle;
+  @ViewChild('s', { static: false }) subSelect: MatSelect;
+  @ViewChild('p', { static: false }) packSelect: MatSelect;
   private ngUnsubscribe = new Subject();
 
   constructor(

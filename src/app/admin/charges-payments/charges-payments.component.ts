@@ -1,5 +1,14 @@
-import { Component, OnInit, Inject, LOCALE_ID, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import {
+  Component,
+  OnInit,
+  Inject,
+  LOCALE_ID,
+  ViewChild,
+  ElementRef,
+  OnDestroy
+} from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { ChartOptions, ChartDataSets } from 'chart.js';
@@ -17,91 +26,127 @@ import { ListViewComponent } from './list-view/list-view.component';
   styleUrls: ['./charges-payments.component.css']
 })
 export class ChargesPaymentsComponent implements OnInit, OnDestroy {
-
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   monthToShow = 6;
   curentStartDate = new Date();
   curentEndDate = new Date();
-  startDate$ = new Subject<{ start: Date, end: Date }>();
+  startDate$ = new Subject<{ start: Date; end: Date }>();
   barChartOptions: ChartOptions = {
     responsive: true,
     scales: {
-      yAxes: [{
-        scaleLabel: {
-          display: true,
-          labelString: 'MAD',
-          fontFamily: 'Roboto'
+      yAxes: [
+        {
+          scaleLabel: {
+            display: true,
+            labelString: 'MAD',
+            fontFamily: 'Roboto'
+          }
         }
-      }]
+      ]
     },
     legend: {
       onHover(e) {
-         (e.target as any).style.cursor = 'pointer';
+        (e.target as any).style.cursor = 'pointer';
       }
     },
     hover: {
-        onHover(e) {
-          const point = this.getElementAtEvent(e);
-          if (point.length) {
-            (e.target as any).style.cursor = 'pointer';
-          } else {
-            (e.target as any).style.cursor = 'default';
-          }
+      onHover(e) {
+        const point = this.getElementAtEvent(e);
+        if (point.length) {
+          (e.target as any).style.cursor = 'pointer';
+        } else {
+          (e.target as any).style.cursor = 'default';
         }
+      }
     }
   };
   barChartLabels: Label[] = [];
   barChartData: ChartDataSets[];
   private ngUnsubscribe = new Subject();
 
-  constructor(private dialog: MatDialog,
-              private afs: AngularFirestore,
-              private snack: MatSnackBar,
-              @Inject(LOCALE_ID) protected locale: string) { }
+  constructor(
+    private dialog: MatDialog,
+    private afs: AngularFirestore,
+    private snack: MatSnackBar,
+    @Inject(LOCALE_ID) protected locale: string
+  ) {}
 
   ngOnInit() {
-    this.startDate$.pipe(
-      tap(() => {
-        this.barChartData[0].data = [];
-        this.barChartData[1].data = [];
-      }),
-      debounceTime(500),
-      switchMap(data => combineLatest(
-        this.afs.collection<Payment>('payments', ref => ref
-          .where('date', '>=', firestore.Timestamp.fromDate(data.start))
-          .where('date', '<=', firestore.Timestamp.fromDate(data.end))
-        ).valueChanges().pipe(
-          map(ps => {
-            const arr: number[] = new Array(this.monthToShow).fill(0);
-            ps.forEach(item =>
-              (arr[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
-                += item.price);
-            return arr;
-          })
+    this.startDate$
+      .pipe(
+        tap(() => {
+          this.barChartData[0].data = [];
+          this.barChartData[1].data = [];
+        }),
+        debounceTime(500),
+        switchMap(data =>
+          combineLatest(
+            this.afs
+              .collection<Payment>('payments', ref =>
+                ref
+                  .where('date', '>=', firestore.Timestamp.fromDate(data.start))
+                  .where('date', '<=', firestore.Timestamp.fromDate(data.end))
+              )
+              .valueChanges()
+              .pipe(
+                map(ps => {
+                  const arr: number[] = new Array(this.monthToShow).fill(0);
+                  ps.forEach(
+                    item =>
+                      ((arr[
+                        this.barChartLabels.indexOf(
+                          this.getMonth(item.date.toDate())
+                        )
+                      ] as number) += item.price)
+                  );
+                  return arr;
+                })
+              ),
+            this.afs
+              .collection<Charge>('charges', ref =>
+                ref
+                  .where('date', '>=', firestore.Timestamp.fromDate(data.start))
+                  .where('date', '<=', firestore.Timestamp.fromDate(data.end))
+              )
+              .valueChanges()
+              .pipe(
+                map(ps => {
+                  const arr: number[] = new Array(this.monthToShow).fill(0);
+                  ps.forEach(
+                    item =>
+                      ((arr[
+                        this.barChartLabels.indexOf(
+                          this.getMonth(item.date.toDate())
+                        )
+                      ] as number) += item.cost)
+                  );
+                  return arr;
+                })
+              )
+          )
         ),
-        this.afs.collection<Charge>('charges', ref => ref
-          .where('date', '>=', firestore.Timestamp.fromDate(data.start))
-          .where('date', '<=', firestore.Timestamp.fromDate(data.end))
-        ).valueChanges().pipe(
-          map(ps => {
-            const arr: number[] = new Array(this.monthToShow).fill(0);
-            ps.forEach(item =>
-              (arr[this.barChartLabels.indexOf(this.getMonth(item.date.toDate()))] as number)
-                += item.cost);
-            return arr;
-          })
-        )
-      )),
-      takeUntil(this.ngUnsubscribe)
-    ).subscribe(data => {
-      this.barChartData[0].data = data[0];
-      this.barChartData[1].data = data[1];
-    }, () => this.snack.open(this.i18n.nativeElement.childNodes[2].textContent, 'X', { duration: 3000 }));
+        takeUntil(this.ngUnsubscribe)
+      )
+      .subscribe(
+        data => {
+          this.barChartData[0].data = data[0];
+          this.barChartData[1].data = data[1];
+        },
+        () =>
+          this.snack.open(
+            this.i18n.nativeElement.childNodes[2].textContent,
+            'X',
+            { duration: 3000 }
+          )
+      );
     this.curentStartDate.setHours(0, 0, 0);
     this.curentEndDate.setMonth(this.curentEndDate.getMonth() + 1, 0);
     this.curentEndDate.setHours(23, 59, 59);
     this.initLabels();
-    this.startDate$.next({ start: this.curentStartDate, end: this.curentEndDate });
+    this.startDate$.next({
+      start: this.curentStartDate,
+      end: this.curentEndDate
+    });
   }
 
   initLabels() {
@@ -113,17 +158,30 @@ export class ChargesPaymentsComponent implements OnInit, OnDestroy {
       this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 1, 1);
     }
     this.barChartData = [
-      { data: [], label: this.i18n.nativeElement.childNodes[0].textContent,
-        backgroundColor: '#4CAF50', hoverBackgroundColor: '#388E3C', borderColor: '#9E9E9E' },
-      { data: [], label: this.i18n.nativeElement.childNodes[1].textContent,
-        backgroundColor: '#FF5252', hoverBackgroundColor: '#D32F2F', borderColor: '#9E9E9E' }
+      {
+        data: [],
+        label: this.i18n.nativeElement.childNodes[0].textContent,
+        backgroundColor: '#4CAF50',
+        hoverBackgroundColor: '#388E3C',
+        borderColor: '#9E9E9E'
+      },
+      {
+        data: [],
+        label: this.i18n.nativeElement.childNodes[1].textContent,
+        backgroundColor: '#FF5252',
+        hoverBackgroundColor: '#D32F2F',
+        borderColor: '#9E9E9E'
+      }
     ];
   }
 
   onNext() {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() + 1);
     this.curentEndDate.setMonth(this.curentEndDate.getMonth() + 2, 0);
-    this.startDate$.next({ start: this.curentStartDate, end: this.curentEndDate });
+    this.startDate$.next({
+      start: this.curentStartDate,
+      end: this.curentEndDate
+    });
     this.barChartLabels.shift();
     this.barChartLabels.push(this.getMonth(this.curentEndDate));
   }
@@ -131,7 +189,10 @@ export class ChargesPaymentsComponent implements OnInit, OnDestroy {
   onPrevious() {
     this.curentStartDate.setMonth(this.curentStartDate.getMonth() - 1);
     this.curentEndDate.setDate(0);
-    this.startDate$.next({ start: this.curentStartDate, end: this.curentEndDate });
+    this.startDate$.next({
+      start: this.curentStartDate,
+      end: this.curentEndDate
+    });
     this.barChartLabels.pop();
     this.barChartLabels.unshift(this.getMonth(this.curentStartDate));
   }
@@ -152,7 +213,10 @@ export class ChargesPaymentsComponent implements OnInit, OnDestroy {
   }
 
   getMonth(date: Date): string {
-    return date.toLocaleString(this.locale, { month: 'short', year: 'numeric' });
+    return date.toLocaleString(this.locale, {
+      month: 'short',
+      year: 'numeric'
+    });
   }
 
   ngOnDestroy() {

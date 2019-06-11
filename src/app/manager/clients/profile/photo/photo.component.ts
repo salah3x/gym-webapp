@@ -5,7 +5,8 @@ import {
   ElementRef,
   Inject
 } from '@angular/core';
-import { MAT_DIALOG_DATA, MatSnackBar, MatDialogRef } from '@angular/material';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Client } from 'src/app/shared/client.model';
 
@@ -15,7 +16,7 @@ import { Client } from 'src/app/shared/client.model';
   styleUrls: ['./photo.component.css']
 })
 export class PhotoComponent implements OnInit {
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: false }) public i18n: ElementRef;
   deletePhotoOnClose = true;
   loading = false;
   photoUrl = '';

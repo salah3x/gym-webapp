@@ -7,7 +7,8 @@ import {
   LOCALE_ID
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { firestore } from 'firebase/app';
 import { Observable, of } from 'rxjs';
@@ -22,7 +23,7 @@ import { Payment, Charge, ChargeWitId } from 'src/app/shared/client.model';
   styleUrls: ['./list-view.component.css']
 })
 export class ListViewComponent implements OnInit {
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   payments: Observable<Payment[]>;
   charges: Observable<Charge[]>;
   paymentColumns = ['date', 'price', 'note', 'client'];

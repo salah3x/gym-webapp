@@ -8,7 +8,8 @@ import {
 import { HttpClient } from '@angular/common/http';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { mergeMap, take, takeUntil } from 'rxjs/operators';
-import { MatSnackBar, MatSlideToggle } from '@angular/material';
+import { MatSlideToggle } from '@angular/material/slide-toggle';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment';
 import { User } from './user.model';
 import { Subject } from 'rxjs';
@@ -25,7 +26,7 @@ export class UsersComponent implements OnInit, OnDestroy {
     private snack: MatSnackBar
   ) {}
 
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   isWorking = false;
   users: User[];
   displayedColumns: string[] = [

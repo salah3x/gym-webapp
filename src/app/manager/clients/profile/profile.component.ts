@@ -8,7 +8,8 @@ import {
 import { DomSanitizer, Title } from '@angular/platform-browser';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -34,7 +35,7 @@ import { PhotoComponent } from './photo/photo.component';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit, OnDestroy {
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   client: ClientWithId;
   isLoading = true;
   isCheckingIn = false;

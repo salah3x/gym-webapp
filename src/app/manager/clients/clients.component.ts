@@ -5,7 +5,7 @@ import {
   ViewChild,
   ElementRef
 } from '@angular/core';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Subject, of, combineLatest } from 'rxjs';
 import { switchMap, map, debounceTime, tap, takeUntil } from 'rxjs/operators';
@@ -19,7 +19,7 @@ import { ClientService } from './client-service.service';
   styleUrls: ['./clients.component.css']
 })
 export class ClientsComponent implements OnInit, OnDestroy {
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   searchTerm = new Subject<string>();
   clients: ClientWithId[];
   displayedColumns = ['photo', 'name', 'action', 'state'];

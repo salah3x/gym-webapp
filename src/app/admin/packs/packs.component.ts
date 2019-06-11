@@ -7,7 +7,8 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import { HttpClient } from '@angular/common/http';
-import { MatDialog, MatSnackBar } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { map, take, takeUntil, mergeMap } from 'rxjs/operators';
@@ -28,7 +29,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./packs.component.css']
 })
 export class PacksComponent implements OnInit, OnDestroy {
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: true }) public i18n: ElementRef;
   packs: PackWithId[];
   subscriptions: Observable<SubscriptionWithId[]>;
   isLoading = true;

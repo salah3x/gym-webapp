@@ -15,7 +15,7 @@ import {
 } from '@angular/fire/storage';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-photo-upload',
@@ -27,7 +27,7 @@ export class PhotoUploadComponent implements OnInit, OnDestroy {
   @Output() end = new EventEmitter<string>();
   @Input() deleteOnClose = true;
 
-  @ViewChild('i18n') public i18n: ElementRef;
+  @ViewChild('i18n', { static: false }) public i18n: ElementRef;
 
   photoUrl = '';
   isUploading = false;
