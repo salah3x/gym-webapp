@@ -1,6 +1,6 @@
 {
   "name": "gym-webapp",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "A webapp for managing clients' subscriptions and check-ins for a gym, also enabling admins to view and monitor incomes, material resources and repairs.",
   "author": {
     "name": "Salah E. Loukili",
