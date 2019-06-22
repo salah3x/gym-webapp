@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { SidenavService } from '../sidenav.service';
 
 @Component({
   selector: 'app-super-admin',
@@ -7,11 +6,7 @@ import { SidenavService } from '../sidenav.service';
   styleUrls: ['./super-admin.component.css']
 })
 export class SuperAdminComponent implements OnInit {
+  constructor() {}
 
-  constructor(private sidenavService: SidenavService) { }
-
-  ngOnInit() {
-    this.sidenavService.close();
-  }
-
+  ngOnInit() {}
 }

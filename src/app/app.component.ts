@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSidenav } from '@angular/material/sidenav';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SigninComponent } from './signin/signin.component';
-import { SidenavService } from './sidenav.service';
 import { AuthGuardService } from './shared/auth-guard.service';
 import { takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
@@ -33,7 +32,6 @@ export class AppComponent implements OnInit, OnDestroy {
     public auth: AngularFireAuth,
     private snackBar: MatSnackBar,
     private dialog: MatDialog,
-    private sidenavService: SidenavService,
     private guard: AuthGuardService
   ) {}
 
@@ -45,7 +43,6 @@ export class AppComponent implements OnInit, OnDestroy {
     this.auth.idTokenResult.pipe(takeUntil(this.ngUnsubscribe)).subscribe(r => {
       r ? (this.claims = r.claims) : (this.claims = []);
     });
-    this.sidenavService.setSideNav(this.sideNav);
   }
 
   onSigninOrSignout() {
