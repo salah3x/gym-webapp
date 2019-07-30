@@ -8,6 +8,7 @@ export const environment = {
     databaseURL: 'https://gym-webapp.firebaseio.com',
     projectId: 'gym-webapp',
     storageBucket: 'gym-webapp.appspot.com',
-    messagingSenderId: '217921355428'
+    messagingSenderId: '217921355428',
+    appId: '1:217921355428:web:501a3b7bcea7cfc6'
   }
 };
