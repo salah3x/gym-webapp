@@ -1,6 +1,6 @@
 {
   "name": "gym-webapp-backend",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "A backend cloud-functions for gym-webapp",
   "author": {
     "name": "Salah E. Loukili",
@@ -25,14 +25,14 @@
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.17.1",
-    "firebase-admin": "^8.3.0",
-    "firebase-functions": "^3.2.0"
+    "firebase-admin": "^8.8.0",
+    "firebase-functions": "^3.3.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.5",
-    "@types/express": "^4.17.0",
-    "tslint": "^5.18.0",
-    "typescript": "^3.5.3"
+    "@types/cors": "^2.8.6",
+    "@types/express": "^4.17.2",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.3"
   },
   "engines": {
     "node": "10"
